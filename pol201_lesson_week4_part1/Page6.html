@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Question: Normal Approximation to the Binomial</h1>
+  <p><strong>Consider the following question.</strong></p>
+  
+  <p><em>In a survey, it is found that 30% of voters in a large city are supporters of a particular political party. If a sample of 400 voters is taken, what is the probability that at least 140 of them support this political party? </em></p>
+  
+  <div class="question">
+      <p><b>1. Is the sample size large enough for the normal approximation to be used effectively?</b></p>
+      <form id="formQ5">
+          <label><input type="radio" name="selectedAns" value="A">A) Yes</label>
+          <label><input type="radio" name="selectedAns" value="B">B) No</label>
+      </form>
+      <button id="submitBtnQ5" onclick="sendSelectedResponse('Q5')">Submit Answer</button>
+      <p id="resultQ5"></p>
+  </div>
+  
+  <div class="question">
+      <p><b>2. What is the probability that at least 140 out of 400 voters support the political party? (<em>use the z-table in Brightspace</em>)</b></p>
+      <form id="formQ6">
+          <label><input type="radio" name="selectedAns" value="A">A) Less than 10%</label>
+          <label><input type="radio" name="selectedAns" value="B">B) Between 10% and 25%</label>
+          <label><input type="radio" name="selectedAns" value="C">C) Between 25% and 50%</label>
+          <label><input type="radio" name="selectedAns" value="D">D) More than 50%</label>
+      </form>
+      <button id="submitBtnQ6" onclick="sendSelectedResponse('Q6')">Submit Answer</button>
+      <p id="resultQ6"></p>
+  </div>
+  
+  <div class="nextbutton">
+    <!-- Navigation Button to Next Page -->
+    <button id="nextButton" onclick="loadPage('Page7')">Move to next section</button>
+  </div>
+</div>

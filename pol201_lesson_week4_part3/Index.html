@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questionnaire</title>
+  <style>
+    body, html {
+        width: 100%;
+        min-height: 100vh; /* Ensures at least full viewport height */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Palatino Linotype', 'Palatino', 'Georgia', serif;
+        background-color: #dcf0fa;
+        font-size: 18px; 
+    }
+    #content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap; /* Allows items to wrap as needed */
+    }
+    .container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 800px;
+        width: 90%; /* Adjust width to be responsive */
+        text-align: left;
+        margin: 10px; /* Add margin for spacing */
+    }
+    p {
+        margin: 20px 0;
+    }
+    .formula {
+        background-color: #f4f4f4;
+        border-left: 5px solid #333;
+        font-family: monospace;
+        padding: 10px;
+    }
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    .video-wrapper {
+        position: relative;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        width: 100%;
+    }
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 8px;
+    }
+  .image-wrapper {
+      position: relative;
+      width: 100%; /* Full width of the parent container */
+      padding-top: 75%; /* Adjust this value based on the aspect ratio of your image */
+      height: 0; /* Maintain this to use padding-top for height */
+      overflow: visible; /* Allows the content to be visible outside the box */
+  }
+  img.responsive-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%; /* Full width to fill the container */
+      height: auto; /* Adjust height automatically to maintain the aspect ratio */
+      object-fit: contain; /* Ensures the whole image is fit in the container, might add letterboxing */
+  }
+    button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    .nextbutton {
+        text-align: center;
+    }
+    .nextbutton button {
+        background-color: grey;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .nextbutton button:hover {
+        background-color: #007bff;
+    }
+    .question {
+        text-align: left;
+        margin-bottom: 10px;
+    }
+    .question label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+        line-height: 1.2;
+    }
+    input[type="checkbox"], input[type="radio"] {
+        margin-right: 10px;
+    }
+    .formatted-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+    .formatted-table th, .formatted-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        background-color: #f9f9f9;
+    }
+    .formatted-table th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .formatted-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    @media (max-width: 600px) {
+        .container {
+            width: 100%; /* Full width on smaller screens */
+            padding: 10px; /* Reduce padding */
+        }
+        h1, p {
+            margin: 10px; /* Adjust text margins */
+        }
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <!-- This will now explicitly set to 100% width, ensure your script handles filling this appropriately -->
+  </div>
+    
+<script>
+    function loadPage(page) {
+        // Check if the nextButton exists before trying to change its text
+        var nextButton = document.getElementById('nextButton');
+        if (nextButton) {
+            nextButton.innerText = '(Loading Next Section)';
+        }
+
+        google.script.run.withSuccessHandler(function(html) {
+            document.getElementById('content').innerHTML = html;
+        }).getPage(page);
+    }
+
+    // Load the first page initially
+    loadPage('Page1');
+</script>
+
+<script>
+    function sendResponse(questionId, answer) {
+        // Access the specific button and update the text to indicate loading
+        var submitButton = document.getElementById('submitBtn' + questionId);
+        submitButton.textContent = "(Loading answer)";  // Change the button text to indicate processing
+
+        google.script.run
+            .withSuccessHandler(function(response) {
+                document.getElementById('result' + questionId).innerHTML = '<i>' + response.message + '</i>';
+                submitButton.textContent = "Submit Answer";  // Reset button text after loading the response
+            })
+            .withFailureHandler(function(error) {
+                document.getElementById('result' + questionId).innerHTML = '<i>Error: ' + error.message + '</i>';
+                submitButton.textContent = "Submit Answer";  // Reset button text if there is an error
+            })
+            .checkAnswer(questionId, answer);
+    }
+
+    // Handles a multiple choice question submission
+    function sendSelectedResponse(questionId) {
+        var form = document.getElementById('form'+ questionId);
+        var selectedOption = form.querySelector('input[name="selectedAns"]:checked');
+        var submitButton = document.getElementById('submitBtn' + questionId); // Access the specific button
+
+        if (selectedOption) {
+            submitButton.textContent = "(Loading answer)";  // Change button text immediately when clicked
+            sendResponse(questionId, selectedOption.value);
+        } else {
+            alert("Please select an option.");
+        }
+    }
+</script>
+
+<script>
+    function sendFormResponses(questionId) {
+        var form = document.getElementById('form' + questionId);
+        var checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+        var answers = Array.from(checkboxes).map(checkbox => checkbox.value);
+        var submitButton = document.getElementById('submitBtn' + questionId); // Access the specific button
+
+        if (answers.length > 0) {
+            submitButton.textContent = "(Loading answer)";  // Change button text immediately when clicked
+
+            google.script.run
+                .withSuccessHandler(function(response) {
+                    document.getElementById('result' + questionId).innerHTML = '<i>' + response.message + '</i>';
+                    submitButton.textContent = "Submit Answers";  // Reset button text after loading the response
+                })
+                .withFailureHandler(function() {
+                    document.getElementById('result' + questionId).innerHTML = '<i>Error loading response. Try again.</i>';
+                    submitButton.textContent = "Submit Answers";  // Reset button text in case of an error
+                })
+                .checkAnswer(questionId, answers);
+        } else {
+            alert("Please select at least one option.");
+        }
+    }
+</script>
+
+
+</body>
+</html>

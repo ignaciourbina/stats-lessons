@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Question: Test Your Knowledge!</h1>
+  <p><em>Please consider the following question. </em></p>
+  
+  <p>Imagine a new medication is developed to lower blood pressure. A clinical trial is conducted to test the effectiveness of this new medication. Researchers want to know if the medication actually reduces blood pressure compared to a placebo.</p>
+
+  <div class="question">
+    <p><b>1. What is the primary purpose of conducting a hypothesis test using the data collected in this clinical trial?</b></p>
+    <form id="formQ1">
+        <label><input type="radio" name="selectedAns" value="A">A) To determine the exact amount by which the new medication lowers blood pressure in every patient.</label>
+        <label><input type="radio" name="selectedAns" value="B">B) To prove that the new medication is 100% effective in lowering blood pressure for all patients.</label>
+        <label><input type="radio" name="selectedAns" value="C">C) To evaluate if there is enough statistical evidence to support the claim that the new medication reduces blood pressure compared to a placebo.</label>
+        <label><input type="radio" name="selectedAns" value="D">D) To find out the cause of high blood pressure in patients participating in the trial.</label>
+    </form>
+    <button id="submitBtnQ1" onclick="sendSelectedResponse('Q1')">Submit Answer</button>
+    <p id="resultQ1"></p>
+  </div>
+
+  <div class="nextbutton">
+    <!-- Navigation Button to Next Page -->
+    <button id="nextButton" onclick="loadPage('Page5')">Move to next section</button>
+  </div>
+</div>
