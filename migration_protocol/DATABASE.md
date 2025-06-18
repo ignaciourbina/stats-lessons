@@ -21,6 +21,7 @@ This document tracks all videos and interactive questions included in the migrat
 | Page9 | Confidence Intervals (OpenIntro Statistics) | https://www.youtube.com/embed/FUaXoKdCre4 |
 | Page9 | Solved Problems: Confidence Interval for a Proportion | https://www.youtube.com/embed/dLEtlteLVJU |
 
+
 ## Questions
 
 | ID | Page | Prompt | Correct Answer |
