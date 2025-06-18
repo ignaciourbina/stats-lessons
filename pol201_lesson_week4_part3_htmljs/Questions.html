@@ -1,0 +1,63 @@
+<div style="border:1px solid #ccc;padding:15px;margin:10px;">
+
+  <div>
+    <p><b>1. What is the primary purpose of conducting a hypothesis test using the data collected in this clinical trial?</b></p>
+    <form id="formQ1">
+        <label><input type="radio" name="selectedAns" value="A">A) To determine the exact amount by which the new medication lowers blood pressure in every patient.</label>
+        <label><input type="radio" name="selectedAns" value="B">B) To prove that the new medication is 100% effective in lowering blood pressure for all patients.</label>
+        <label><input type="radio" name="selectedAns" value="C">C) To evaluate if there is enough statistical evidence to support the claim that the new medication reduces blood pressure compared to a placebo.</label>
+        <label><input type="radio" name="selectedAns" value="D">D) To find out the cause of high blood pressure in patients participating in the trial.</label>
+    </form>
+    <button id="submitBtnQ1" onclick="sendSelectedResponse('Q1')">Submit Answer</button>
+    <p id="resultQ1"></p>
+  </div>
+
+  <div>
+    <p><b>2. What is the null hypothesis (H0) and the alternative hypothesis (H1) for this test?</b></p>
+    <form id="formQ2">
+        <label><input type="radio" name="selectedAns" value="A">A) H0: The cure rate with the new drug is equal to 30%.<br>H1: The cure rate with the new drug is greater than 30%.</label>
+        <label><input type="radio" name="selectedAns" value="B">B) H0: The cure rate with the new drug is equal to 30%.<br>H1: The cure rate with the new drug is less than 30%.</label>
+        <label><input type="radio" name="selectedAns" value="C">C) H0: The cure rate with the new drug is equal to 30%.<br>H1: The cure rate with the new drug is different from 30%.</label>
+        <label><input type="radio" name="selectedAns" value="D">D) H0: The cure rate with the new drug is less than 30%.<br>H1: The cure rate with the new drug is equal to 30%.</label>
+    </form>
+    <button id="submitBtnQ2" onclick="sendSelectedResponse('Q2')">Submit Answer</button>
+    <p id="resultQ2"></p>
+  </div>
+
+  <div>
+    <p><b>3. What is the critical value and the test statistic (Z) for this test?</b></p>
+    <form id="formQ3">
+        <label><input type="radio" name="selectedAns" value="A">A) Critical value: 1.96, Test statistic: 1.78</label>
+        <label><input type="radio" name="selectedAns" value="B">B) Critical value: 1.645, Test statistic: 1.78</label>
+        <label><input type="radio" name="selectedAns" value="C">C) Critical value: 1.96, Test statistic: 1.65</label>
+        <label><input type="radio" name="selectedAns" value="D">D) Critical value: 1.645, Test statistic: 1.65</label>
+    </form>
+    <button id="submitBtnQ3" onclick="sendSelectedResponse('Q3')">Submit Answer</button>
+    <p id="resultQ3"></p>
+  </div>
+
+  <div>
+    <p><b>4. Based on the comparison of the test statistic and the critical value, what conclusion should be drawn about the effectiveness of the new drug?</b></p>
+    <form id="formQ4">
+        <label><input type="radio" name="selectedAns" value="A">A) The test statistic is equal to the critical value, so we reject the null hypothesis. This means the new drug is exactly as effective as the historical cure rate.</label>
+        <label><input type="radio" name="selectedAns" value="B">B) The test statistic is less than the critical value, so we reject the null hypothesis. This means there is enough evidence to conclude that the new drug is more effective than the historical cure rate.</label>
+        <label><input type="radio" name="selectedAns" value="C">C) The test statistic is greater than the critical value, so we reject the null hypothesis. This means there is enough evidence to conclude that the new drug is more effective than the historical cure rate.</label>
+        <label><input type="radio" name="selectedAns" value="D">D) The test statistic is less than the critical value, so we fail to reject the null hypothesis. This means there is not enough evidence to conclude that the new drug is more effective than the historical cure rate.</label>
+    </form>
+    <button id="submitBtnQ4" onclick="sendSelectedResponse('Q4')">Submit Answer</button>
+    <p id="resultQ4"></p>
+  </div>
+
+  <div>
+    <p><b>5. Carry out the test following the 6 steps. What is the correct conclusion from the test?</b></p>
+    <form id="formQ5">
+        <label><input type="radio" name="selectedAns" value="A">A) The test statistic is less than the critical value, so we fail to reject the null hypothesis. This means there is not enough evidence to conclude that the true support for Candidate A is higher than 55%.</label>
+        <label><input type="radio" name="selectedAns" value="B">B) The test statistic is greater than the critical value, so we reject the null hypothesis. This means there is enough evidence to conclude that the true support for Candidate A is higher than 55%.</label>
+        <label><input type="radio" name="selectedAns" value="C">C) The test statistic is greater than the critical value, so we reject the null hypothesis. This means there is enough evidence to conclude that the true support for Candidate A is higher than 55%.</label>
+        <label><input type="radio" name="selectedAns" value="D">D) The test statistic is equal to the critical value, so we fail to reject the null hypothesis. This means there is not enough evidence to conclude that the true support for Candidate A is higher than 55%.</label>
+    </form>
+    <button id="submitBtnQ5" onclick="sendSelectedResponse('Q5')">Submit Answer</button>
+    <p id="resultQ5"></p>
+  </div>
+
+</div>

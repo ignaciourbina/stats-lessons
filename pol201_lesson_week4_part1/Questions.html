@@ -1,0 +1,135 @@
+<div class="container">
+
+  <div class="question">
+    <p><b>1. Which of the following corresponds to the correct z-score transformation of X=40</b></p>
+    <form id="formQ1">
+        <label><input type="radio" name="selectedAns" value="A">A) 1.5</label>
+        <label><input type="radio" name="selectedAns" value="B">B) -1.5</label>
+        <label><input type="radio" name="selectedAns" value="C">C) -15</label>
+        <label><input type="radio" name="selectedAns" value="D">D) 15</label>
+    </form>
+    <button id="submitBtnQ1" onclick="sendSelectedResponse('Q1')">Submit Answer</button>
+    <p id="resultQ1"></p>
+  </div>
+
+  <div class="question">
+    <p><b>2. Which of the following corresponds to the correct z-score transformation of X=65</b></p>
+    <form id="formQ2">
+        <label><input type="radio" name="selectedAns" value="A">A) 1</label>
+        <label><input type="radio" name="selectedAns" value="B">B) -1</label>
+        <label><input type="radio" name="selectedAns" value="C">C) -10</label>
+        <label><input type="radio" name="selectedAns" value="D">D) 10</label>
+    </form>
+    <button id="submitBtnQ2" onclick="sendSelectedResponse('Q2')">Submit Answer</button>
+    <p id="resultQ2"></p>
+  </div>
+
+  <div class="question">
+    <p><b>3. Upon randomly selecting one resident, what is the probability that they have a rating equal to or less than 40? (use the z-table in Brightspace)</b></p>
+    <form id="formQ3">
+        <label><input type="radio" name="selectedAns" value="A">A) 2.28%</label>
+        <label><input type="radio" name="selectedAns" value="B">B) 6.68%</label>
+        <label><input type="radio" name="selectedAns" value="C">C) 14.87%</label>
+        <label><input type="radio" name="selectedAns" value="D">D) 22.28%</label>
+    </form>
+    <button id="submitBtnQ3" onclick="sendSelectedResponse('Q3')">Submit Answer</button>
+    <p id="resultQ3"></p>
+  </div>
+
+  <div class="question">
+    <p><b>4. Upon randomly selecting one resident, what is the probability that they have a rating equal to or more than 65? (use the z-table in Brightspace)</b></p>
+    <form id="formQ4">
+        <label><input type="radio" name="selectedAns" value="A">A) 5.87%</label>
+        <label><input type="radio" name="selectedAns" value="B">B) 10.28%</label>
+        <label><input type="radio" name="selectedAns" value="C">C) 15.87%</label>
+        <label><input type="radio" name="selectedAns" value="D">D) 22.28%</label>
+    </form>
+    <button id="submitBtnQ4" onclick="sendSelectedResponse('Q4')">Submit Answer</button>
+    <p id="resultQ4"></p>
+  </div>
+
+  <div class="question">
+      <p><b>5. Is the sample size large enough for the normal approximation to be used effectively?</b></p>
+      <form id="formQ5">
+          <label><input type="radio" name="selectedAns" value="A">A) Yes</label>
+          <label><input type="radio" name="selectedAns" value="B">B) No</label>
+      </form>
+      <button id="submitBtnQ5" onclick="sendSelectedResponse('Q5')">Submit Answer</button>
+      <p id="resultQ5"></p>
+  </div>
+
+  <div class="question">
+      <p><b>6. What is the probability that at least 140 out of 400 voters support the political party? (<em>use the z-table in Brightspace</em>)</b></p>
+      <form id="formQ6">
+          <label><input type="radio" name="selectedAns" value="A">A) Less than 10%</label>
+          <label><input type="radio" name="selectedAns" value="B">B) Between 10% and 25%</label>
+          <label><input type="radio" name="selectedAns" value="C">C) Between 25% and 50%</label>
+          <label><input type="radio" name="selectedAns" value="D">D) More than 50%</label>
+      </form>
+      <button id="submitBtnQ6" onclick="sendSelectedResponse('Q6')">Submit Answer</button>
+      <p id="resultQ6"></p>
+  </div>
+
+</div>
+
+<script>
+  function doGet() {
+      return HtmlService.createHtmlOutputFromFile('Index');
+    }
+
+    function checkAnswer(questionId, answers) {
+      var response = {};
+      switch (questionId) {
+
+          case 'Q1': // Simple multiple choice
+              if (answers === 'B') {
+                  response.message = "Correct!";
+              } else {
+                  response.message = "That is incorrect. Here is the correct calculation: Z = (X - mean)/sd = (40 - 55)/10 = -1.5.";
+              }
+              break;
+          case 'Q2': // Simple multiple choice
+              if (answers === 'A') {
+                  response.message = "Correct!";
+              } else {
+                  response.message = "That is incorrect. Here is the correct calculation: Z = (X - mean)/sd = (65 - 55)/10 = 1.0.";
+              }
+              break;
+          case 'Q3': // Simple multiple choice
+              if (answers === 'B') {
+                  response.message = "Correct!";
+              } else {
+                  response.message = "That is incorrect. Here is the correct calculation: P(X<=40) is the same as P(Z<=(40 - 55)/10). Thus, if we look the correct row and column of the z-table we will find that P(Z<=-1.5)=0.0668. Note: Search the value where the row is Z=-1.5 and the column is 0.00.";
+              }
+              break;
+        case 'Q4': // Simple multiple choice
+            if (answers === 'C') {
+                response.message = "Correct!";
+            } else {
+                response.message = "That is incorrect. Here is the correct calculation: To find P(X >= 65), we calculate 1 - P(X < 65). Transforming the score, Z = (65 - 55) / 10 = 1. Using the z-table, we find P(Z <= 1) = 0.8413. Therefore, P(Z >= 1) = 1 - P(Z <= 1) = 1 - 0.8413 = 0.1587.";
+            }
+            break;
+
+            case 'Q5': // Is the sample size large enough for the normal approximation?
+              if (answers === 'A') {
+                  response.message = "Correct!";
+              } else {
+                  response.message = "That is incorrect. The sample size is sufficiently large because np = 120 and n(1-p) = 280, both greater than 10, which are the conditions needed for the normal approximation to the binomial distribution.";
+              }
+              break;
+        case 'Q6': // Probability of at least 140 supporters
+            if (answers === 'A') {
+                response.message = "Correct!";
+            } else {
+                response.message = "That is incorrect. The correct calculation involves normal approximation where Z = (140 - 120) / 9.13 = 2.19. Then, Pr(Z>2.19) = 1 - Pr(Z<=2.19). Since Pr(Z<=2.19)=0.9857, this leads to a probability of Pr(Z>2.19)=1.43% which falls under the option 'Less than 10%'.";
+            }
+            break;
+
+      }
+      return response;
+    }
+
+    function getPage(pageName) {
+      return HtmlService.createHtmlOutputFromFile(pageName).getContent();
+    }
+</script>
