@@ -1,23 +1,188 @@
-<div style="border:1px solid #ccc;padding:15px;margin:10px;">
-  <h1>Hypothesis Tests: Rejection Region and P-Value Approach</h1>
-  <p><em>Please read closely the following.</em></p>
+<!DOCTYPE html>
+<html lang="en">
 
-  <h3><i>Here are the main takeaways from the two previous videos:</i></h3>
-  <ul>
-      <li>1) What is the rejection (critical) region? What is the non-rejection region? <br>
-      <strong>Brief answer: </strong> <em>The rejection region is the set of test statistic values for which we will reject the null hypothesis. The non-rejection region is where we do not reject the null hypothesis (generally the are under 1-alpha).</em></li>
-      <li>2) What is the conceptual difference between the rejection (critical) region and the non-rejection region? <br>
-      <strong>Brief answer: </strong> <em>The rejection region contains values of the test statistic that are very unlikely under the null hypothesis, suggesting that we should reject the null hypothesis if our test statistic falls there. The non-rejection region includes values of the test statistic that are more likely under the null hypothesis.</em></li>
-      <li>3) What does it mean, intuitively, that for the test we assume the test statistic distribution to follow under the null hypothesis? <br>
-      <strong>Brief answer: </strong> <em>It means that we assume our data behaves as if the null hypothesis is true and base our expectations and calculations on that assumption.</em></li>
-      <li>4) Why does a value of the test statistic that falls very far away from the null hypothesis (inside the rejection region), looking at its position regarding the test statistic distribution, suggest evidence against the null hypothesis? <br>
-      <strong>Brief answer: </strong> <em>Because under the null hypothesis, the probability of obtaining such extreme values is very low, indicating that something other than the null hypothesis might be true.</em></li>
-      <li>5) Why does a smaller p-value suggest stronger evidence against the null hypothesis? <br>
-      <strong>Brief answer: </strong> <em>The p-value measures the probability of observing a test statistic at least as extreme as the one observed, assuming that the null hypothesis is true. A smaller p-value means that the observed data would be very unlikely under the null hypothesis, providing stronger evidence against the null hypothesis.</em></li>
-  </ul>
-  
-  <div style="text-align:center;margin-top:10px;">
-    <!-- Navigation Button to Next Page -->
-    <button onclick="loadPage('Page6')" style="background-color:grey;color:white;border:none;padding:10px 20px;">Move to next section</button>
+  <!-- HT Q&A  (Section 4b)-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hypothesis Tests FAQ</title>
+  <!-- Tailwind CSS for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Use the Inter font family */
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Style for the answer panel for smooth transitions */
+    .answer-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+
+  <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+
+    <!-- Header Section -->
+    <div class="text-center mb-8 md:mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Hypothesis Tests Explained</h1>
+      <p class="mt-2 text-lg text-gray-600">Key Takeaways on Rejection Regions & P-Values</p>
+    </div>
+
+    <!-- Accordion container -->
+    <div class="space-y-4">
+
+      <!-- Card 1 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+        <button
+          class="accordion-toggle w-full p-6 text-left flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500">
+          <h2 class="text-lg font-semibold text-gray-800">1. What are the rejection and non-rejection regions?</h2>
+          <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="answer-panel">
+          <div class="px-6 pb-6 text-gray-700">
+            <p>The <strong>rejection region</strong> (or critical region) is the set of test statistic values for which
+              we reject the null hypothesis. Conversely, the <strong>non-rejection region</strong> is the area where we
+              do not reject the null hypothesis, generally corresponding to the area under 1-alpha.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+        <button
+          class="accordion-toggle w-full p-6 text-left flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500">
+          <h2 class="text-lg font-semibold text-gray-800">2. What is the conceptual difference between the two regions?
+          </h2>
+          <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="answer-panel">
+          <div class="px-6 pb-6 text-gray-700">
+            <p>The rejection region contains test statistic values that are highly unlikely if the null hypothesis were
+              true. If our result falls here, it's strong evidence against the null. The non-rejection region contains
+              values that are more probable under the null hypothesis.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+        <button
+          class="accordion-toggle w-full p-6 text-left flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500">
+          <h2 class="text-lg font-semibold text-gray-800">3. What does it mean to assume the test statistic distribution
+            under the null hypothesis?</h2>
+          <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="answer-panel">
+          <div class="px-6 pb-6 text-gray-700">
+            <p>It means we start by assuming the null hypothesis is correct. We base our statistical model,
+              expectations, and calculations on this "innocent until proven guilty" premise. We then check if our
+              observed data is a good fit for this assumption.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+        <button
+          class="accordion-toggle w-full p-6 text-left flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500">
+          <h2 class="text-lg font-semibold text-gray-800">4. Why does a test statistic far from the null hypothesis
+            suggest evidence against it?</h2>
+          <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="answer-panel">
+          <div class="px-6 pb-6 text-gray-700">
+            <p>Because the probability of getting such an extreme result is very low if the null hypothesis were true.
+              An extreme value suggests that our initial assumption (the null hypothesis) might be wrong, and another
+              explanation is more likely.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+        <button
+          class="accordion-toggle w-full p-6 text-left flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500">
+          <h2 class="text-lg font-semibold text-gray-800">5. Why does a smaller p-value suggest stronger evidence
+            against the null hypothesis?</h2>
+          <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="answer-panel">
+          <div class="px-6 pb-6 text-gray-700">
+            <p>The p-value is the probability of seeing a result at least as extreme as the one you observed, assuming
+              the null is true. A tiny p-value (e.g., 0.01) means your observed data is very rare under the null
+              assumption, thus providing strong evidence to reject that assumption.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <body style="margin:0;padding:0;font-family:'Palatino Linotype','Palatino','Georgia',serif;background-color:#dcf0fa;">
+      <div id="content" style="width:100%;display:flex;justify-content:center;"></div>
+      <script src="scripts.js"></script>
+      </body>
   </div>
-</div>
+
+  <script>
+    // JavaScript to handle the accordion toggle functionality
+    document.addEventListener('DOMContentLoaded', function () {
+      const accordions = document.querySelectorAll('.accordion-toggle');
+
+      accordions.forEach(clickedButton => {
+        clickedButton.addEventListener('click', () => {
+          const answerPanel = clickedButton.nextElementSibling;
+          // Check if the current accordion is already open
+          const isAlreadyOpen = answerPanel.style.maxHeight;
+
+          // First, close all accordions
+          accordions.forEach(button => {
+            const panel = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            const parentCard = button.parentElement;
+
+            panel.style.maxHeight = null;
+            icon.style.transform = 'rotate(0deg)';
+            parentCard.classList.remove('bg-green-50');
+          });
+
+          // If the clicked accordion was not open, then open it
+          if (!isAlreadyOpen) {
+            const icon = clickedButton.querySelector('svg');
+            const parentCard = clickedButton.parentElement;
+
+            answerPanel.style.maxHeight = answerPanel.scrollHeight + 'px';
+            icon.style.transform = 'rotate(180deg)';
+            parentCard.classList.add('bg-green-50');
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>
