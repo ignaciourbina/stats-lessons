@@ -8,6 +8,35 @@ function loadPage(page) {
 
 document.addEventListener('DOMContentLoaded', () => loadPage('Page1'));
 
+// Handle accordion toggles for dynamically loaded content
+document.addEventListener('click', (event) => {
+  const clickedButton = event.target.closest('.accordion-toggle');
+  if (!clickedButton) return;
+
+  const accordions = document.querySelectorAll('.accordion-toggle');
+  const answerPanel = clickedButton.nextElementSibling;
+  const isAlreadyOpen = answerPanel.style.maxHeight;
+
+  accordions.forEach(button => {
+    const panel = button.nextElementSibling;
+    const icon = button.querySelector('svg');
+    const parentCard = button.parentElement;
+
+    panel.style.maxHeight = null;
+    if (icon) icon.style.transform = 'rotate(0deg)';
+    parentCard.classList.remove('bg-green-50');
+  });
+
+  if (!isAlreadyOpen) {
+    const icon = clickedButton.querySelector('svg');
+    const parentCard = clickedButton.parentElement;
+
+    answerPanel.style.maxHeight = answerPanel.scrollHeight + 'px';
+    if (icon) icon.style.transform = 'rotate(180deg)';
+    parentCard.classList.add('bg-green-50');
+  }
+});
+
 function checkAnswer(questionId, answer) {
   let message = '';
   switch (questionId) {
