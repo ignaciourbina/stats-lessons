@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probability Problem Set</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']], // Defines inline math delimiters
+                displayMath: [['\\[', '\\]']]  // Defines display math delimiters
+            },
+            chtml: {
+                linebreaks: {
+                    automatic: true, // Enable automatic line breaking
+                    inline: true    // Allow inline math to break
+                },
+                matchFontHeight: true,
+                scale: 1,
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async=""></script>
+
+    <style>
+        /* Custom styles for better mobile experience and aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .question-option-label {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            /* 12px */
+            border-width: 1px;
+            border-radius: 0.5rem;
+            /* 8px */
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            border-color: #e5e7eb;
+            /* gray-200 */
+        }
+
+        .question-option-label:hover {
+            background-color: #f9fafb;
+            /* gray-50 */
+        }
+        
+        .feedback-correct {
+            border-left: 4px solid #10b981;
+            /* green-500 */
+            background-color: #f0fdf4;
+            /* green-50 */
+        }
+
+        .feedback-incorrect {
+            border-left: 4px solid #ef4444;
+            /* red-500 */
+            background-color: #fef2f2;
+            /* red-50 */
+        }
+
+        .feedback-explanation {
+            background-color: #f3f4f6;
+            /* gray-100 */
+            border: 1px solid #e5e7eb;
+            /* gray-200 */
+            border-radius: 0.375rem;
+            /* 6px */
+            padding: 0.75rem;
+            /* 12px */
+            margin-top: 0.75rem;
+            /* 12px */
+            font-size: 0.875rem;
+            /* 14px */
+            color: #4b5563;
+            /* gray-600 */
+        }
+        
+        /* Ensure MathJax content reflows properly */
+        mjx-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 min-h-screen p-4 sm:p-8">
+    <div class="max-w-3xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-2xl">
+        <header class="mb-6 sm:mb-8 text-center">
+            <h1 class="text-3xl sm:text-4xl font-bold text-indigo-700">Probability Self-Assessment</h1>
+            <p class="text-gray-600 mt-2 text-sm sm:text-base">Test your understanding of key probability concepts.
+                Select an answer for each question and submit at the end for feedback.</p>
+        </header>
+
+        <div id="quiz-area">
+            <div id="question-container" class="mb-6">
+                <!-- Question will be loaded here -->
+            </div>
+            <div id="navigation-controls" class="flex justify-between items-center">
+                <!-- Navigation buttons will be here -->
+            </div>
+        </div>
+
+        <div id="results-container" class="hidden">
+            <!-- Results will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        const questions = [{
+                id: 1,
+                text: "A survey of 200 social science students revealed that 120 were enrolled in 'Statistics for Social Sciences', 80 in 'Research Methods', and 50 were enrolled in both. What is the probability that a randomly selected student is enrolled in 'Statistics for Social Sciences' but NOT 'Research Methods'?",
+                topic_short: "Basic Probability (Sets)",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 0.25\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.35\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.60\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.40\\)",
+                    value: "d"
+                }],
+                correctAnswer: "b",
+                explanation: "Let S be the event of being enrolled in Statistics, and R be in Research Methods. We are given \\( \\displaystyle \\scriptsize  P(S) = 120/200 = 0.60\\), \\( \\displaystyle \\scriptsize  P(R) = 80/200 = 0.40\\), and \\( \\displaystyle \\scriptsize  P(S \\cap R) = 50/200 = 0.25\\). We want \\( \\displaystyle \\scriptsize  P(S \\cap R^c) = P(S) - P(S \\cap R) = 0.60 - 0.25 = 0.35\\)."
+            },
+            {
+                id: 2,
+                text: "In a particular city, the probability of rain on any given day is 0.3. What is the probability that it will NOT rain on a given day?",
+                topic_short: "Complement Rule",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 0.3\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.5\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.7\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 1.0\\)",
+                    value: "d"
+                }],
+                correctAnswer: "c",
+                explanation: "Let A be the event that it rains. \\( \\displaystyle \\scriptsize  P(A) = 0.3\\). The event that it does not rain is the complement of A, denoted \\( \\displaystyle \\scriptsize  A^c\\). \\( \\displaystyle \\scriptsize  P(A^c) = 1 - P(A) = 1 - 0.3 = 0.7\\)."
+            },
+            {
+                id: 3,
+                text: "A university department offers two distinct elective seminars for sociology majors: 'Urban Sociology' and 'Rural Sociology'. A student can only enroll in one. The probability a student chooses 'Urban Sociology' is 0.4, and 'Rural Sociology' is 0.35. What is the probability a student chooses one of these two seminars?",
+                topic_short: "Addition Rule (Mutually Exclusive)",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 0.05\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.14\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.75\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 1.00\\)",
+                    value: "d"
+                }],
+                correctAnswer: "c",
+                explanation: "Let U be choosing Urban Sociology and R be choosing Rural Sociology. Since a student can only enroll in one, the events are mutually exclusive. \\( \\displaystyle \\scriptsize  P(U) = 0.4\\), \\( \\displaystyle \\scriptsize  P(R) = 0.35\\). So, \\( \\displaystyle \\scriptsize  P(U \\cup R) = P(U) + P(R) = 0.4 + 0.35 = 0.75\\)."
+            },
+            {
+                id: 4,
+                text: "In a survey of community members, 40% supported a new park (Event A), and 50% supported a library renovation (Event B). 20% supported both initiatives. What is the probability that a randomly selected member supported the park OR the library renovation (or both)?",
+                topic_short: "Addition Rule (Not Mutually Exclusive)",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 0.90\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.70\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.60\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.20\\)",
+                    value: "d"
+                }],
+                correctAnswer: "b",
+                explanation: "We use the addition rule: \\( \\displaystyle \\scriptsize  P(A \\cup B) = P(A) + P(B) - P(A \\cap B)\\). Given \\( \\displaystyle \\scriptsize  P(A)=0.40\\), \\( \\displaystyle \\scriptsize  P(B)=0.50\\), and \\( \\displaystyle \\scriptsize  P(A \\cap B)=0.20\\). So, \\( \\displaystyle \\scriptsize  P(A \\cup B) = 0.40 + 0.50 - 0.20 = 0.70\\)."
+            },
+            {
+                id: 5,
+                text: "A city has two independent traffic lights. The first traffic light is green with a probability of 0.7. The second traffic light is green with a probability of 0.6. What is the probability that both traffic lights are green when a car approaches them?",
+                topic_short: "Multiplication Rule (Independent)",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 0.10\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 1.30\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.42\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.88\\)",
+                    value: "d"
+                }],
+                correctAnswer: "c",
+                explanation: "Let A be the event that the first light is green, and B be the event that the second light is green. Since the events are independent, \\( \\displaystyle \\scriptsize  P(A \\cap B) = P(A) \\times P(B) = 0.7 \\times 0.6 = 0.42\\)."
+            },
+            {
+                id: 6,
+                text: "A small committee consists of 4 sociologists and 3 psychologists. Two members are selected at random, one after another without replacement, to lead a discussion. What is the probability that the first selected is a sociologist and the second is a psychologist?",
+                topic_short: "Multiplication Rule (Dependent)",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 12/49\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 12/42\\) or \\(2/7\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 7/12\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 1/7\\)",
+                    value: "d"
+                }],
+                correctAnswer: "b",
+                explanation: "Total members = 7. \\( \\displaystyle \\scriptsize  P(\\text{1st is Sociologist}) = 4/7\\). After selecting one sociologist, there are 6 members left, including 3 psychologists. \\( \\displaystyle \\scriptsize  P(\\text{2nd is Psychologist} | \\text{1st is Sociologist}) = 3/6 = 1/2\\). So, \\( \\displaystyle \\scriptsize  P(\\text{S1 and P2}) = (4/7) \\times (3/6) = 12/42 = 2/7\\)."
+            },
+            {
+                id: 7,
+                text: "The probability that a student passes a research methods exam is 0.8 (Event P). The probability that a student both passes the exam AND completes all homework assignments is 0.72 (Event P \\(\\cap\\) H). Given that a student passed the exam, what is the probability they completed all homework assignments?",
+                topic_short: "Conditional Probability (Direct)",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 0.72\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.80\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.90\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.576\\)",
+                    value: "d"
+                }],
+                correctAnswer: "c",
+                explanation: "We want to find \\( \\displaystyle \\scriptsize  P(H|P)\\). We know \\( \\displaystyle \\scriptsize  P(H|P) = P(P \\cap H) / P(P)\\). Given \\( \\displaystyle \\scriptsize  P(P \\cap H) = 0.72\\) and \\( \\displaystyle \\scriptsize  P(P) = 0.8\\). So, \\( \\displaystyle \\scriptsize  P(H|P) = 0.72 / 0.8 = 0.90\\)."
+            },
+            {
+                id: 8,
+                text: "A study on voting patterns produced the following table for 1000 respondents: <table class='w-full text-sm text-left text-gray-500 my-2 border'> <thead class='text-xs text-gray-700 uppercase bg-gray-50'><tr><th class='px-2 py-1 border'>Age Group</th><th class='px-2 py-1 border'>Voted</th><th class='px-2 py-1 border'>Did Not Vote</th><th class='px-2 py-1 border'>Total</th></tr></thead><tbody><tr class='bg-white border-b'><td class='px-2 py-1 border'>18-29</td><td class='px-2 py-1 border'>150</td><td class='px-2 py-1 border'>100</td><td class='px-2 py-1 border'>250</td></tr><tr class='bg-white border-b'><td class='px-2 py-1 border'>30+</td><td class='px-2 py-1 border'>550</td><td class='px-2 py-1 border'>200</td><td class='px-2 py-1 border'>750</td></tr><tr class='bg-gray-50 font-semibold'><td class='px-2 py-1 border'>Total</td><td class='px-2 py-1 border'>700</td><td class='px-2 py-1 border'>300</td><td class='px-2 py-1 border'>1000</td></tr></tbody></table> Given that a randomly selected respondent is from the 18-29 age group, what is the probability that they voted?",
+                topic_short: "Conditional Probability (Table)",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 150/700\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 150/1000\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 150/250\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 250/1000\\)",
+                    value: "d"
+                }],
+                correctAnswer: "c",
+                explanation: "We are given that the respondent is from the 18-29 age group. There are 250 such respondents. Out of these, 150 voted. So, \\( \\displaystyle \\scriptsize  P(\\text{{Voted}} | \\text{18-29 age}) = 150 / 250 = 0.6\\)."
+            },
+            {
+                id: 9,
+                text: "A city's population is 60% urban dwellers and 40% suburban dwellers. 5% of urban dwellers are dissatisfied with public transport, while 10% of suburban dwellers are dissatisfied. What is the overall probability that a randomly selected resident is dissatisfied with public transport?",
+                topic_short: "Total Probability",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 0.075\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.070\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.030\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.040\\)",
+                    value: "d"
+                }],
+                correctAnswer: "b",
+                explanation: "Let U be Urban, S be Suburban, D be Dissatisfied. \\( \\displaystyle \\scriptsize  P(U)=0.6, P(S)=0.4\\). \\( \\displaystyle \\scriptsize  P(D|U)=0.05, P(D|S)=0.10\\). Using Law of Total Probability: \\( \\displaystyle \\scriptsize  P(D) = P(D|U)P(U) + P(D|S)P(S) = (0.05)(0.6) + (0.10)(0.4) = 0.03 + 0.04 = 0.07\\)."
+            },
+            {
+                id: 10,
+                text: "Referring to the previous question: If a randomly selected resident is dissatisfied with public transport, what is the probability that they are an urban dweller?",
+                topic_short: "Bayes' Theorem",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 0.03/0.07 \\approx 0.429\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.04/0.07 \\approx 0.571\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.60\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.05\\)",
+                    value: "d"
+                }],
+                correctAnswer: "a",
+                explanation: "We want \\( \\displaystyle \\scriptsize  P(U|D)\\). Using Bayes' Theorem: \\( \\displaystyle \\scriptsize  P(U|D) = [P(D|U)P(U)] / P(D)\\). From previous Q, \\( \\displaystyle \\scriptsize  P(D|U)P(U) = 0.03\\) and \\( \\displaystyle \\scriptsize  P(D) = 0.07\\). So, \\( \\displaystyle \\scriptsize  P(U|D) = 0.03 / 0.07 \\approx 0.4286\\)."
+            },
+            {
+                id: 11,
+                text: "A student is taking a multiple-choice quiz. For any given question, the student knows the answer with probability 0.6. If they don't know the answer (probability 0.4), they guess randomly from 4 options. What is the probability the student answers a question correctly?",
+                topic_short: "Total Probability",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 0.60\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.70\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.25\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.10\\)",
+                    value: "d"
+                }],
+                correctAnswer: "b",
+                explanation: "Let K be event student knows answer, C be event student answers correctly. \\( \\displaystyle \\scriptsize  P(K) = 0.6\\), so \\( \\displaystyle \\scriptsize  P(K^c) = 0.4\\). \\( \\displaystyle \\scriptsize  P(C|K) = 1\\). If they guess, there are 4 options, so \\( \\displaystyle \\scriptsize  P(C|K^c) = 1/4 = 0.25\\). \\( \\displaystyle \\scriptsize  P(C) = P(C|K)P(K) + P(C|K^c)P(K^c) = (1)(0.6) + (0.25)(0.4) = 0.6 + 0.1 = 0.70\\)."
+            },
+            {
+                id: 12,
+                text: "From the previous question: If the student answered a question correctly, what is the probability that they actually knew the answer?",
+                topic_short: "Bayes' Theorem",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 0.6/0.7 \\approx 0.857\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.1/0.7 \\approx 0.143\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.6\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.7\\)",
+                    value: "d"
+                }],
+                correctAnswer: "a",
+                explanation: "We want \\( \\displaystyle \\scriptsize  P(K|C)\\). Using Bayes' Theorem: \\( \\displaystyle \\scriptsize  P(K|C) = [P(C|K)P(K)] / P(C)\\). We have \\( \\displaystyle \\scriptsize  P(C|K)P(K) = (1)(0.6) = 0.6\\). From the previous question, \\( \\displaystyle \\scriptsize  P(C) = 0.7\\). So, \\( \\displaystyle \\scriptsize  P(K|C) = 0.6 / 0.7 \\approx 0.8571\\)."
+            },
+            {
+                id: 13,
+                text: "A focus group has 5 women and 3 men. If two people are randomly selected without replacement to give their opinions, what is the probability that both selected are women?",
+                topic_short: "Dependent Events / Combinatorics",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 25/64\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 20/56\\) or \\(5/14\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 15/56\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 5/8\\)",
+                    value: "d"
+                }],
+                correctAnswer: "b",
+                explanation: "Total people = 8. \\( \\displaystyle \\scriptsize  P(\\text{1st is Woman}) = 5/8\\). After selecting one woman, 4 women and 7 people remain. \\( \\displaystyle \\scriptsize  P(\\text{2nd is Woman} | \\text{1st is Woman}) = 4/7\\). So, \\( \\displaystyle \\scriptsize  P(\\text{W1 and W2}) = (5/8) \\times (4/7) = 20/56 = 5/14\\)."
+            },
+            {
+                id: 14,
+                text: "In a survey, 30% of respondents are aged 18-25. Among the 18-25 age group, 60% use social media platform 'SociConnect'. Among respondents older than 25 (i.e., the other 70%), 40% use 'SociConnect'. If a randomly selected respondent uses 'SociConnect', what's the probability they are in the 18-25 age group?",
+                topic_short: "Bayes' Theorem (Mixed)",
+                options: [{
+                    text: "\\( \\displaystyle \\scriptsize 0.18 / 0.46 \\approx 0.391\\)",
+                    value: "a"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.28 / 0.46 \\approx 0.609\\)",
+                    value: "b"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.18\\)",
+                    value: "c"
+                }, {
+                    text: "\\( \\displaystyle \\scriptsize 0.46\\)",
+                    value: "d"
+                }],
+                correctAnswer: "a",
+                explanation: "Let A be age 18-25, A_c be older. Let S be uses SociConnect. \\( \\displaystyle \\scriptsize  P(A) = 0.30\\), so \\( \\displaystyle \\scriptsize  P(A_c) = 0.70\\). \\( \\displaystyle \\scriptsize  P(S|A) = 0.60\\), \\( \\displaystyle \\scriptsize  P(S|A_c) = 0.40\\). First, find \\( \\displaystyle \\scriptsize  P(S)\\) using total probability: \\( \\displaystyle \\scriptsize  P(S) = P(S|A)P(A) + P(S|A_c)P(A_c) = (0.60)(0.30) + (0.40)(0.70) = 0.18 + 0.28 = 0.46\\). Now, find \\( \\displaystyle \\scriptsize  P(A|S) = [P(S|A)P(A)] / P(S) = 0.18 / 0.46 \\approx 0.3913\\)."
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let userAnswers = {}; // Store {questionId: answerValue}
+
+        const questionContainer = document.getElementById('question-container');
+        const navigationControls = document.getElementById('navigation-controls');
+        const resultsContainer = document.getElementById('results-container');
+        const quizArea = document.getElementById('quiz-area');
+
+        // Function to shuffle an array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+            }
+        }
+
+        function renderQuestion() {
+            const question = questions[currentQuestionIndex];
+
+            // Create a copy of the options and shuffle it for display
+            const shuffledOptions = [...question.options];
+            shuffleArray(shuffledOptions);
+
+            let optionsHTML = shuffledOptions.map((opt, index) => `
+                <label class="question-option-label group hover:bg-indigo-50 hover:border-indigo-300 ${userAnswers[question.id] === opt.value ? 'bg-indigo-100 border-indigo-400 ring-2 ring-indigo-300' : 'border-gray-300'}">
+                    <input type="radio" name="q${question.id}" value="${opt.value}" class="form-radio h-5 w-5 text-indigo-600 focus:ring-indigo-500 mr-3 shrink-0"
+                           ${userAnswers[question.id] === opt.value ? 'checked' : ''}
+                           onchange="handleOptionChange(${question.id}, '${opt.value}')">
+                    <span class="text-gray-700 group-hover:text-indigo-700">${opt.text}</span>
+                </label>
+            `).join('');
+
+            questionContainer.innerHTML = `
+                <div class="p-3 sm:p-5 border border-gray-200 rounded-lg shadow-sm bg-white">
+                    <p class="text-xs sm:text-sm font-medium text-indigo-600 mb-1">Question ${currentQuestionIndex + 1} of ${questions.length}</p>
+                    <p class="text-base sm:text-lg text-gray-800 mb-4 leading-relaxed">${question.text}</p>
+                    <div class="space-y-3 options-group">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+
+            renderNavigation();
+            
+            // Retypeset the math content after rendering
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([questionContainer]);
+            }
+        }
+
+        function renderNavigation() {
+            navigationControls.innerHTML = ''; // Clear previous buttons
+
+            if (currentQuestionIndex > 0) {
+                const prevButton = document.createElement('button');
+                prevButton.textContent = 'Previous';
+                prevButton.className = 'bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition-colors duration-150 ease-in-out';
+                prevButton.onclick = prevQuestion;
+                navigationControls.appendChild(prevButton);
+            }
+
+            // Add a spacer div to push the next/submit button to the right
+            const spacer = document.createElement('div');
+            spacer.className = 'flex-grow';
+            navigationControls.appendChild(spacer);
+
+            if (currentQuestionIndex < questions.length - 1) {
+                const nextButton = document.createElement('button');
+                nextButton.textContent = 'Next Question';
+                nextButton.className = 'bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-colors duration-150 ease-in-out';
+                nextButton.onclick = nextQuestion;
+                navigationControls.appendChild(nextButton);
+            } else {
+                const submitButton = document.createElement('button');
+                submitButton.textContent = 'Submit Answers';
+                submitButton.className = 'bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition-colors duration-150 ease-in-out';
+                submitButton.onclick = submitQuiz;
+                navigationControls.appendChild(submitButton);
+            }
+        }
+
+        function handleOptionChange(questionId, value) {
+            userAnswers[questionId] = value;
+            // Get all radio buttons for the current question
+            const radios = document.getElementsByName(`q${questionId}`);
+            radios.forEach(radio => {
+                // Find the parent label for each radio
+                const label = radio.closest('label');
+                // Check if this radio's value is the one that was just selected
+                if (radio.value === value) {
+                    // Add styling for selected option
+                    label.classList.add('bg-indigo-100', 'border-indigo-400', 'ring-2', 'ring-indigo-300');
+                    label.classList.remove('border-gray-300');
+                } else {
+                    // Remove styling from non-selected options
+                    label.classList.remove('bg-indigo-100', 'border-indigo-400', 'ring-2', 'ring-indigo-300');
+                    label.classList.add('border-gray-300');
+                }
+            });
+        }
+        
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            quizArea.classList.add('hidden');
+            resultsContainer.classList.remove('hidden');
+            let correctCount = 0;
+            let resultsHTML = `<h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">Your Results</h2>`;
+
+            questions.forEach((question, index) => {
+                const userAnswer = userAnswers[question.id];
+                const isCorrect = userAnswer === question.correctAnswer;
+                if (isCorrect) {
+                    correctCount++;
+                }
+
+                let optionsFeedbackHTML = question.options.map(opt => {
+                    let optClasses = "p-2 rounded-md text-sm sm:text-base ";
+                    let optIndicator = "";
+
+                    if (opt.value === question.correctAnswer) {
+                        optClasses += "bg-green-100 border border-green-300 text-green-800 font-semibold";
+                        optIndicator = userAnswer === opt.value ? " (Your Answer - Correct)" : " (Correct Answer)";
+                    } else if (userAnswer === opt.value && opt.value !== question.correctAnswer) {
+                        optClasses += "bg-red-100 border border-red-300 text-red-800 font-semibold";
+                        optIndicator = " (Your Answer - Incorrect)";
+                    } else {
+                        optClasses += "bg-gray-50 border border-gray-200 text-gray-700";
+                    }
+
+                    return `<div class="${optClasses}">${opt.text}${optIndicator}</div>`;
+                }).join('');
+
+
+                resultsHTML += `
+                    <div class="p-4 sm:p-5 rounded-lg shadow-md mb-6 ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+                        <p class="text-sm font-medium text-gray-700 mb-1">Question ${index + 1}: ${question.topic_short}</p>
+                        <p class="text-base sm:text-lg text-gray-900 mb-3">${question.text}</p>
+                        <div class="space-y-2 mb-3">
+                            ${optionsFeedbackHTML}
+                        </div>
+                        <div class="feedback-explanation">${question.explanation}</div>
+                    </div>
+                `;
+            });
+
+            resultsHTML = `
+                <div class="text-center mb-8">
+                    <p class="text-xl sm:text-2xl font-semibold text-gray-800">You answered ${correctCount} out of ${questions.length} questions correctly.</p>
+                    <p class="text-lg text-indigo-600">${((correctCount / questions.length) * 100).toFixed(1)}%</p>
+                </div>
+            ` + resultsHTML;
+
+            resultsContainer.innerHTML = resultsHTML;
+
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([resultsContainer]);
+            }
+        }
+
+        // Initial render
+        renderQuestion();
+    </script>
+</body>
+
+</html>
