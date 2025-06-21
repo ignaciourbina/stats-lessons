@@ -1,3 +1,5 @@
+This folder stores documentation for migrating our lesson apps from Google Apps Script into static HTML/JS packages.
+
 # Migration Protocol from Google Apps Script to HTML/JavaScript
 
 This document describes the basic steps used to migrate the lesson app from Google Apps Script (GAS) into a standalone HTML + JavaScript project suitable for embedding in Brightspace.
