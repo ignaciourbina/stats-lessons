@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Inference Problem Set</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']], // Defines inline math delimiters
+                displayMath: [['\\[', '\\]']]  // Defines display math delimiters
+            },
+            chtml: {
+                linebreaks: {
+                    automatic: true, // Enable automatic line breaking
+                    inline: true    // Allow inline math to break
+                },
+                matchFontHeight: true,
+                scale: 1,
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async=""></script>
+
+    <style>
+        /* Custom styles for better mobile experience and aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .question-option-label {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            /* 12px */
+            border-width: 1px;
+            border-radius: 0.5rem;
+            /* 8px */
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            border-color: #e5e7eb;
+            /* gray-200 */
+        }
+
+        .question-option-label:hover {
+            background-color: #f9fafb;
+            /* gray-50 */
+        }
+        
+        .feedback-correct {
+            border-left: 4px solid #10b981;
+            /* green-500 */
+            background-color: #f0fdf4;
+            /* green-50 */
+        }
+
+        .feedback-incorrect {
+            border-left: 4px solid #ef4444;
+            /* red-500 */
+            background-color: #fef2f2;
+            /* red-50 */
+        }
+
+        .feedback-explanation {
+            background-color: #f3f4f6;
+            /* gray-100 */
+            border: 1px solid #e5e7eb;
+            /* gray-200 */
+            border-radius: 0.375rem;
+            /* 6px */
+            padding: 0.75rem;
+            /* 12px */
+            margin-top: 0.75rem;
+            /* 12px */
+            font-size: 0.875rem;
+            /* 14px */
+            color: #4b5563;
+            /* gray-600 */
+        }
+        
+        /* Ensure MathJax content reflows properly */
+        mjx-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 min-h-screen p-4 sm:p-8">
+    <div class="max-w-3xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-2xl">
+        <header class="mb-6 sm:mb-8 text-center">
+            <h1 class="text-3xl sm:text-4xl font-bold text-indigo-700">Introduction to Inference Self-Assessment</h1>
+            <p class="text-gray-600 mt-2 text-sm sm:text-base">Test your understanding of estimators, sampling distributions, and inference for one proportion.
+                Select an answer for each question and submit at the end for feedback.</p>
+        </header>
+
+        <div id="quiz-area">
+            <div id="question-container" class="mb-6">
+                <!-- Question will be loaded here -->
+            </div>
+            <div id="navigation-controls" class="flex justify-between items-center">
+                <!-- Navigation buttons will be here -->
+            </div>
+        </div>
+
+        <div id="results-container" class="hidden">
+            <!-- Results will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+
+        const questions = [
+            {
+                id: 1,
+                text: "Which of the following best describes an unbiased estimator?",
+                topic_short: "Estimator Properties",
+                options: [
+                    { text: "\\(\\text{Expected value equals the parameter}\\)", value: "a" },
+                    { text: "\\(\\text{Variance is zero for any } n\\)", value: "b" },
+                    { text: "\\(\\text{Always equals the parameter}\\)", value: "c" },
+                    { text: "\\(\\text{Sampling distribution is uniform}\\)", value: "d" }
+                ],
+                correctAnswer: "a",
+                explanation: "An estimator is unbiased if its expected value equals the population parameter it seeks to estimate."
+            },
+            {
+                id: 2,
+                text: "Two unbiased estimators A and B estimate the same parameter. If Var(A)=4 and Var(B)=5, which estimator is more efficient?",
+                topic_short: "Estimator Efficiency",
+                options: [
+                    { text: "Estimator A", value: "a" },
+                    { text: "Estimator B", value: "b" },
+                    { text: "Both equally efficient", value: "c" },
+                    { text: "Cannot determine", value: "d" }
+                ],
+                correctAnswer: "a",
+                explanation: "Efficiency compares the variances of unbiased estimators; the one with smaller variance (A) is more efficient."
+            },
+            {
+                id: 3,
+                text: "According to the Central Limit Theorem, what is the approximate sampling distribution of the sample mean for large n when sampling from a population with mean \\( \mu \\) and standard deviation \\( \sigma \\)?",
+                topic_short: "Central Limit Theorem",
+                options: [
+                    { text: "\\( N(\\mu, \\sigma/\\sqrt{n}) \\)", value: "a" },
+                    { text: "t_{n-1}", value: "b" },
+                    { text: "Uniform(0,1)", value: "c" },
+                    { text: "Same as the original distribution", value: "d" }
+                ],
+                correctAnswer: "a",
+                explanation: "The CLT states that the standardized sample mean approaches a normal distribution with mean \\mu and standard deviation \\sigma/\\sqrt{n}."
+            },
+            {
+                id: 4,
+                text: "A random sample of 100 observations has a sample mean of 50 and a sample standard deviation of 10. What is the standard error of the sample mean?",
+                topic_short: "Standard Error",
+                options: [
+                    { text: "10", value: "a" },
+                    { text: "5", value: "b" },
+                    { text: "1", value: "c" },
+                    { text: "0.1", value: "d" }
+                ],
+                correctAnswer: "c",
+                explanation: "SE of the mean is s/\\sqrt{n} = 10/\\sqrt{100} = 1."
+            },
+            {
+                id: 5,
+                text: "Using the sample in the previous question and assuming normality, what is the approximate probability that the sample mean exceeds 52?",
+                topic_short: "Using the CLT",
+                options: [
+                    { text: "0.50", value: "a" },
+                    { text: "0.023", value: "b" },
+                    { text: "0.977", value: "c" },
+                    { text: "0.10", value: "d" }
+                ],
+                correctAnswer: "b",
+                explanation: "Z = (52-50)/1 = 2. The upper tail probability beyond 2 under the standard normal is about 0.023."
+            },
+            {
+                id: 6,
+                text: "A survey of 400 people finds 120 support a policy. What is the 95% confidence interval for the true proportion supporting the policy?",
+                topic_short: "Confidence Interval for p",
+                options: [
+                    { text: "[0.30 \u00b1 0.05]", value: "a" },
+                    { text: "[0.255, 0.345]", value: "b" },
+                    { text: "[0.230, 0.370]", value: "c" },
+                    { text: "[0.295, 0.305]", value: "d" }
+                ],
+                correctAnswer: "b",
+                explanation: "With p-hat=0.30 and n=400, SE=\\sqrt{0.3(0.7)/400}\\approx0.023 and MOE=1.96*SE\\approx0.045, giving [0.255,0.345]."
+            },
+            {
+                id: 7,
+                text: "A poll reports p-hat = 0.48 from a sample of n = 1000. To test H0: p = 0.5 versus Ha: p \u2260 0.5, what is the value of the Z test statistic?",
+                topic_short: "Hypothesis Test for p",
+                options: [
+                    { text: "-1.27", value: "a" },
+                    { text: "1.27", value: "b" },
+                    { text: "-2.50", value: "c" },
+                    { text: "0", value: "d" }
+                ],
+                correctAnswer: "a",
+                explanation: "Z = (0.48-0.50)/\\sqrt{0.5(0.5)/1000} \u2248 -1.27."
+            },
+            {
+                id: 8,
+                text: "Using the previous test statistic and \u03b1 = 0.05, what is the correct conclusion?",
+                topic_short: "Hypothesis Test Decision",
+                options: [
+                    { text: "Reject H0", value: "a" },
+                    { text: "Fail to reject H0", value: "b" },
+                    { text: "Insufficient information", value: "c" },
+                    { text: "Accept H0", value: "d" }
+                ],
+                correctAnswer: "b",
+                explanation: "|Z| \u2248 1.27 is less than 1.96, so we fail to reject the null at the 5% level."
+            },
+            {
+                id: 9,
+                text: "Approximately how large a sample is required to estimate a population proportion near 0.5 with a margin of error of \u00b10.05 at the 95% confidence level?",
+                topic_short: "Sample Size Calculation",
+                options: [
+                    { text: "100", value: "a" },
+                    { text: "200", value: "b" },
+                    { text: "385", value: "c" },
+                    { text: "1000", value: "d" }
+                ],
+                correctAnswer: "c",
+                explanation: "Using n = z^2 p(1-p)/MOE^2 with p=0.5 and z=1.96 gives about 385."
+            },
+            {
+                id: 10,
+                text: "If a two-sided test for a proportion yields a P-value of 0.03, what can you conclude at \u03b1 = 0.05?",
+                topic_short: "P-value Interpretation",
+                options: [
+                    { text: "Reject H0", value: "a" },
+                    { text: "Fail to reject H0", value: "b" },
+                    { text: "Need a larger sample", value: "c" },
+                    { text: "The parameter equals the null value", value: "d" }
+                ],
+                correctAnswer: "a",
+                explanation: "Since 0.03 < 0.05, we reject the null hypothesis at the 5% significance level."
+            },
+            {
+                id: 11,
+                text: "Which of the following best describes a population parameter?",
+                topic_short: "Population vs. Sample",
+                options: [
+                    { text: \"A theoretical value describing an entire population\", value: \"a\" },
+                    { text: \"A statistic computed from a sample\", value: \"b\" },
+                    { text: \"A random variable from repeated sampling\", value: \"c\" },
+                    { text: \"The standard error of an estimator\", value: \"d\" }
+                ],
+                correctAnswer: "a",
+                explanation: "Population parameters are fixed values describing the whole population, unlike sample-based statistics."
+            },
+            {
+                id: 12,
+                text: "Which property means an estimator converges to the true parameter as the sample size increases?",
+                topic_short: "Estimator Consistency",
+                options: [
+                    { text: \"Unbiasedness\", value: \"a\" },
+                    { text: \"Efficiency\", value: \"b\" },
+                    { text: \"Consistency\", value: \"c\" },
+                    { text: \"Normality\", value: \"d\" }
+                ],
+                correctAnswer: "c",
+                explanation: "An estimator is consistent if it converges in probability to the parameter as n grows."
+            },
+            {
+                id: 13,
+                text: "Which statement correctly explains the standard error (SE) of an estimator?",
+                topic_short: "Standard Error vs SD",
+                options: [
+                    { text: \"It measures the spread of the population distribution\", value: \"a\" },
+                    { text: \"It is the standard deviation of the estimator's sampling distribution\", value: \"b\" },
+                    { text: \"It equals the variance of each observation\", value: \"c\" },
+                    { text: \"It does not depend on sample size\", value: \"d\" }
+                ],
+                correctAnswer: "b",
+                explanation: "SE represents the spread of an estimator's sampling distribution and typically shrinks with larger n."
+            },
+            {
+                id: 14,
+                text: "Which of the following is NOT an assumption of the Central Limit Theorem (CLT)?",
+                topic_short: "CLT Assumptions",
+                options: [
+                    { text: \"Observations are independent\", value: \"a\" },
+                    { text: \"Observations have the same distribution\", value: \"b\" },
+                    { text: \"Observations have infinite variance\", value: \"c\" },
+                    { text: \"Sample size is large\", value: \"d\" }
+                ],
+                correctAnswer: "c",
+                explanation: "The CLT requires finite variance; infinite variance violates this assumption."
+            },
+            {
+                id: 15,
+                text: "If X_i \u223c N(50, 25) and n = 16, what is the sampling distribution of \\(\bar{X}\\)?",
+                topic_short: "Sample Mean Distribution",
+                options: [
+                    { text: "\\(N(50, 25/16)\\)", value: "a" },
+                    { text: "\\(N(50, 25)\\)", value: "b" },
+                    { text: "\\(t_{15}\\)", value: "c" },
+                    { text: "\\(\\chi^2_{15}\\)", value: "d" }
+                ],
+                correctAnswer: "a",
+                explanation: "The sample mean of normal observations is normal with mean 50 and variance 25/16."
+            },
+            {
+                id: 16,
+                text: "According to the Law of Large Numbers, the sample mean \\(\bar{X}\\) ____.",
+                topic_short: "Law of Large Numbers",
+                options: [
+                    { text: \"converges to the population mean as n increases\", value: \"a\" },
+                    { text: \"diverges to infinity\", value: \"b\" },
+                    { text: \"becomes unbiased but not consistent\", value: \"c\" },
+                    { text: \"always becomes normally distributed\", value: \"d\" }
+                ],
+                correctAnswer: "a",
+                explanation: "The Law of Large Numbers states that \(\bar{X}\) approaches \(\mu\) as the sample size grows."
+            },
+            {
+                id: 17,
+                text: "The sample proportion \\(\hat{p}\\) is calculated as:",
+                topic_short: "Sample Proportion",
+                options: [
+                    { text: \"Number of successes divided by the sample size\", value: \"a\" },
+                    { text: \"Sample size divided by number of successes\", value: \"b\" },
+                    { text: \"Square root of the number of successes\", value: \"c\" },
+                    { text: \"Number of successes minus failures\", value: \"d\" }
+                ],
+                correctAnswer: "a",
+                explanation: "By definition, \(\hat{p} = S/n\) where S is the count of successes."
+            },
+            {
+                id: 18,
+                text: "What is the variance of the sample proportion \\(\hat{p}\\)?",
+                topic_short: "Variance of p-hat",
+                options: [
+                    { text: "\\(p(1-p)/n\\)", value: "a" },
+                    { text: "\\(p/n\\)", value: "b" },
+                    { text: "\\(p(1-p)\\)", value: "c" },
+                    { text: "\\(1/n\\)", value: "d" }
+                ],
+                correctAnswer: "a",
+                explanation: "For a binomial sample, Var(\\hat{p}) = p(1-p)/n."
+            },
+            {
+                id: 19,
+                text: "Which Z critical value is used for a 99% confidence interval for a proportion?",
+                topic_short: "99% Confidence Level",
+                options: [
+                    { text: "1.645", value: "a" },
+                    { text: "1.96", value: "b" },
+                    { text: "2.576", value: "c" },
+                    { text: "3.29", value: "d" }
+                ],
+                correctAnswer: "c",
+                explanation: "A 99% two-sided interval uses the critical value z_{0.995} \u2248 2.576."
+            },
+            {
+                id: 20,
+                text: "Which of the following best describes a correct interpretation of a 95% confidence interval for \\(p\\)?",
+                topic_short: "Interpreting CIs",
+                options: [
+                    { text: \"In repeated samples, about 95% of such intervals will contain the true p\", value: \"a\" },
+                    { text: \"There is a 95% chance that p equals the sample proportion\", value: \"b\" },
+                    { text: \"The probability that p is inside this one interval is 95%\", value: \"c\" },
+                    { text: \"95% of future sample proportions will fall inside the interval\", value: \"d\" }
+                ],
+                correctAnswer: "a",
+                explanation: "Confidence intervals refer to long-run coverage of the true parameter, not a probability for a single interval."
+            },
+            {
+                id: 21,
+                text: "In hypothesis testing, the significance level \\u03b1 represents:",
+                topic_short: "Significance Level",
+                options: [
+                    { text: \"The probability of rejecting H0 when it is true\", value: \"a\" },
+                    { text: \"The probability that Ha is true\", value: \"b\" },
+                    { text: \"The probability that the sample data are correct\", value: \"c\" },
+                    { text: \"The P-value of the test\", value: \"d\" }
+                ],
+                correctAnswer: "a",
+                explanation: "The significance level is the tolerated Type I error rate for the test."
+            }
+        ];
+        let currentQuestionIndex = 0;
+        let userAnswers = {}; // Store {questionId: answerValue}
+
+        const questionContainer = document.getElementById('question-container');
+        const navigationControls = document.getElementById('navigation-controls');
+        const resultsContainer = document.getElementById('results-container');
+        const quizArea = document.getElementById('quiz-area');
+
+        // Function to shuffle an array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+            }
+        }
+
+        function renderQuestion() {
+            const question = questions[currentQuestionIndex];
+
+            // Create a copy of the options and shuffle it for display
+            const shuffledOptions = [...question.options];
+            shuffleArray(shuffledOptions);
+
+            let optionsHTML = shuffledOptions.map((opt, index) => `
+                <label class="question-option-label group hover:bg-indigo-50 hover:border-indigo-300 ${userAnswers[question.id] === opt.value ? 'bg-indigo-100 border-indigo-400 ring-2 ring-indigo-300' : 'border-gray-300'}">
+                    <input type="radio" name="q${question.id}" value="${opt.value}" class="form-radio h-5 w-5 text-indigo-600 focus:ring-indigo-500 mr-3 shrink-0"
+                           ${userAnswers[question.id] === opt.value ? 'checked' : ''}
+                           onchange="handleOptionChange(${question.id}, '${opt.value}')">
+                    <span class="text-gray-700 group-hover:text-indigo-700">${opt.text}</span>
+                </label>
+            `).join('');
+
+            questionContainer.innerHTML = `
+                <div class="p-3 sm:p-5 border border-gray-200 rounded-lg shadow-sm bg-white">
+                    <p class="text-xs sm:text-sm font-medium text-indigo-600 mb-1">Question ${currentQuestionIndex + 1} of ${questions.length}</p>
+                    <p class="text-base sm:text-lg text-gray-800 mb-4 leading-relaxed">${question.text}</p>
+                    <div class="space-y-3 options-group">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+
+            renderNavigation();
+            
+            // Retypeset the math content after rendering
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([questionContainer]);
+            }
+        }
+
+        function renderNavigation() {
+            navigationControls.innerHTML = ''; // Clear previous buttons
+
+            if (currentQuestionIndex > 0) {
+                const prevButton = document.createElement('button');
+                prevButton.textContent = 'Previous';
+                prevButton.className = 'bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition-colors duration-150 ease-in-out';
+                prevButton.onclick = prevQuestion;
+                navigationControls.appendChild(prevButton);
+            }
+
+            // Add a spacer div to push the next/submit button to the right
+            const spacer = document.createElement('div');
+            spacer.className = 'flex-grow';
+            navigationControls.appendChild(spacer);
+
+            if (currentQuestionIndex < questions.length - 1) {
+                const nextButton = document.createElement('button');
+                nextButton.textContent = 'Next Question';
+                nextButton.className = 'bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-colors duration-150 ease-in-out';
+                nextButton.onclick = nextQuestion;
+                navigationControls.appendChild(nextButton);
+            } else {
+                const submitButton = document.createElement('button');
+                submitButton.textContent = 'Submit Answers';
+                submitButton.className = 'bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition-colors duration-150 ease-in-out';
+                submitButton.onclick = submitQuiz;
+                navigationControls.appendChild(submitButton);
+            }
+        }
+
+        function handleOptionChange(questionId, value) {
+            userAnswers[questionId] = value;
+            // Get all radio buttons for the current question
+            const radios = document.getElementsByName(`q${questionId}`);
+            radios.forEach(radio => {
+                // Find the parent label for each radio
+                const label = radio.closest('label');
+                // Check if this radio's value is the one that was just selected
+                if (radio.value === value) {
+                    // Add styling for selected option
+                    label.classList.add('bg-indigo-100', 'border-indigo-400', 'ring-2', 'ring-indigo-300');
+                    label.classList.remove('border-gray-300');
+                } else {
+                    // Remove styling from non-selected options
+                    label.classList.remove('bg-indigo-100', 'border-indigo-400', 'ring-2', 'ring-indigo-300');
+                    label.classList.add('border-gray-300');
+                }
+            });
+        }
+        
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            quizArea.classList.add('hidden');
+            resultsContainer.classList.remove('hidden');
+            let correctCount = 0;
+            let resultsHTML = `<h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">Your Results</h2>`;
+
+            questions.forEach((question, index) => {
+                const userAnswer = userAnswers[question.id];
+                const isCorrect = userAnswer === question.correctAnswer;
+                if (isCorrect) {
+                    correctCount++;
+                }
+
+                let optionsFeedbackHTML = question.options.map(opt => {
+                    let optClasses = "p-2 rounded-md text-sm sm:text-base ";
+                    let optIndicator = "";
+
+                    if (opt.value === question.correctAnswer) {
+                        optClasses += "bg-green-100 border border-green-300 text-green-800 font-semibold";
+                        optIndicator = userAnswer === opt.value ? " (Your Answer - Correct)" : " (Correct Answer)";
+                    } else if (userAnswer === opt.value && opt.value !== question.correctAnswer) {
+                        optClasses += "bg-red-100 border border-red-300 text-red-800 font-semibold";
+                        optIndicator = " (Your Answer - Incorrect)";
+                    } else {
+                        optClasses += "bg-gray-50 border border-gray-200 text-gray-700";
+                    }
+
+                    return `<div class="${optClasses}">${opt.text}${optIndicator}</div>`;
+                }).join('');
+
+
+                resultsHTML += `
+                    <div class="p-4 sm:p-5 rounded-lg shadow-md mb-6 ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+                        <p class="text-sm font-medium text-gray-700 mb-1">Question ${index + 1}: ${question.topic_short}</p>
+                        <p class="text-base sm:text-lg text-gray-900 mb-3">${question.text}</p>
+                        <div class="space-y-2 mb-3">
+                            ${optionsFeedbackHTML}
+                        </div>
+                        <div class="feedback-explanation">${question.explanation}</div>
+                    </div>
+                `;
+            });
+
+            resultsHTML = `
+                <div class="text-center mb-8">
+                    <p class="text-xl sm:text-2xl font-semibold text-gray-800">You answered ${correctCount} out of ${questions.length} questions correctly.</p>
+                    <p class="text-lg text-indigo-600">${((correctCount / questions.length) * 100).toFixed(1)}%</p>
+                </div>
+            ` + resultsHTML;
+
+            resultsContainer.innerHTML = resultsHTML;
+
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([resultsContainer]);
+            }
+        }
+
+        // Initial render
+        renderQuestion();
+    </script>
+</body>
+
+</html>
