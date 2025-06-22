@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inference for One Proportion Problem Set</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']], // Defines inline math delimiters
+                displayMath: [['\\[', '\\]']]  // Defines display math delimiters
+            },
+            chtml: {
+                linebreaks: {
+                    automatic: true, // Enable automatic line breaking
+                    inline: true    // Allow inline math to break
+                },
+                matchFontHeight: true,
+                scale: 1,
+            },
+            startup: {
+                ready: () => {
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async=""></script>
+
+    <style>
+        /* Custom styles for better mobile experience and aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .question-option-label {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            /* 12px */
+            border-width: 1px;
+            border-radius: 0.5rem;
+            /* 8px */
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            border-color: #e5e7eb;
+            /* gray-200 */
+        }
+
+        .question-option-label:hover {
+            background-color: #f9fafb;
+            /* gray-50 */
+        }
+        
+        .feedback-correct {
+            border-left: 4px solid #10b981;
+            /* green-500 */
+            background-color: #f0fdf4;
+            /* green-50 */
+        }
+
+        .feedback-incorrect {
+            border-left: 4px solid #ef4444;
+            /* red-500 */
+            background-color: #fef2f2;
+            /* red-50 */
+        }
+
+        .feedback-explanation {
+            background-color: #f3f4f6;
+            /* gray-100 */
+            border: 1px solid #e5e7eb;
+            /* gray-200 */
+            border-radius: 0.375rem;
+            /* 6px */
+            padding: 0.75rem;
+            /* 12px */
+            margin-top: 0.75rem;
+            /* 12px */
+            font-size: 0.875rem;
+            /* 14px */
+            color: #4b5563;
+            /* gray-600 */
+        }
+        
+        /* Ensure MathJax content reflows properly */
+        mjx-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 min-h-screen p-4 sm:p-8">
+    <div class="max-w-3xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-2xl">
+        <header class="mb-6 sm:mb-8 text-center">
+            <h1 class="text-3xl sm:text-4xl font-bold text-indigo-700">Inference for One Proportion Self-Assessment</h1>
+            <p class="text-gray-600 mt-2 text-sm sm:text-base">Test your understanding of key inference concepts for a single proportion.
+                Select an answer for each question and submit at the end for feedback.</p>
+        </header>
+
+        <div id="quiz-area">
+            <div id="question-container" class="mb-6">
+                <!-- Question will be loaded here -->
+            </div>
+            <div id="navigation-controls" class="flex justify-between items-center">
+                <!-- Navigation buttons will be here -->
+            </div>
+        </div>
+
+        <div id="results-container" class="hidden">
+            <!-- Results will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+
+        const questions = [
+            {
+                id: 1,
+                text: "Out of 120 surveyed individuals, 45 support a policy. What is the sample proportion?",
+                topic_short: "Calculating \(\hat{p}\)",
+                options: [
+                    { text: "0.375", value: "a" },
+                    { text: "0.45", value: "b" },
+                    { text: "0.30", value: "c" },
+                    { text: "0.40", value: "d" }
+                ],
+                correctAnswer: "a",
+                explanation: "The sample proportion is 45 divided by 120, which equals 0.375."
+            },
+            {
+                id: 2,
+                text: "Using the sample from Question 1, what is the standard error of \(\hat{p}\)?",
+                topic_short: "Standard Error",
+                options: [
+                    { text: "0.044", value: "a" },
+                    { text: "0.125", value: "b" },
+                    { text: "0.100", value: "c" },
+                    { text: "0.012", value: "d" }
+                ],
+                correctAnswer: "a",
+                explanation: "SE = sqrt(0.375\times0.625/120) \approx 0.044."
+            },
+            {
+                id: 3,
+                text: "What is the 95% confidence interval for the true proportion using the data from Question 1?",
+                topic_short: "95% CI",
+                options: [
+                    { text: "[0.29, 0.46]", value: "a" },
+                    { text: "[0.31, 0.44]", value: "b" },
+                    { text: "[0.33, 0.42]", value: "c" },
+                    { text: "[0.25, 0.50]", value: "d" }
+                ],
+                correctAnswer: "a",
+                explanation: "CI = 0.375 \u00b1 1.96\times0.044 \approx [0.29, 0.46]."
+            },
+            {
+                id: 4,
+                text: "For H\_0: p = 0.5 versus H\_A: p < 0.5, compute the Z statistic for the sample in Question 1.",
+                topic_short: "Test Statistic",
+                options: [
+                    { text: "-1.96", value: "a" },
+                    { text: "2.74", value: "b" },
+                    { text: "-2.74", value: "c" },
+                    { text: "0.125", value: "d" }
+                ],
+                correctAnswer: "c",
+                explanation: "Z = (0.375-0.5)/sqrt(0.5\times0.5/120) \approx -2.74."
+            },
+            {
+                id: 5,
+                text: "Using the Z value from Question 4 for a one-sided test, what is the approximate P-value?",
+                topic_short: "P-value",
+                options: [
+                    { text: "0.003", value: "a" },
+                    { text: "0.006", value: "b" },
+                    { text: "0.025", value: "c" },
+                    { text: "0.997", value: "d" }
+                ],
+                correctAnswer: "a",
+                explanation: "The lower-tail probability for Z = -2.74 is about 0.003."
+            },
+            {
+                id: 6,
+                text: "How large a sample is needed to estimate a proportion near 0.4 with a margin of error of \u00b10.04 at 95% confidence?",
+                topic_short: "Sample Size",
+                options: [
+                    { text: "240", value: "a" },
+                    { text: "400", value: "b" },
+                    { text: "577", value: "c" },
+                    { text: "1000", value: "d" }
+                ],
+                correctAnswer: "c",
+                explanation: "n = z^2 p(1-p)/MOE^2 = 1.96^2\times0.4\times0.6/0.04^2 \approx 577."
+            },
+            {
+                id: 7,
+                text: "Which condition justifies using the normal approximation for inference on a proportion?",
+                topic_short: "Validity Conditions",
+                options: [
+                    { text: "Sample size exceeds 30", value: "a" },
+                    { text: "Both n\hat{p} and n(1-\hat{p}) are at least 10", value: "b" },
+                    { text: "Population is normal", value: "c" },
+                    { text: "Only randomness is required", value: "d" }
+                ],
+                correctAnswer: "b",
+                explanation: "We need at least about 10 expected successes and 10 failures." 
+            },
+            {
+                id: 8,
+                text: "A two-sided test for a proportion yields a P-value of 0.18 at \u03b1 = 0.05. What is the correct conclusion?",
+                topic_short: "Test Decision",
+                options: [
+                    { text: "Reject H\_0", value: "a" },
+                    { text: "Fail to reject H\_0", value: "b" },
+                    { text: "Accept H\_0", value: "c" },
+                    { text: "The parameter equals the null value", value: "d" }
+                ],
+                correctAnswer: "b",
+                explanation: "Since 0.18 > 0.05, we fail to reject the null hypothesis."
+            }
+        ];
+        let currentQuestionIndex = 0;
+        let userAnswers = {}; // Store {questionId: answerValue}
+
+        const questionContainer = document.getElementById('question-container');
+        const navigationControls = document.getElementById('navigation-controls');
+        const resultsContainer = document.getElementById('results-container');
+        const quizArea = document.getElementById('quiz-area');
+
+        // Function to shuffle an array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+            }
+        }
+
+        function renderQuestion() {
+            const question = questions[currentQuestionIndex];
+
+            // Create a copy of the options and shuffle it for display
+            const shuffledOptions = [...question.options];
+            shuffleArray(shuffledOptions);
+
+            let optionsHTML = shuffledOptions.map((opt, index) => `
+                <label class="question-option-label group hover:bg-indigo-50 hover:border-indigo-300 ${userAnswers[question.id] === opt.value ? 'bg-indigo-100 border-indigo-400 ring-2 ring-indigo-300' : 'border-gray-300'}">
+                    <input type="radio" name="q${question.id}" value="${opt.value}" class="form-radio h-5 w-5 text-indigo-600 focus:ring-indigo-500 mr-3 shrink-0"
+                           ${userAnswers[question.id] === opt.value ? 'checked' : ''}
+                           onchange="handleOptionChange(${question.id}, '${opt.value}')">
+                    <span class="text-gray-700 group-hover:text-indigo-700">${opt.text}</span>
+                </label>
+            `).join('');
+
+            questionContainer.innerHTML = `
+                <div class="p-3 sm:p-5 border border-gray-200 rounded-lg shadow-sm bg-white">
+                    <p class="text-xs sm:text-sm font-medium text-indigo-600 mb-1">Question ${currentQuestionIndex + 1} of ${questions.length}</p>
+                    <p class="text-base sm:text-lg text-gray-800 mb-4 leading-relaxed">${question.text}</p>
+                    <div class="space-y-3 options-group">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+
+            renderNavigation();
+            
+            // Retypeset the math content after rendering
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([questionContainer]);
+            }
+        }
+
+        function renderNavigation() {
+            navigationControls.innerHTML = ''; // Clear previous buttons
+
+            if (currentQuestionIndex > 0) {
+                const prevButton = document.createElement('button');
+                prevButton.textContent = 'Previous';
+                prevButton.className = 'bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition-colors duration-150 ease-in-out';
+                prevButton.onclick = prevQuestion;
+                navigationControls.appendChild(prevButton);
+            }
+
+            // Add a spacer div to push the next/submit button to the right
+            const spacer = document.createElement('div');
+            spacer.className = 'flex-grow';
+            navigationControls.appendChild(spacer);
+
+            if (currentQuestionIndex < questions.length - 1) {
+                const nextButton = document.createElement('button');
+                nextButton.textContent = 'Next Question';
+                nextButton.className = 'bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-colors duration-150 ease-in-out';
+                nextButton.onclick = nextQuestion;
+                navigationControls.appendChild(nextButton);
+            } else {
+                const submitButton = document.createElement('button');
+                submitButton.textContent = 'Submit Answers';
+                submitButton.className = 'bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition-colors duration-150 ease-in-out';
+                submitButton.onclick = submitQuiz;
+                navigationControls.appendChild(submitButton);
+            }
+        }
+
+        function handleOptionChange(questionId, value) {
+            userAnswers[questionId] = value;
+            // Get all radio buttons for the current question
+            const radios = document.getElementsByName(`q${questionId}`);
+            radios.forEach(radio => {
+                // Find the parent label for each radio
+                const label = radio.closest('label');
+                // Check if this radio's value is the one that was just selected
+                if (radio.value === value) {
+                    // Add styling for selected option
+                    label.classList.add('bg-indigo-100', 'border-indigo-400', 'ring-2', 'ring-indigo-300');
+                    label.classList.remove('border-gray-300');
+                } else {
+                    // Remove styling from non-selected options
+                    label.classList.remove('bg-indigo-100', 'border-indigo-400', 'ring-2', 'ring-indigo-300');
+                    label.classList.add('border-gray-300');
+                }
+            });
+        }
+        
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            quizArea.classList.add('hidden');
+            resultsContainer.classList.remove('hidden');
+            let correctCount = 0;
+            let resultsHTML = `<h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">Your Results</h2>`;
+
+            questions.forEach((question, index) => {
+                const userAnswer = userAnswers[question.id];
+                const isCorrect = userAnswer === question.correctAnswer;
+                if (isCorrect) {
+                    correctCount++;
+                }
+
+                let optionsFeedbackHTML = question.options.map(opt => {
+                    let optClasses = "p-2 rounded-md text-sm sm:text-base ";
+                    let optIndicator = "";
+
+                    if (opt.value === question.correctAnswer) {
+                        optClasses += "bg-green-100 border border-green-300 text-green-800 font-semibold";
+                        optIndicator = userAnswer === opt.value ? " (Your Answer - Correct)" : " (Correct Answer)";
+                    } else if (userAnswer === opt.value && opt.value !== question.correctAnswer) {
+                        optClasses += "bg-red-100 border border-red-300 text-red-800 font-semibold";
+                        optIndicator = " (Your Answer - Incorrect)";
+                    } else {
+                        optClasses += "bg-gray-50 border border-gray-200 text-gray-700";
+                    }
+
+                    return `<div class="${optClasses}">${opt.text}${optIndicator}</div>`;
+                }).join('');
+
+
+                resultsHTML += `
+                    <div class="p-4 sm:p-5 rounded-lg shadow-md mb-6 ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">
+                        <p class="text-sm font-medium text-gray-700 mb-1">Question ${index + 1}: ${question.topic_short}</p>
+                        <p class="text-base sm:text-lg text-gray-900 mb-3">${question.text}</p>
+                        <div class="space-y-2 mb-3">
+                            ${optionsFeedbackHTML}
+                        </div>
+                        <div class="feedback-explanation">${question.explanation}</div>
+                    </div>
+                `;
+            });
+
+            resultsHTML = `
+                <div class="text-center mb-8">
+                    <p class="text-xl sm:text-2xl font-semibold text-gray-800">You answered ${correctCount} out of ${questions.length} questions correctly.</p>
+                    <p class="text-lg text-indigo-600">${((correctCount / questions.length) * 100).toFixed(1)}%</p>
+                </div>
+            ` + resultsHTML;
+
+            resultsContainer.innerHTML = resultsHTML;
+
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([resultsContainer]);
+            }
+        }
+
+        // Initial render
+        renderQuestion();
+    </script>
+</body>
+
+</html>
