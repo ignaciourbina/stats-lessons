@@ -1,6 +1,6 @@
 # Quiz Validation Protocol
 
-This document explains how to verify that multiple-choice answers match the numeric computations used in the course materials. Validation supports both interactive HTML problem sets and the LaTeX question sets for weekly quizzes. Save validation outputs to `/answer-validations`
+This document explains how to verify that multiple-choice answers match the numeric computations used in the course materials. Validation supports both interactive HTML problem sets and the LaTeX question sets for weekly quizzes. Save validation outputs to `/answer-validations`.
 
 ## Utility Modules
 - `scripts/inference_utils.py` contains helpers for standard errors, confidence intervals and hypothesis tests.
