@@ -5,7 +5,7 @@ Store Brightspace-ready quiz CSV files for each week and track the LaTeX questio
 
 ## Key References
 - `readme.md` summarises the folder purpose.
-- Use the quiz builder instructions in `instructions/agents/AGENTS.md` and the API in `scripts/module_quiz_builder_to_csv.py` when creating new quizzes.
+- Use the quiz builder instructions in `weekly-quizzes/quiz-builder-module-protocol.md` and the API in `scripts/module_quiz_builder_to_csv.py` when creating new quizzes.
 - Follow `question_set_protocol.md` to build the LaTeX question set for each week before converting to CSV.
 - All quiz questions should meet the quality standards in that protocol: verify answers, write in clear grammar, embed real-world context, and use plausible distractors for multiple-choice.
 
