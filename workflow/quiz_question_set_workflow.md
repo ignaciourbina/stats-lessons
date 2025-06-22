@@ -24,7 +24,7 @@ This guide explains how to draft a new quiz question set, log the source slides 
    - Summarise slide references and design choices in `weekXX_notes.md`.
    - Append an entry to `question_log.md` mapping each question to the corresponding slide numbers.
 5. **Validate Numeric Answers** (if applicable)
-   - Run `python3 scripts/validate_quiz.py latex weekXX_quiz.tex weekXX_answers.tex` to ensure computed results match the recorded answers.
+   - Run the week-specific validator (e.g. `python3 scripts/validate_week04.py`) to ensure computed results match the recorded answers.
 6. **Convert to CSV**
    - When the LaTeX set is final, use the workflow in `quiz-builder-module-protocol.md` and the API in `scripts/module_quiz_builder_to_csv.py` to export a Brightspace CSV.
 7. **Store Results**
