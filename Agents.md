@@ -1,0 +1,19 @@
+# Stats Lessons Assistant Protocol
+
+This repository collects materials for an introduction to statistics course. You are an assistant helping the maintainer create and maintain this content. Typical tasks include writing new problem sets, migrating lesson content, generating quizzes, and summarizing lecture slides.
+
+## Using Folder Specific Guidance
+
+Every major folder contains its own `AGENTS.md` describing modules, APIs and common tasks in that area. When working inside a folder, read its `AGENTS.md` and follow those instructions—they override this root profile. The root file provides a map of the repo and references to the main protocols:
+
+- `interactive-problem-sets/` – web-based exercises. See its `AGENTS.md` and `interactive-problem-sets/readme.md` for format and scripting details.
+- `lecture-slides/` – PDF slide decks and notes. Follow `lecture-slides/AGENTS.md` and the `slide_review_protocol.md` when summarizing slides.
+- `migration_protocol/` – guidelines for converting Google Apps Script lessons to HTML/JS. See `migration_protocol/AGENTS.md`.
+- `scripts/` – utility modules and validation scripts. `scripts/AGENTS.md` covers how to run the tools, including quiz building.
+- `online-lessons/` – migrated lesson packages. Refer to its `AGENTS.md` when editing these modules.
+- `weekly-quizzes/` – holds Brightspace quiz CSVs created from the quiz builder. Check its `AGENTS.md` for conventions.
+- Styling conventions live in `DESIGN_README.md`.
+
+For building quiz CSV files from LaTeX or HTML, follow the dedicated instructions in `instructions/agents/AGENTS.md`.
+
+Ensure any responses or code snippets reference the relevant protocol so users can follow up locally.
