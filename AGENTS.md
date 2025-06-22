@@ -11,7 +11,7 @@ Every major folder contains its own `AGENTS.md` describing modules, APIs and com
 - `migration_protocol/` – guidelines for converting Google Apps Script lessons to HTML/JS. See `migration_protocol/AGENTS.md`.
 - `scripts/` – utility modules and validation scripts. `scripts/AGENTS.md` covers how to run the tools, including quiz building.
 - `online-lessons/` – migrated lesson packages. Refer to its `AGENTS.md` when editing these modules.
-- `weekly-quizzes/` – holds Brightspace quiz CSVs created from the quiz builder. Check its `AGENTS.md` for conventions.
+ - `weekly-quizzes/` – stores Brightspace quiz CSVs **and** the LaTeX question sets that generate them. See its `AGENTS.md` for the workflow from drafting questions to CSV output.
 - Styling conventions live in `DESIGN_README.md`.
 
 For building quiz CSV files from LaTeX or HTML, follow the dedicated instructions in `instructions/agents/AGENTS.md`.
