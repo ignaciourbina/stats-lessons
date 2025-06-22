@@ -1,3 +1,3 @@
 # Online Lessons
 
-Placeholder directory for hosting fully online lesson modules. Currently no lesson files are stored here, but the folder remains for future expansion.
+This directory hosts fully online lesson modules. It now contains the Week 4 lessons (original Google Apps Script versions and their HTML/JS conversions) moved from the repository root.
