@@ -2,6 +2,13 @@
 
 This protocol describes how to generate a set of quiz questions based on specific lecture slides and any instructions on the mix or focus of questions. The goal is to keep each quiz closely tied to the material from the slide decks in `lecture-slides/`.
 
+## Quality Standards
+All questions must satisfy these requirements:
+1. **Technical correctness** – provide enough information for the intended computation or reasoning and double-check the answer.
+2. **Grammatical clarity** – use clean sentences free of typos or awkward phrasing.
+3. **Real-world context** – start with one or two sentences that place the problem in a familiar setting instead of opening with raw numbers or formulas.
+4. **Multiple-choice design** – when writing MC questions, include strong distractors that use the given numbers incorrectly in subtle ways so they appear plausible.
+
 ## 1. Collect Slide References
 1. The user will specify which lecture slides are covered for the given week.
 2. Locate the PDF files in the `lecture-slides/` folder and review them, using the notes created via `lecture-slides/slide_review_protocol.md` if available.
@@ -11,10 +18,11 @@ This protocol describes how to generate a set of quiz questions based on specifi
 2. Decide how many questions to generate of each type. Keep the total manageable for a short weekly quiz.
 
 ## 3. Write Questions
-1. Use definitions, formulas and examples from the specified slides to craft each question.
-2. For numeric questions, verify any calculated answers using helper functions in `scripts/inference_utils.py` when appropriate.
-3. Ensure the wording clearly indicates the link to the lecture content so students can relate each question back to the slides.
-4. Provide a sentence or two of real-world context for numeric problems so students know what the numbers represent.
+1. Use definitions, formulas and examples from the specified slides and clearly reference the lecture content.
+2. Start each question with a short scenario that connects the topic to something familiar.
+3. Verify numeric answers using helper functions in `scripts/inference_utils.py` when needed so the correct option is beyond doubt.
+4. Keep the language concise and grammatically correct.
+5. When drafting multiple-choice items, create plausible distractors that misuse the provided numbers or formulas in subtle ways.
 
 ## 4. Produce a LaTeX File
 1. Use Python to create a `.tex` file containing the questions. A minimal example is shown below. Each question becomes an item in an ordered list.
