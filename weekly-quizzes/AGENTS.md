@@ -9,4 +9,4 @@ Store Brightspace-ready quiz CSV files for each week.
 
 ## Common Tasks
 - Add new CSV files named by week (e.g., `week01_quiz.csv`).
-- Keep a short Markdown log of question sources or any manual edits if required.
+- Use `question_log.md` to note where each quiz question originated and document any manual edits.
