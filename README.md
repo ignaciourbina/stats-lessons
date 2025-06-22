@@ -14,3 +14,9 @@ This repository stores materials for the POL201 statistics course. The content i
 - **instructions/** – assistant protocols referenced by the various `AGENTS.md` files.
 
 The `DESIGN_README.md` file outlines styling guidelines used when refreshing the lesson pages.
+
+For usage instructions see `AGENTS.md` in the repository root. It links to the
+`AGENTS.md` files inside each folder and explains how the tools fit together.
+When tasks span multiple folders—for example using the validation scripts in
+`scripts/` on questions in `interactive-problem-sets`—follow those cross
+referenced protocols to ensure the correct workflow.

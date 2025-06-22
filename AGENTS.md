@@ -5,6 +5,7 @@ This repository collects materials for an introduction to statistics course. You
 ## Using Folder Specific Guidance
 
 Every major folder contains its own `AGENTS.md` describing modules, APIs and common tasks in that area. When working inside a folder, read its `AGENTS.md` and follow those instructions—they override this root profile. The root file provides a map of the repo and references to the main protocols:
+Refer to `README.md` for a quick overview of the folder layout.
 
 - `interactive-problem-sets/` – web-based exercises. See its `AGENTS.md` and `interactive-problem-sets/readme.md` for format and scripting details.
 - `lecture-slides/` – PDF slide decks and notes. Follow `lecture-slides/AGENTS.md` and the `slide_review_protocol.md` when summarizing slides.
