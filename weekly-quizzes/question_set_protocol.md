@@ -51,7 +51,7 @@ Path("weekly-quizzes/weekXX_quiz.tex").write_text(content)
 2. Replace `weekXX_quiz.tex` with the actual week number.
 
 ## 5. Optional Brightspace CSV
-If the quiz needs to be uploaded to Brightspace, convert the LaTeX questions to HTML/Unicode and use the quiz builder API in `scripts/module_quiz_builder_to_csv.py`. The step-by-step process is outlined in `instructions/agents/AGENTS.md`.
+If the quiz needs to be uploaded to Brightspace, convert the LaTeX questions to HTML/Unicode and use the quiz builder API in `scripts/module_quiz_builder_to_csv.py`. The step-by-step process is outlined in `weekly-quizzes/quiz-builder-module-protocol.md`.
 
 ## 6. Log Your Work
 Create a brief Markdown file (e.g., `weekXX_notes.md`) describing which slides were used and any decisions about question focus. Store this log alongside the generated quiz file.
