@@ -1,75 +1,145 @@
 \documentclass{article}
 \begin{document}
 \begin{enumerate}
-\item According to the slides, how is the sample proportion $\hat{p}$ calculated from the number of successes $S$ in a sample of size $n$?
+\item In a city poll about a new tax, $S$ out of $n$ respondents support the measure. How is the sample proportion $\hat{p}$ calculated?
   \begin{enumerate}[label=(\Alph*)]
   \item $\hat{p}=S/n$
   \item $\hat{p}=n/S$
   \item $\hat{p}=S\times n$
   \item $\hat{p}=S-n$
   \end{enumerate}
-\item What is the expected value of $\hat{p}$ when the population proportion is $p$?
+\item When repeatedly surveying voters about a candidate, what is the expected value of the sample proportion relative to the true population proportion $p$?
   \begin{enumerate}[label=(\Alph*)]
   \item $p$
   \item $\hat{p}$
   \item $np$
   \item $p/n$
   \end{enumerate}
-\item Which theorem justifies the approximation $\hat{p}\approx N(p,\,p(1-p)/n)$ for large samples?
+\item In public opinion polling, which theorem allows analysts to approximate the distribution of $\hat{p}$ by a normal curve when the sample size is large?
   \begin{enumerate}[label=(\Alph*)]
   \item Central Limit Theorem
   \item Law of Large Numbers
   \item Bayes' Theorem
   \item Chebyshev's Inequality
   \end{enumerate}
-\item The slides describe the significance level $\alpha$ as a tolerance for what type of error when testing hypotheses?
+\item When testing a new policy's impact, the significance level $\alpha$ represents our tolerance for which type of error?
   \begin{enumerate}[label=(\Alph*)]
   \item Type I error
   \item Type II error
   \item Sampling error
   \item Estimation error
   \end{enumerate}
-\item What quantity do we obtain by multiplying the estimated standard error by $z_{1-\alpha/2}$ in confidence interval calculations?
+\item Journalists often report a 95\% margin of error for poll results. In constructing a confidence interval, multiplying the estimated standard error by $z_{1-\alpha/2}$ yields what quantity?
   \begin{enumerate}[label=(\Alph*)]
   \item Margin of error
   \item P-value
   \item Test statistic
   \item Residual
   \end{enumerate}
-\item A survey records $55$ successes out of $100$ trials. Which of the following gives $\hat{p}$ and its estimated standard error $\sqrt{\hat{p}(1-\hat{p})/n}$?
+\item A survey of $120$ college students finds that $66$ support a tuition freeze. Which of the following lists $\hat{p}$ and its estimated standard error $\sqrt{\hat{p}(1-\hat{p})/n}$?
   \begin{enumerate}[label=(\Alph*)]
-  \item $\hat{p}=0.55$,\quad SE $\approx0.05$
-  \item $\hat{p}=0.45$,\quad SE $\approx0.05$
+  \item $\hat{p}=0.55$,\quad SE $\approx0.045$
+  \item $\hat{p}=0.45$,\quad SE $\approx0.045$
   \item $\hat{p}=0.55$,\quad SE $\approx0.15$
   \item $\hat{p}=0.45$,\quad SE $\approx0.15$
   \end{enumerate}
-\item Using the values from Question~6, which of the following is the $95\%$ confidence interval for $p$ using $\hat{p}\pm1.96\times\text{SE}$?
+\item Using the results from Question~6, which of the following is the $95\%$ confidence interval for $p$ computed with $\hat{p}\pm1.96\times\text{SE}$?
   \begin{enumerate}[label=(\Alph*)]
-  \item $(0.45,\,0.65)$
+  \item $(0.46,\,0.64)$
   \item $(0.50,\,0.60)$
   \item $(0.30,\,0.80)$
   \item $(0.55,\,0.65)$
   \end{enumerate}
-\item A sample of $400$ contains $120$ successes. What is the $99\%$ confidence interval for $p$?
+\item A statewide referendum poll of $400$ voters finds $220$ in favor of the measure. What is the $99\%$ confidence interval for $p$?
   \begin{enumerate}[label=(\Alph*)]
-  \item $(0.24,\,0.36)$
-  \item $(0.25,\,0.35)$
-  \item $(0.20,\,0.40)$
-  \item $(0.30,\,0.40)$
+  \item $(0.49,\,0.61)$
+  \item $(0.48,\,0.62)$
+  \item $(0.46,\,0.64)$
+  \item $(0.52,\,0.58)$
   \end{enumerate}
-\item In the voting preference example, $\hat{p}=0.52$, $p_0=0.49$, and $n=1000$. Compute the test statistic $Z$ and decide whether to reject $H_0$ at $\alpha=0.05$.
+\item In a statewide election poll, $\hat{p}=0.52$, $p_0=0.49$, and $n=1000$. Compute the test statistic $Z$ and decide whether to reject $H_0$ at $\alpha=0.05$.
   \begin{enumerate}[label=(\Alph*)]
   \item $Z\approx1.9$, fail to reject $H_0$
   \item $Z\approx1.9$, reject $H_0$
   \item $Z\approx2.5$, reject $H_0$
   \item $Z\approx0.5$, fail to reject $H_0$
   \end{enumerate}
-\item A poll finds $\hat{p}=0.53$ in a sample of $n=1000$. Test $H_0:p=0.50$ against $H_a:p>0.50$ using $Z=(\hat{p}-p_0)/\sqrt{p_0(1-p_0)/n}$. What is the one-sided $P$-value and decision at $\alpha=0.05$?
+\item A newspaper poll reports $\hat{p}=0.53$ from a sample of $n=1000$. Test $H_0:p=0.50$ against $H_a:p>0.50$ using $Z=(\hat{p}-p_0)/\sqrt{p_0(1-p_0)/n}$. What is the one-sided $P$-value and decision at $\alpha=0.05$?
   \begin{enumerate}[label=(\Alph*)]
   \item $P\approx0.03$, reject $H_0$
   \item $P\approx0.14$, fail to reject $H_0$
   \item $P\approx0.06$, fail to reject $H_0$
   \item $P\approx0.03$, fail to reject $H_0$
+  \end{enumerate}
+\item Which rule of thumb from the slides ensures the sampling distribution of $\hat{p}$ is approximately normal?
+  \begin{enumerate}[label=(\Alph*)]
+  \item $n\hat{p}\ge10$ and $n(1-\hat{p})\ge10$
+  \item $n\ge100$
+  \item $p$ close to $0.5$
+  \item $n\ge30$ regardless of $p$
+  \end{enumerate}
+\item A city survey records $245$ supporters of a bus lane out of $500$ residents. What are $\hat{p}$ and its estimated standard error?
+  \begin{enumerate}[label=(\Alph*)]
+  \item $\hat{p}=0.49$,\quad SE $\approx0.022$
+  \item $\hat{p}=0.51$,\quad SE $\approx0.022$
+  \item $\hat{p}=0.49$,\quad SE $\approx0.044$
+  \item $\hat{p}=0.51$,\quad SE $\approx0.044$
+  \end{enumerate}
+\item Using the values from Question~12, which option shows the $90\%$ confidence interval for $p$ computed with $\hat{p}\pm1.645\times\text{SE}$?
+  \begin{enumerate}[label=(\Alph*)]
+  \item $(0.45,\,0.53)$
+  \item $(0.44,\,0.54)$
+  \item $(0.47,\,0.51)$
+  \item $(0.40,\,0.58)$
+  \end{enumerate}
+\item Again using the survey from Question~12, test $H_0:p=0.50$ against $H_a:p\ne0.50$. Which $Z$ value and decision are correct at $\alpha=0.05$?
+  \begin{enumerate}[label=(\Alph*)]
+  \item $Z\approx-0.45$, fail to reject $H_0$
+  \item $Z\approx-0.45$, reject $H_0$
+  \item $Z\approx-2.5$, reject $H_0$
+  \item $Z\approx1.5$, fail to reject $H_0$
+  \end{enumerate}
+\item In plain language, what does a $95\%$ confidence level indicate when polls are repeated many times?
+  \begin{enumerate}[label=(\Alph*)]
+  \item About $95\%$ of such intervals will contain the true $p$
+  \item $95\%$ of the population lies inside any one interval
+  \item The chance the specific interval contains $p$ is exactly $95\%$
+  \item The interval width is always $95\%$ of $p$
+  \end{enumerate}
+\item If a survey relies on convenience sampling instead of random sampling, which assumption of the Central Limit Theorem may be violated?
+  \begin{enumerate}[label=(\Alph*)]
+  \item Independence of observations
+  \item Large sample size
+  \item Finite variance
+  \item None, the CLT always holds
+  \end{enumerate}
+\item Investigators want the margin of error to be no more than $0.02$ for a $95\%$ confidence level when $p$ is unknown. Which sample size is closest to the slides' recommendation?
+  \begin{enumerate}[label=(\Alph*)]
+  \item $n=600$
+  \item $n=1200$
+  \item $n=2400$
+  \item $n=4800$
+  \end{enumerate}
+\item A poll finds a statistically significant difference in support between two candidates, but the gap is only one percentage point. Which statement best describes this result?
+  \begin{enumerate}[label=(\Alph*)]
+  \item The difference may lack practical importance despite being statistically significant
+  \item Statistical significance guarantees a meaningful real-world effect
+  \item The result must be due to a sampling error
+  \item Larger sample sizes always make results more practical
+  \end{enumerate}
+\item If $p=0.60$ and $n=500$, what is the standard deviation of the number of supporters counted in the sample?
+  \begin{enumerate}[label=(\Alph*)]
+  \item About $11$
+  \item About $22$
+  \item About $7$
+  \item About $3$
+  \end{enumerate}
+\item According to the slides, what role does the null hypothesis $H_0$ play when analyzing survey data?
+  \begin{enumerate}[label=(\Alph*)]
+  \item It specifies a benchmark proportion to compare against
+  \item It describes the sampling method used
+  \item It guarantees the alternative hypothesis is false
+  \item It adjusts the confidence level
   \end{enumerate}
 \end{enumerate}
 \end{document}
