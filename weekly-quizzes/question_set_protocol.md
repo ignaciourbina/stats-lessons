@@ -14,6 +14,7 @@ This protocol describes how to generate a set of quiz questions based on specifi
 1. Use definitions, formulas and examples from the specified slides to craft each question.
 2. For numeric questions, verify any calculated answers using helper functions in `scripts/inference_utils.py` when appropriate.
 3. Ensure the wording clearly indicates the link to the lecture content so students can relate each question back to the slides.
+4. Provide a sentence or two of real-world context for numeric problems so students know what the numbers represent.
 
 ## 4. Produce a LaTeX File
 1. Use Python to create a `.tex` file containing the questions. A minimal example is shown below. Each question becomes an item in an ordered list.
