@@ -35,13 +35,13 @@ It outputs `intro_inference_validation.csv` summarizing if each hard-coded answe
 - Include formulas directly in the question text using LaTeX when needed.
 - Test locally by opening `index.html`. No build step is required.
 
-### 3. Migration Protocol (`migration_protocol/README.md`)
+### 3. Migration Protocol (`online-lessons/migration_protocol/README.md`)
 To convert Google Apps Script lessons to static HTML/JS:
 1. Create a new project folder for the HTML version.
 2. Copy each GAS HTML file and strip out `<style>` blocks.
 3. Replace `google.script.run` server calls with client-side fetch logic in `scripts.js`.
 4. Keep pages modular and responsive with simple containers and inline styles.
-5. Maintain this documentation along with the database of videos and questions in `migration_protocol`.
+5. Maintain this documentation along with the database of videos and questions in `online-lessons/migration_protocol`.
 
 ### 4. Slide Review Protocol (`lecture-slides/slide_review_protocol.md`)
 When documenting lecture slides:

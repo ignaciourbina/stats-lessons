@@ -9,7 +9,7 @@ Refer to `README.md` for a quick overview of the folder layout.
 
 - `interactive-problem-sets/` – web-based exercises. See its `AGENTS.md` and `interactive-problem-sets/readme.md` for format and scripting details.
 - `lecture-slides/` – PDF slide decks and notes. Follow `lecture-slides/AGENTS.md` and the `slide_review_protocol.md` when summarizing slides.
-- `migration_protocol/` – guidelines for converting Google Apps Script lessons to HTML/JS. See `migration_protocol/AGENTS.md`.
+- `online-lessons/migration_protocol/` – guidelines for converting Google Apps Script lessons to HTML/JS. See `online-lessons/migration_protocol/AGENTS.md`.
 - `scripts/` – utility modules and validation scripts. `scripts/AGENTS.md` covers how to run the tools, including quiz building.
 - `online-lessons/` – migrated lesson packages. Refer to its `AGENTS.md` when editing these modules.
  - `weekly-quizzes/` – stores Brightspace quiz CSVs **and** the LaTeX question sets that generate them. See its `AGENTS.md` for the workflow from drafting questions to CSV output.
