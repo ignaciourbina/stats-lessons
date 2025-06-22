@@ -11,3 +11,4 @@ Maintain guidelines for converting Google Apps Script lesson apps to standalone 
 - Document each migration step when porting a GAS lesson.
 - Keep the database of videos and questions up to date.
 - Cross-reference any scripts or styles reused from other folders.
+- Log new videos and questions in `DATABASE.md`.
