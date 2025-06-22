@@ -5,6 +5,7 @@ This folder collects small web-based problem sets. Each subfolder contains a sel
 Current directories:
 
 - **probability/** – interactive questions covering basic probability theory.
+- **introduction-to-inference/** – a short set introducing inference concepts.
 - **inference-one-proportion/** – placeholder for a future exercise.
 - **style.css** – minimal shared styling used by the sets.
 
