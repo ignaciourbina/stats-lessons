@@ -17,8 +17,10 @@ Use the Python module in this folder directly.
 - Run `python3 validate_intro_inference.py` to check the introduction to inference
   problem set. The script reads `interactive-problem-sets/introduction-to-inference/index.html`,
   computes numeric answers with functions from `inference_utils.py` and writes
-  `intro_inference_validation.csv` summarising whether each answer matches the
-  HTML.
+   `intro_inference_validation.csv` summarising whether each answer matches the
+   HTML.
+- Run `python3 validate_week04.py` to validate the Week 4 LaTeX quiz. The script
+  saves `week04_validation.csv` comparing calculated answers to the key.
 
 - When building quizzes, import `module_quiz_builder_to_csv.py` and assemble the
   questions using its dataclasses (`QuestionBank`, `MultipleChoice`, `TFOption`,
