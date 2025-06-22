@@ -34,5 +34,7 @@ Each problem set is built from a single HTML page with inline JavaScript. The la
    - Replace the `questions` array with your own questions using the same object structure.
 3. **Add formulas** directly in the `text` or `explanation` fields using LaTeX syntax if needed.
 4. **Test locally** by opening `index.html` in a browser. No build step is required since everything is plain HTML and JavaScript.
+5. If the folder uses a `question_index.csv` file, update it whenever questions change so IDs stay consistent.
+6. For numeric questions, run `python3 scripts/validate_quiz.py html path/to/index.html` to verify computed answers.
 
 Following these guidelines, you can quickly author additional interactive problem sets without modifying the underlying script logic.
