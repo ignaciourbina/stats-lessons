@@ -1,7 +1,0 @@
-question_id,html_answer,calculated_answer,match
-4,c,c,True
-5,b,b,True
-6,b,b,True
-7,a,a,True
-9,c,c,True
-19,c,c,True
