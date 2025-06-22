@@ -11,3 +11,7 @@ Maintain the fully online lesson packages.
 - Update HTML/JS lesson packages when content changes.
 - Keep each lesson self-contained for easy embedding in Brightspace.
 - Reference the migration protocol if additional lessons need conversion.
+- When editing a lesson, update the README in that lesson's folder so
+  instructions stay current.
+- Test `index.html` locally using a simple web server (e.g. `python3 -m
+  http.server`) before committing changes to ensure pages load as expected.
