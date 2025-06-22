@@ -15,6 +15,6 @@ Refer to `README.md` for a quick overview of the folder layout.
  - `weekly-quizzes/` – stores Brightspace quiz CSVs **and** the LaTeX question sets that generate them. See its `AGENTS.md` for the workflow from drafting questions to CSV output.
 - Styling conventions live in `DESIGN_README.md`.
 
-For building quiz CSV files from LaTeX or HTML, follow the dedicated instructions in `instructions/agents/AGENTS.md`.
+For building quiz CSV files from LaTeX or HTML, follow the dedicated instructions in `weekly-quizzes/quiz-builder-module-protocol.md`.
 
 Ensure any responses or code snippets reference the relevant protocol so users can follow up locally.
