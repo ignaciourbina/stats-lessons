@@ -12,6 +12,7 @@ Create and maintain small web-based problem sets that run directly in the browse
 - Keep the JavaScript question objects in the same shape (`id`, `text`, `options`, `correctAnswer`, `explanation`).
 - Test locally by opening `index.html`. No build step is required.
 - If a folder contains `question_index.csv`, update it whenever you add or remove questions so IDs stay in sync.
- - When modifying numeric problems (e.g., the Introduction to Inference set), run `python3 scripts/validate_intro_inference.py` to verify computed answers.
+- After editing the CSV, run `python3 scripts/csv_to_md.py` to regenerate the corresponding `question_index.md` table.
+- When modifying numeric problems (e.g., the Introduction to Inference set), run `python3 scripts/validate_intro_inference.py` to verify computed answers.
 
 Follow these guidelines when authoring new interactive exercises.
