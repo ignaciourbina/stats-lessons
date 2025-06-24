@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expected Value &amp; Variance: Annual Flood Damage Explained</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth;
+            background-color: #F5F3FF; /* violet-50 */
+            overflow-x: hidden; 
+        }
+        .content-section {
+            background-color: white;
+            border-radius: 0.875rem; /* rounded-xl */
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08), 0 4px 10px -4px rgba(0, 0, 0, 0.04);
+            margin-bottom: 2.5rem; /* md:mb-10 */
+            padding: 1.75rem; /* p-7 md:p-8 */
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            opacity: 0;
+            animation: fadeInSlideUp 0.7s ease-out forwards;
+        }
+        .content-section:nth-of-type(1) { animation-delay: 0.1s; }
+        .content-section:nth-of-type(2) { animation-delay: 0.25s; }
+        .content-section:nth-of-type(3) { animation-delay: 0.4s; }
+        .content-section:nth-of-type(4) { animation-delay: 0.55s; }
+        .content-section:nth-of-type(5) { animation-delay: 0.7s; }
+
+        .content-section:hover {
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1), 0 8px 16px -8px rgba(0, 0, 0, 0.06); 
+        }
+        .section-title {
+            font-size: 1.625rem; /* ~text-2xl md:text-3xl */
+            font-weight: 800; 
+            margin-bottom: 1.25rem; /* md:mb-6 */
+            background-image: linear-gradient(to right, #7C3AED, #5B21B6); /* purple-600 to violet-800 */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+        }
+        .section-title svg {
+            margin-right: 0.625rem; /* ~mr-2.5 md:mr-3 */
+            width: 2rem; /* w-8 md:w-9 */
+            height: 2rem; /* h-8 md:h-9 */
+            fill: #7C3AED; /* purple-600 */
+            transition: transform 0.25s ease-in-out, fill 0.25s ease-in-out;
+        }
+        .section-title:hover svg {
+            transform: scale(1.15) rotate(5deg);
+            fill: #5B21B6; /* violet-800 */
+        }
+
+        .explanation-text { /* For general descriptive text */
+            color: #374151; /* gray-700 */
+            margin-bottom: 1rem; 
+            line-height: 1.65; 
+        }
+        .intro-text { /* For introductory, slightly more emphasized text */
+             font-style: italic;
+            color: #4B5563; /* slate-600 */
+            margin-bottom: 1rem; 
+            line-height: 1.65;
+        }
+        .key-concept {
+            font-weight: 600; 
+            color: #5B21B6; 
+            margin-top: 1.25rem; 
+            padding: 1rem; 
+            background-color: #EDE9FE; 
+            border-left: 5px solid #7C3AED; 
+            border-radius: 0.625rem; /* ~rounded-lg */
+            line-height: 1.65; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .key-concept:hover {
+            background-color: #F3E8FF; /* purple-100 */
+            border-left-color: #5B21B6;
+        }
+        .key-concept svg { 
+            width: 1.5rem; /* w-6 */
+            height: 1.5rem; /* h-6 */
+            fill: #7C3AED; 
+            margin-bottom: 0.625rem; 
+            flex-shrink: 0; 
+            transition: transform 0.3s ease;
+        }
+        .key-concept:hover svg {
+            transform: scale(1.1);
+        }
+        .key-concept strong { 
+            color: #4C1D95; 
+        }
+        
+        .header-title {
+             background-image: linear-gradient(to right, #6D28D9, #8B5CF6); /* violet-700 to purple-500 */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(25px); } 
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .formula {
+            background-color: #F3E8FF; 
+            padding: 0.875rem 1.25rem; 
+            border-radius: 0.5rem; 
+            font-family: 'Courier New', Courier, monospace;
+            color: #4C1D95; 
+            margin: 1rem 0;
+            display: inline-block;
+            border: 1px solid #D8B4FE; 
+            font-size: 1rem; /* md:text-lg */
+            text-align: center;
+            width: 100%; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .formula:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: scale(1.02);
+        }
+        .calculation-step {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #FAF5FF; 
+            padding: 0.625rem;
+            border-radius: 0.375rem;
+            margin-bottom: 0.375rem;
+            font-size: 0.875rem; /* md:text-base */
+            border-left: 3px solid #A78BFA; /* violet-400 */
+            transition: background-color 0.3s ease;
+        }
+        .calculation-step:hover {
+            background-color: #F3E8FF; /* purple-100 */
+        }
+         .calculation-result {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 800; /* font-extrabold */
+            color: #5B21B6; 
+            font-size: 1.25rem; /* md:text-xl */
+            padding: 0.25rem 0.5rem;
+            background-color: #EDE9FE; /* violet-100 */
+            border-radius: 0.25rem;
+            display: inline-block;
+            animation: countUp 0.5s ease-out forwards;
+        }
+        .interpretation {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #F5F3FF; 
+            border-left: 4px solid #7C3AED; 
+            border-radius: 0.375rem;
+        }
+        .interpretation strong { /* Make interpretation highlights stand out */
+            color: #6D28D9; /* violet-700 */
+        }
+
+        /* Flood scenario visualization */
+        .flood-scenario-card {
+            background-color: #fff;
+            border: 1px solid #DDD6FE; /* violet-200 */
+            border-radius: 0.625rem;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1; 
+            min-width: 120px; 
+        }
+        .flood-scenario-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.04);
+        }
+        .damage-bar-container {
+            height: 60px; /* md:h-20 */
+            background-color: #F3F4F6; /* gray-100 */
+            border-radius: 0.25rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+        .damage-bar {
+            background-image: linear-gradient(to top, #8B5CF6, #A78BFA); /* purple-500 to violet-400 */
+            width: 100%;
+            transition: height 0.5s ease-out;
+        }
+        
+        /* SD Visualization - Refined for Mobile */
+        .sd-visualization {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .sd-line {
+            height: 4px;
+            background-color: #A78BFA; /* violet-400 */
+            position: relative;
+            margin: 2rem auto 3rem auto; /* Increased bottom margin for labels */
+            width: 90%; 
+            max-width: 260px; /* Slightly reduced max-width for smallest screens */
+        }
+        .sd-tick {
+            position: absolute;
+            bottom: -2px; 
+            width: 2px;
+            height: 8px;
+            background-color: #5B21B6; 
+        }
+        .sd-label {
+            position: absolute;
+            transform: translateX(-50%);
+            font-size: 0.6rem; /* Smaller for mobile */
+            color: #4C1D95; 
+            white-space: normal; /* Allow wrapping */
+            text-align: center;
+            line-height: 1.2; /* Tighter line height for wrapped text */
+            width: 55px; /* Narrower width for labels on mobile */
+            bottom: -28px; /* More space below the line */
+        }
+
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) { 
+            .content-section { margin-bottom: 2.5rem; padding: 2rem; }
+            .content-section:hover { transform: translateY(-8px); }
+            .section-title { font-size: 1.75rem; margin-bottom: 1.5rem; }
+            .section-title svg { margin-right: 0.75rem; width: 2.25rem; height: 2.25rem; }
+            .explanation-text, .intro-text { margin-bottom: 1rem; line-height: 1.7; }
+            .key-concept { margin-top: 1.5rem; padding: 1rem; border-left-width: 5px; line-height: 1.7; }
+            .formula { font-size: 1.125rem; }
+            .calculation-step { font-size: 0.925rem; }
+            .calculation-result { font-size: 1.375rem; }
+            .damage-bar-container { height: 80px; }
+            
+            /* SD Visualization for medium screens and up */
+            .sd-line {
+                margin: 2.5rem auto 3.5rem auto; 
+                max-width: 320px;
+            }
+            .sd-label {
+                font-size: 0.7rem; 
+                width: 70px; /* Wider labels on larger screens */
+                bottom: -30px;
+                line-height: 1.25;
+            }
+        }
+
+    </style>
+</head><body class="bg-violet-50 p-4 md:p-8"><div class="container mx-auto max-w-4xl"><header class="text-center mb-12 md:mb-16">
+<h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-800 header-title">Expected Value &amp; Variance: A Flood Damage Case Study</h1>
+<p class="text-lg sm:text-xl text-slate-600 mt-2 md:mt-3">A Step-by-Step Guide to Understanding Average Risk and Its Spread</p>
+</header>
+<section id="section1" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.09961L2.62427 8.03011L3.42107 9.50337L12 4.09961L20.5789 9.50337L21.3757 8.03011L12 2.09961ZM12 6.09961L5 10.961V18.0301L12 22.0996L19 18.0301V10.961L12 6.09961ZM17 17.0301L12 19.9004L7 17.0301V11.9699L12 9.09961L17 11.9699V17.0301Z"></path></svg> Step 1: Understanding the Risk - Annual Flood Damage</h2>
+<p class="intro-text text-sm sm:text-base">Imagine you're a homeowner in an area prone to floods. The damage can vary each year. How can we make sense of this uncertainty? Let's start by looking at the possible outcomes and their chances.</p>
+<p class="explanation-text text-sm sm:text-base">We use a concept called a <strong>Random Variable</strong> to represent these uncertain outcomes numerically. Let's call our random variable <strong class="text-purple-700">C</strong>, which stands for the <strong class="text-purple-700">Annual Damage Cost</strong> in dollars. The table below shows the possible costs (values of C) and the probability (chance) of each one happening in a given year, based on expert estimates. This table itself is called a <strong>probability distribution</strong> for C.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 my-4">
+<div class="flood-scenario-card">
+<h3 class="font-semibold text-purple-700 text-sm md:text-base">No Flood</h3>
+<div class="damage-bar-container">
+<div class="damage-bar" style="height: 1%;"></div>
+</div>
+<p class="text-lg md:text-xl font-bold text-slate-800">$0</p>
+<p class="text-xs md:text-sm text-slate-500">Probability: <span class="font-semibold text-purple-600">0.70 (70%)</span></p>
+</div>
+<div class="flood-scenario-card">
+<h3 class="font-semibold text-purple-700 text-sm md:text-base">Moderate Flood</h3>
+<div class="damage-bar-container">
+<div class="damage-bar" style="height: 15%;"></div>
+</div>
+<p class="text-lg md:text-xl font-bold text-slate-800">$5,000</p>
+<p class="text-xs md:text-sm text-slate-500">Probability: <span class="font-semibold text-purple-600">0.20 (20%)</span></p>
+</div>
+<div class="flood-scenario-card">
+<h3 class="font-semibold text-purple-700 text-sm md:text-base">Heavy Flood</h3>
+<div class="damage-bar-container">
+<div class="damage-bar" style="height: 40%;"></div>
+</div>
+<p class="text-lg md:text-xl font-bold text-slate-800">$20,000</p>
+<p class="text-xs md:text-sm text-slate-500">Probability: <span class="font-semibold text-purple-600">0.08 (8%)</span></p>
+</div>
+<div class="flood-scenario-card">
+<h3 class="font-semibold text-purple-700 text-sm md:text-base">Catastrophic Flood</h3>
+<div class="damage-bar-container">
+<div class="damage-bar" style="height: 100%;"></div>
+</div>
+<p class="text-lg md:text-xl font-bold text-slate-800">$100,000</p>
+<p class="text-xs md:text-sm text-slate-500">Probability: <span class="font-semibold text-purple-600">0.02 (2%)</span></p>
+</div>
+</div>
+<p class="text-center text-xs text-slate-500 mt-1">(Note: Bar heights are illustrative of relative cost magnitudes. Probabilities sum to 1.00 or 100%).</p>
+<p class="key-concept text-sm sm:text-base"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd"></path></svg> <span><strong>What's a Random Variable &amp; Probability Distribution?</strong><br>A <strong>Random Variable</strong> (like our Cost, C) is simply a way to assign a number to each possible outcome of a situation involving chance. The <strong>Probability Distribution</strong> lists all possible numerical values of C and the probability (or chance) of each one occurring. It's our map of the risk!</span></p>
+</section>
+<section id="section2" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-9h4v2h-4v-2zm0-4h4v2h-4V7zm0 8h4v2h-4v-2z"></path></svg> Step 2: Finding the "Average" - Expected Value E[C]</h2>
+<p class="intro-text text-sm sm:text-base">Now that we have our "map of risk" (the probability distribution), what's the first thing we might want to know? Perhaps, what's the "average" damage cost we can expect over the long run? This is called the <strong>Expected Value</strong>.</p>
+<p class="explanation-text text-sm sm:text-base">Think of it this way: if this flood scenario played out year after year for many, many years, the Expected Value is the average cost per year you'd end up seeing. It's denoted as <strong class="text-purple-700">E[C]</strong> or by the Greek letter <strong class="text-purple-700">μ (mu)</strong>.</p>
+<p class="text-slate-700 mb-1 text-sm sm:text-base">Here's the formula. The symbol <strong class="text-purple-700">Σ (Sigma)</strong> means "sum up all the following terms":</p>
+<p class="text-center my-3"><span class="formula">E[C] = μ = Σ [c × P(C=c)]</span></p>
+<p class="explanation-text text-sm sm:text-base">In plain language: For each possible damage cost (c), multiply it by its probability (P(C=c)), and then add all those products together.</p>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">Let's calculate E[C] step-by-step:</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 my-3">
+<p class="calculation-step">$0 (cost) × 0.70 (its chance) = <span class="font-semibold text-purple-600">$0</span></p>
+<p class="calculation-step">$5,000 × 0.20 = <span class="font-semibold text-purple-600">$1,000</span></p>
+<p class="calculation-step">$20,000 × 0.08 = <span class="font-semibold text-purple-600">$1,600</span></p>
+<p class="calculation-step">$100,000 × 0.02 = <span class="font-semibold text-purple-600">$2,000</span></p>
+</div>
+<p class="text-slate-700 text-center text-sm sm:text-base mt-4">Summing these up: E[C] = $0 + $1,000 + $1,600 + $2,000 = <strong class="calculation-result" id="expectedValueResult">$4,600</strong></p>
+<div class="interpretation">
+<p class="text-sm sm:text-base text-slate-700"><strong>What does this $4,600 mean?</strong> It's the <strong>long-run average annual damage cost</strong>. If you're a homeowner in this area, over many decades, your average yearly cost due to floods would tend towards $4,600. It's <strong>not</strong> what you'll pay every year (most years you pay $0!), but it's a crucial number for long-term financial planning or for an insurer figuring out fair premiums.</p>
+</div>
+<p class="key-concept text-sm sm:text-base"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd"></path></svg> <span><strong>Expected Value (μ) in a Nutshell:</strong><br>It's the "balancing point" of the probability distribution. It tells us the central value we'd anticipate on average over many repetitions of the random event.</span></p>
+</section>
+<section id="section3" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2c-2.43 0-4.63.89-6.36 2.34l1.41 1.41A6.005 6.005 0 0112 6c2.43 0 4.63.89 6.36 2.34l1.41-1.41A7.963 7.963 0 0012 4zm0 16a7.963 7.963 0 006.36-2.34l-1.41-1.41A6.005 6.005 0 0112 18c-2.43 0-4.63-.89-6.36-2.34l-1.41 1.41A7.963 7.963 0 0012 20zm0-11a3 3 0 100 6 3 3 0 000-6zm0 2a1 1 0 110 2 1 1 0 010-2z"></path></svg> Step 3: Measuring the Spread - Variance Var(C)</h2>
+<p class="intro-text text-sm sm:text-base">The average (Expected Value) of $4,600 is useful, but it doesn't tell us how much the actual damage might vary from year to year. Could it be a little different, or wildly different? That's where <strong>Variance</strong> comes in.</p>
+<p class="explanation-text text-sm sm:text-base">Variance, denoted as <strong class="text-purple-700">Var(C)</strong> or <strong class="text-purple-700">σ² (sigma-squared)</strong>, measures how spread out the possible costs are from our expected value (μ = $4,600). A higher variance means the outcomes are more scattered and the risk is greater (i.e., more unpredictable).</p>
+<p class="text-slate-700 mb-1 text-sm sm:text-base">The formula looks a bit more involved, but let's break it down:</p>
+<p class="text-center my-3"><span class="formula">Var(C) = σ² = Σ [(c - μ)² × P(C=c)]</span></p>
+<p class="explanation-text text-sm sm:text-base">In plain language:</p>
+<ol class="list-decimal list-inside ml-4 text-xs sm:text-sm text-slate-600">
+<li>For each cost (c), find its deviation from the average (μ): (c - μ).</li>
+<li>Square that deviation: (c - μ)². (Squaring makes all deviations positive and gives more weight to larger deviations).</li>
+<li>Multiply this squared deviation by the probability of that cost: (c - μ)² × P(C=c).</li>
+<li>Sum up these values for all possible costs.</li>
+</ol>
+<p></p>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">Calculation Steps (remember μ = $4,600):</p>
+<div class="space-y-2 my-3">
+<p class="calculation-step">($0 - $4600)² × 0.70 = (-4600)² × 0.70 = 21,160,000 × 0.70 = <span class="font-semibold text-purple-600">14,812,000</span></p>
+<p class="calculation-step">($5000 - $4600)² × 0.20 = (400)² × 0.20 = 160,000 × 0.20 = <span class="font-semibold text-purple-600">32,000</span></p>
+<p class="calculation-step">($20000 - $4600)² × 0.08 = (15400)² × 0.08 = 237,160,000 × 0.08 = <span class="font-semibold text-purple-600">18,972,800</span></p>
+<p class="calculation-step">($100000 - $4600)² × 0.02 = (95400)² × 0.02 = 9,101,160,000 × 0.02 = <span class="font-semibold text-purple-600">182,023,200</span></p>
+</div>
+<p class="text-slate-700 text-center text-sm sm:text-base mt-4">Var(C) = 14,812,000 + 32,000 + 18,972,800 + 182,023,200 = <strong class="calculation-result" id="varianceResult">215,840,000</strong></p>
+<div class="interpretation">
+<p class="text-sm sm:text-base text-slate-700"><strong>What does this huge number mean?</strong> The variance is 215,840,000 "dollars squared." The unit "dollars squared" isn't very intuitive for practical understanding. Think of variance as an important intermediate step. Its main job is to help us get to the Standard Deviation, which is much easier to interpret. A large variance like this already tells us that the potential damage costs are very spread out.</p>
+</div>
+<p class="key-concept text-sm sm:text-base"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd"></path></svg> <span><strong>Variance (σ²) in a Nutshell:</strong><br>It measures the average squared distance of each possible outcome from the mean (μ). It gives us a sense of the overall variability in the data.</span></p>
+</section>
+<section id="section4" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14zM11 7h2v10h-2V7zm-4 4h2v6H7v-6zm8-2h2v8h-2V9z"></path></svg> Step 4: An Intuitive Measure of Spread - Standard Deviation SD(C)</h2>
+<p class="intro-text text-sm sm:text-base">Since "dollars squared" from Variance isn't very helpful for real-world understanding, we use the <strong>Standard Deviation</strong>. It brings us back to regular dollars!</p>
+<p class="explanation-text text-sm sm:text-base">The Standard Deviation, denoted <strong class="text-purple-700">SD(C)</strong> or just <strong class="text-purple-700">σ (sigma)</strong>, is simply the square root of the Variance. It tells us the "typical" or "standard" amount by which an actual damage cost might differ from the average expected cost (μ).</p>
+<p class="text-center my-3"><span class="formula">SD(C) = σ = √Var(C)</span></p>
+<p class="explanation-text text-sm sm:text-base">We found Var(C) = 215,840,000 ($²).</p>
+<p class="text-slate-700 text-sm sm:text-base text-center">So, SD(C) = √215,840,000 ≈ <strong class="calculation-result" id="stdDevResult">$14,691.49</strong></p>
+<div class="sd-visualization">
+<p class="text-sm text-slate-600 mb-1">Think of it like this: Our average (E[C]) is $4,600. The Standard Deviation tells us about the typical "wobble" around this average.</p>
+<div class="sd-line">
+<div class="sd-tick" style="left: 50%;"></div>
+<div class="sd-label" style="left: 50%;">Average<br>E[C]=$4.6k</div>
+<div class="sd-tick" style="left: 15%;"></div>
+<div class="sd-label" style="left: 15%;">E[C] - SD<br>≈ -$10.1k</div>
+<div class="sd-tick" style="left: 85%;"></div>
+<div class="sd-label" style="left: 85%;">E[C] + SD<br>≈ $19.3k</div>
+</div>
+<p class="text-xs text-slate-500 mt-6">(Note: The positions for E[C] ± SD are illustrative of the spread. Values are E[C]=$4.6k, SD≈$14.7k)</p>
+</div>
+<div class="interpretation mt-8">
+<p class="text-sm sm:text-base text-slate-700"><strong>What does this $14,691.49 mean?</strong> This is a very important number! It tells us that while the <strong>average</strong> annual damage is $4,600, it's quite typical for the <strong>actual</strong> damage in any given year to be about $14,691.49 <strong>more or less</strong> than that average. This is a large spread compared to the average! It highlights that there's a lot of uncertainty and risk. Some years, the damage might be $0. In other years, it could be significantly higher than the average (e.g., $4,600 + $14,691.49 = $19,291.49, or even the catastrophic $100,000).</p>
+</div>
+<p class="key-concept text-sm sm:text-base"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd"></path></svg> <span><strong>Standard Deviation (σ) in a Nutshell:</strong><br>It's a practical measure of how much individual outcomes are likely to differ from the expected value (the average). A small SD means outcomes cluster tightly around the average; a large SD means they are more spread out and less predictable.</span></p>
+</section>
+<section id="section5" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm-1-5.414l-3.293-3.293-1.414 1.414L11 15.414l5.707-5.707-1.414-1.414L11 12.586z"></path></svg> Step 5: Putting It All Together - Why These Numbers Matter</h2>
+<p class="intro-text text-sm sm:text-base">So, we've calculated an Expected Value (average cost) of $4,600 and a Standard Deviation (typical spread) of about $14,691. Why go through all this?</p>
+<p class="explanation-text text-sm sm:text-base">These two numbers give us a much richer understanding of the flood damage risk than just looking at the raw probabilities:</p>
+<ul class="list-disc list-inside text-sm sm:text-base text-slate-600 space-y-3 pl-2">
+<li><strong>For Homeowners:</strong>
+<ul class="list-circle list-inside ml-4 mt-1 text-xs sm:text-sm">
+<li>The <strong>E[C] = $4,600</strong> suggests that, over many years, this is the average amount they might expect to face annually. It's a good number for long-term budgeting or comparing insurance costs.</li>
+<li class="ml-4">However, the large <strong>SD ≈ $14,691</strong> is a big warning! It means that while $4,600 is the average, any single year could be vastly different. The risk of a $0 year is high (70% chance), but so is the risk of a much more expensive year (e.g., the $20,000 or $100,000 events, though less probable, contribute significantly to this spread). This highlights the need for an emergency fund or insurance.</li>
+</ul>
+</li>
+<li><strong>For Insurance Companies:</strong>
+<ul class="list-circle list-inside ml-4 mt-1 text-xs sm:text-sm">
+<li>E[C] is a starting point for calculating the "pure premium" (the part of the price that covers expected claims).</li>
+<li>SD(C) is critical for managing their own risk. A high SD means they need more capital reserves to ensure they can pay out claims even if a worse-than-average year (or several) occurs.</li>
+</ul>
+</li>
+<li><strong>For Policymakers &amp; Community Planners:</strong>
+<ul class="list-circle list-inside ml-4 mt-1 text-xs sm:text-sm">
+<li>E[C] helps quantify the total expected economic burden of floods on the community each year.</li>
+<li>SD(C) helps understand the volatility and potential for severe economic shocks, guiding decisions on infrastructure investment (like flood defenses) and disaster preparedness.</li>
+</ul>
+</li>
+</ul>
+<p class="key-concept text-sm sm:text-base"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd"></path></svg> <span><strong>The Big Picture: Average vs. Uncertainty</strong><br>Expected Value gives you the "center of gravity" or long-term average. Variance and Standard Deviation tell you how much uncertainty or "wobble" there is around that average. Both are essential for making informed decisions when facing uncertain outcomes, especially financial ones!</span></p>
+</section>
+<footer class="text-center mt-12 md:mt-16 mb-8 text-slate-500 text-xs sm:text-sm">
+<p>Introduction to Statistical Methods in Political Science.</p>
+</footer></div>
+<p><script>
+    // Function to animate counting up for numbers
+    function animateCountUp(elementId, finalValue, duration = 1000, isCurrency = true, decimalPlaces = 0) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            let currentValue = progress * finalValue;
+            
+            if (isCurrency) {
+                element.textContent = '$' + currentValue.toLocaleString(undefined, { minimumFractionDigits: decimalPlaces, maximumFractionDigits: decimalPlaces });
+            } else {
+                element.textContent = currentValue.toLocaleString(undefined, { minimumFractionDigits: decimalPlaces, maximumFractionDigits: decimalPlaces });
+            }
+
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                 if (isCurrency) {
+                    element.textContent = '$' + finalValue.toLocaleString(undefined, { minimumFractionDigits: decimalPlaces, maximumFractionDigits: decimalPlaces });
+                } else {
+                    element.textContent = finalValue.toLocaleString(undefined, { minimumFractionDigits: decimalPlaces, maximumFractionDigits: decimalPlaces });
+                }
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Animate result numbers
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5 
+        };
+
+        const animateOnScroll = (targetId, value, isCurrency, decimals, unitSuffix = '') => {
+            const target = document.getElementById(targetId);
+            if (!target) return;
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCountUp(targetId, value, 1200, isCurrency, decimals);
+                        if (unitSuffix) {
+                             setTimeout(() => { target.textContent += unitSuffix; }, 1250); // Append unit after animation
+                        }
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+            observer.observe(target);
+        };
+        
+        animateOnScroll('expectedValueResult', 4600, true, 0);
+        animateOnScroll('varianceResult', 215840000, false, 0, " ($²)"); // Animate as number, add unit
+        animateOnScroll('stdDevResult', 14691.49, true, 2);
+
+
+        // Animate damage bars
+        const damageBarObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bars = entry.target.querySelectorAll('.damage-bar');
+                    bars.forEach(bar => {
+                        const finalHeight = bar.style.height; 
+                        bar.style.height = '0%'; 
+                        setTimeout(() => { 
+                           bar.style.height = finalHeight;
+                        }, 50);
+                    });
+                    // observer.unobserve(entry.target); // Uncomment to animate only once
+                }
+            });
+        }, { threshold: 0.3 }); 
+
+        document.querySelectorAll('.flood-scenario-card').forEach(card => {
+            damageBarObserver.observe(card);
+        });
+
+    });
+</script></p></body></html>

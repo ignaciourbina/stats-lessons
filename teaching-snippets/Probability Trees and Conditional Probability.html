@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Probability Tree Learning Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['$$', '$$']],
+            tags: 'ams' // For equation numbering if needed, though not used here
+          },
+          svg: {
+            fontCache: 'global'
+          },
+          startup: {
+            ready: () => {
+              MathJax.startup.defaultReady();
+              MathJax.startup.promise.then(() => {
+                // console.log('MathJax initial startup complete');
+              });
+            }
+          }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #F3F4F6; /* bg-gray-100 */
+            overflow-x: hidden;
+        }
+
+        .content-section {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            opacity: 0; /* Initial state for the animation */
+        }
+
+        .content-section.is-visible {
+            animation: fadeInSlideUp 0.6s ease-out forwards;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background-image: linear-gradient(to right, #059669, #047857); /* Emerald gradient */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title svg {
+            margin-right: 0.5rem;
+            width: 1.75rem;
+            height: 1.75rem;
+            fill: #059669; /* Emerald-600 */
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        .section-title:hover svg {
+            transform: scale(1.1);
+        }
+
+        .explanation-text {
+            font-style: italic;
+            color: #4B5563; /* gray-600 */
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+        
+        .interpretation-analysis { 
+            margin-top: 1rem;
+            padding-left: 0.5rem;
+            border-left: 3px solid #D1FAE5; 
+        }
+
+        .interpretation-analysis h5 { 
+            font-weight: 700;
+            color: #065F46; 
+            margin-bottom: 0.25rem;
+            font-size: 1.05em;
+        }
+        .interpretation-analysis p { 
+            color: #374151; 
+            margin-bottom: 0.5rem;
+            font-size: 0.95em;
+        }
+
+        .key-concept {
+            font-weight: 600;
+            color: #065F46; 
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background-color: #D1FAE5; 
+            border-left: 4px solid #059669;
+            border-radius: 0.5rem;
+            line-height: 1.6;
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+        }
+        
+        .key-concept svg { 
+            width: 1.25rem; 
+            height: 1.25rem;
+            fill: #059669; 
+            margin-bottom: 0.5rem; 
+            flex-shrink: 0;
+        }
+
+        .key-concept strong { 
+            color: #047857; 
+        }
+
+        .header-title {
+            background-image: linear-gradient(to right, #059669, #065F46);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .strengths-weaknesses { 
+            margin-top: 1rem;
+        }
+        .strengths-weaknesses h4, .list-title { 
+            font-weight: 700;
+            color: #065F46; 
+            margin-bottom: 0.25rem;
+            font-size: 1.1em; 
+        }
+        .strengths-weaknesses ul, .styled-list ul {
+            list-style-type: disc;
+            margin-left: 1.25rem; 
+            color: #374151; 
+            /* space-y-1 Tailwind class equivalent */
+        }
+        .styled-list ul li + li, .strengths-weaknesses ul li + li { margin-top: 0.25rem; }
+        .styled-list ul ul { 
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Toggle Buttons Styling */
+        #toggleButtonsContainer button {
+            background-color: #E5E7EB; /* gray-200 */
+            color: #374151; /* gray-700 */
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem; /* rounded-md */
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            border: 1px solid #D1D5DB; /* gray-300 */
+            margin: 0.25rem;
+        }
+        #toggleButtonsContainer button:hover {
+            background-color: #D1D5DB; /* gray-300 */
+        }
+        #toggleButtonsContainer button.active-toggle {
+            background-color: #059669; /* Emerald-600 */
+            color: white;
+            border-color: #047857; /* Emerald-700 */
+        }
+
+        /* Tool specific adjustments */
+        #probabilityTreeCanvas {
+            touch-action: none; 
+            width: 100%; 
+            height: 100%;
+            min-height: 280px; 
+        }
+        .tool-info-panel .info-box { 
+            background-color: #E0F2FE; 
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 0.75rem; 
+        }
+        .tool-info-panel .info-box h3 {
+            font-size: 0.95rem; 
+            font-weight: 600; 
+            color: #0369A1; 
+            margin-bottom: 0.25rem;
+            border-bottom: 1px solid #BAE6FD; 
+            padding-bottom: 0.25rem;
+        }
+        .tool-info-panel .info-box p, .tool-info-panel .info-box div {
+            font-size: 0.85rem; 
+            color: #075985; 
+            line-height: 1.5;
+        }
+        .tool-info-panel .info-box div#calculationInfo,
+        .tool-info-panel .info-box div#conditionalProbInfo,
+        .tool-info-panel .info-box div#totalProbInfo {
+            background-color: #FFFFFF; 
+            padding: 0.5rem;
+            border-radius: 0.375rem; 
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .tool-info-panel .path-highlighted {
+             font-weight: bold;
+             color: #059669; 
+        }
+        .tool-info-panel button { 
+            background-color: #059669; 
+            color: white;
+            font-weight: 600; 
+            padding-top: 0.5rem; padding-bottom: 0.5rem; 
+            padding-left: 1rem; padding-right: 1rem; 
+            border-radius: 0.5rem; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            transition: background-color 0.15s ease-in-out;
+        }
+        .tool-info-panel button:hover {
+            background-color: #047857; 
+        }
+        
+        /* Venn Diagram Styles */
+        #vennDiagramContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9fafb; /* gray-50 */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.05);
+            min-height: 300px;
+        }
+        #vennDiagramSvg {
+            max-width: 100%;
+            height: auto;
+        }
+        #vennDiagramSvg text {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px; /* Base size, adjust as needed */
+            fill: #1f2937; /* gray-800 */
+        }
+        #vennDiagramSvg .venn-label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+         #vennDiagramSvg .prob-label {
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+
+        mjx-container { 
+            font-size: 1.0em !important; 
+            text-align: left !important; 
+            margin-top: 0.25em;
+            margin-bottom: 0.25em;
+            display: inline-block !important; /* Helps with layout */
+        }
+
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) { /* md breakpoint */
+            .content-section { margin-bottom: 2.5rem; padding: 2rem; }
+            .section-title { font-size: 1.75rem; margin-bottom: 1.5rem; }
+            .section-title svg { margin-right: 0.75rem; width: 2rem; height: 2rem; }
+            .explanation-text { margin-bottom: 1rem; line-height: 1.7; }
+            .key-concept { margin-top: 1.5rem; padding: 1rem; border-left-width: 5px; line-height: 1.7; }
+            #probabilityTreeCanvas { min-height: 450px; }
+            #vennDiagramContainer { min-height: 350px; }
+            #vennDiagramSvg text { font-size: 12px; }
+            #vennDiagramSvg .venn-label { font-size: 16px; }
+            #vennDiagramSvg .prob-label { font-size: 13px; }
+        }
+    </style>
+</head><body class="bg-gray-100 p-4 md:p-8"><p><iframe src="https://iurbinah-probability-trees.static.hf.space" frameborder="0" width="100%" height="600"></iframe></p></body></html>

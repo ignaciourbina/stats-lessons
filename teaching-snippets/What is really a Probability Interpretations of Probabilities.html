@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Interpretations of Probability</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+    <script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #F3F4F6; /* bg-gray-100 */
+            overflow-x: hidden;
+        }
+
+        .content-section {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            opacity: 0; /* Initial state for the animation */
+        }
+
+        .content-section.is-visible {
+            animation: fadeInSlideUp 0.6s ease-out forwards;
+        }
+
+        .content-section:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.06);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background-image: linear-gradient(to right, #059669, #047857); /* Emerald gradient */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title svg {
+            margin-right: 0.5rem;
+            width: 1.75rem;
+            height: 1.75rem;
+            fill: #059669;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .section-title:hover svg {
+            transform: scale(1.1);
+        }
+
+        .explanation-text {
+            font-style: italic;
+            color: #4B5563; /* gray-600 */
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+        
+        .interpretation-analysis {
+            margin-top: 1rem;
+            padding-left: 0.5rem;
+            border-left: 3px solid #D1FAE5; /* Lighter Emerald for analysis blocks */
+        }
+
+        .interpretation-analysis h5 {
+            font-weight: 700;
+            color: #065F46; /* Darker Emerald */
+            margin-bottom: 0.25rem;
+            font-size: 1.05em;
+        }
+        .interpretation-analysis p {
+            color: #374151; /* gray-700 */
+            margin-bottom: 0.5rem;
+            font-size: 0.95em;
+        }
+
+
+        .key-concept {
+            font-weight: 600;
+            color: #065F46; /* Darker Emerald */
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background-color: #D1FAE5; /* Lighter Emerald */
+            border-left: 4px solid #059669;
+            border-radius: 0.5rem;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .key-concept svg { 
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: #059669;
+            margin-bottom: 0.5rem;
+            flex-shrink: 0;
+        }
+        
+        .key-concept strong {
+            color: #047857; 
+        }
+
+        .header-title {
+            background-image: linear-gradient(to right, #059669, #065F46);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .strengths-weaknesses {
+            margin-top: 1rem;
+        }
+        .strengths-weaknesses h4 {
+            font-weight: 700;
+            color: #065F46; 
+            margin-bottom: 0.25rem;
+        }
+        .strengths-weaknesses ul {
+            list-style-type: disc;
+            margin-left: 1.25rem; /* pl-5 */
+            color: #374151; /* gray-700 */
+        }
+
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) { /* md breakpoint */
+            .content-section { margin-bottom: 2.5rem; padding: 2rem; }
+            .content-section:hover { transform: translateY(-8px); }
+            .section-title { font-size: 1.75rem; margin-bottom: 1.5rem; }
+            .section-title svg { margin-right: 0.75rem; width: 2rem; height: 2rem; }
+            .explanation-text { margin-bottom: 1rem; line-height: 1.7; }
+            .key-concept { margin-top: 1.5rem; padding: 1rem; border-left-width: 5px; line-height: 1.7; }
+        }
+    </style>
+</head><body class="bg-gray-100 p-4 md:p-8"><div class="container mx-auto max-w-4xl"><header class="text-center mb-12 md:mb-16">
+<h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-800 header-title">Understanding Interpretations of Probability</h1>
+<p class="text-lg sm:text-xl text-slate-600 mt-2 md:mt-3">An Infographic Guide to What Probabilities Mean</p>
+</header>
+<div id="toggleButtonsContainer" class="flex flex-wrap justify-center gap-2 mb-6 md:mb-8"></div>
+<section id="section1" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"></path></svg> The Mathematical Core</h2>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">Mathematically, probability is a function \(P\) that takes an <strong>event</strong> (a subset of all possible outcomes, known as the <strong>sample space</strong> \(S\)) and assigns it a number between 0 and 1.</p>
+<ul class="list-disc list-inside text-sm sm:text-base text-slate-600 space-y-1 pl-2 mb-3">
+<li>\(P(\text{impossible event}) = 0\) (an event that cannot happen).</li>
+<li>\(P(\text{certain event}) = 1\) (an event that is guaranteed to happen).</li>
+<li>For any event A, \(0 \le P(A) \le 1\).</li>
+</ul>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">The mathematical theory of probability (based on axioms, often Kolmogorov's axioms) provides rules for how to combine probabilities of different events (like negations, conjunctions, disjunctions, and conditional events).</p>
+<p class="explanation-text text-sm sm:text-base">However, the mathematics itself doesn't tell us how to choose the initial numerical values for probabilities in real-world scenarios, nor does it explain what it *means* to say "The probability of event A is \(x\)," (i.e., \(P(A) = x\)). This is where different interpretations of probability come into play.</p>
+<p class="key-concept text-sm sm:text-base"><span><strong>Key Idea: Probability as a Function</strong><br>Think of probability \(P\) as a rule that maps each event \(A\) from a collection of possible events \(\mathcal{F}\) (derived from the sample space \(S\)) to a real number in the interval \([0, 1]\). Formally, \(P: \mathcal{F} \to [0,1]\). The interpretations help us connect these numbers to reality. </span></p>
+</section>
+<section id="section2" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                    <path d="M3 11h8V3H3v8zm2-6h4v4H5V5zM3 21h8v-8H3v8zm2-6h4v4H5v-4zm8-12v8h8V3h-8zm6 6h-4V5h4v4zm0 8h-4v4h4v-4zm-8 6h8v-8h-8v8z"></path>
+                </svg> Classical Definition</h2>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">The classical definition of probability applies when all possible outcomes of an experiment are considered <strong>equally likely</strong>. The probability of an event is then calculated as the ratio of the number of outcomes favorable to that event to the total number of possible outcomes.</p>
+<p class="explanation-text text-sm sm:text-base"><strong>What \(P(A) = x\) means:</strong> If there are \(N\) total equally likely outcomes, and \(N_A\) of these outcomes result in event A, then \(P(A) = \frac{N_A}{N} = x\).</p>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">For example, imagine drawing a single card from a well-shuffled standard deck of 52 playing cards. Since each card is equally likely to be drawn, the probability of drawing a King is \(P(\text{King}) = \frac{4}{52} = \frac{1}{13}\), because there are 4 Kings (favorable outcomes) out of 52 total cards (total possible outcomes).</p>
+<div class="strengths-weaknesses">
+<h4>Strengths:</h4>
+<ul>
+<li>Simple and intuitive for many basic scenarios (e.g., fair coins, dice, card games).</li>
+<li>Provides a direct way to calculate probabilities without experimentation if symmetry can be assumed.</li>
+<li>Historically important and foundational.</li>
+</ul>
+<h4 class="mt-3">Weaknesses:</h4>
+<ul>
+<li>Relies on the assumption of "equally likely" outcomes, which can be circular (defining probability in terms of equally probable things).</li>
+<li>Not applicable when outcomes are not equally likely (e.g., a biased coin, a loaded die).</li>
+<li>Limited to experiments with a finite number of outcomes.</li>
+<li>Doesn't handle continuous sample spaces well (e.g., probability of a spinner landing on an exact point).</li>
+<li>The "principle of indifference" (assuming outcomes are equally likely in the absence of evidence to the contrary) can be problematic.</li>
+</ul>
+</div>
+<p class="key-concept text-sm sm:text-base"><span><strong>Key Formula:</strong><br>\(P(A) = \frac{\text{Number of favorable outcomes for A}}{\text{Total number of equally likely outcomes}}\) </span></p>
+</section>
+<section id="section3" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M4 9h4v11H4zm6-5h4v16h-4zm6 8h4v8h-4z"></path></svg> Frequency Interpretation</h2>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">This interpretation defines an event's probability as its long-run relative frequency. It's based on the idea of repeating an experiment many times under identical conditions.</p>
+<p class="explanation-text text-sm sm:text-base"><strong>What \(P(A) = x\) means:</strong> If the experiment were repeated a very large number of times, event A would be observed to occur in approximately \(x \times 100\%\) of those trials.</p>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">For example, if we say the probability of a (potentially biased) coin landing heads is 0.6, this means that if we were to flip this coin thousands of times, we would expect it to land on heads about 60% of the time.</p>
+<div class="strengths-weaknesses">
+<h4>Strengths:</h4>
+<ul>
+<li>Objective and empirical; based on observable data.</li>
+<li>Works well for phenomena that are genuinely repeatable (e.g., casino games, manufacturing quality control, particle physics experiments).</li>
+<li>Connects probability to the observable world in a straightforward way.</li>
+</ul>
+<h4 class="mt-3">Weaknesses:</h4>
+<ul>
+<li>Not applicable to unique, unrepeatable events (e.g., the probability of a specific candidate winning an election *tomorrow*, the probability of a particular scientific hypothesis being true, the probability of life existing on Mars).</li>
+<li>The "long run" is an idealized concept; we can only ever perform a finite number of trials.</li>
+<li>Requires the conditions of the experiment to be identical for each trial, which can be hard to ensure.</li>
+</ul>
+</div>
+<p class="key-concept text-sm sm:text-base"><span><strong>Key Formula (Conceptual):</strong><br>\(P(A) \approx \frac{\text{Number of times A occurred in } N \text{ trials}}{\text{Total number of trials } (N)}\), as \(N \to \infty\). </span></p>
+</section>
+<section id="section4" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.5-11.5c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm0 1.5c-1.84 0-5.5.92-5.5 2.75V17h11v-1.25c0-1.83-3.66-2.75-5.5-2.75z"></path></svg> Subjective (Bayesian) Interpretation</h2>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">In this view, probability is a measure of an individual's degree of belief, or confidence, in the truth of a proposition or the occurrence of an event, given their current knowledge and evidence.</p>
+<p class="explanation-text text-sm sm:text-base"><strong>What \(P(A) = x\) means:</strong> It reflects an agent's personal level of certainty that A is true or will occur, scaled from 0 (complete disbelief) to 1 (complete belief). This can often be operationalized by considering what betting odds the agent would deem fair for A.</p>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">For instance, an investor might say there's a \(P(\text{stock increases}) = 0.7\). This isn't based on infinite repetitions, but on their analysis of current market data, company performance, news, etc. Different investors might assign different probabilities.</p>
+<div class="strengths-weaknesses">
+<h4>Strengths:</h4>
+<ul>
+<li>Applicable to any event or proposition, including unique, unrepeatable ones.</li>
+<li>Provides a framework (Bayes' Theorem) for rationally updating beliefs as new evidence becomes available.</li>
+<li>Forms the foundation of Bayesian statistics, a powerful tool for inference.</li>
+</ul>
+<h4 class="mt-3">Weaknesses:</h4>
+<ul>
+<li>Subjective: Different individuals, even with the same information, can assign different probabilities. This can be seen as a lack of objectivity by some.</li>
+<li>Requires the specification of prior probabilities (initial beliefs), which can sometimes be arbitrary or difficult to justify.</li>
+<li>Can be computationally intensive for complex models.</li>
+</ul>
+</div>
+<p class="key-concept text-sm sm:text-base"><span><strong>Key Idea: Degree of Belief</strong><br>Probabilities are personal judgments of likelihood. Coherence (avoiding self-contradictory beliefs) is ensured by adherence to the probability axioms. Beliefs are updated via Bayes' Theorem: \(P(H|E) = \frac{P(E|H)P(H)}{P(E)}\), where \(H\) is a hypothesis and \(E\) is evidence. </span></p>
+</section>
+<section id="section5" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M19.44 12.99l-2.54-.29c-.18-.02-.35-.1-.49-.22l-1.68-1.68c-.13-.13-.22-.3-.22-.49L14.22 8c0-.26.1-.52.29-.71l1.88-1.88c.19-.19.29-.44.29-.71V2.5c0-.28-.22-.5-.5-.5h-2.19c-.26 0-.52.1-.71.29l-1.88 1.88c-.19.19-.44.29-.71.29H8c-.26 0-.52-.1-.71-.29L5.41 2.29C5.22 2.1 4.96 2 4.69 2H2.5c-.28 0-.5.22-.5.5v2.19c0 .26.1.52.29.71l1.88 1.88c.19.19.29.44.29.71l.29 2.54c.02.18.1.35.22.49l1.68 1.68c.13.13.22.3.22.49l-.29 2.51c0 .26-.1.52-.29.71l-1.88 1.88c-.19.19-.29.44-.29.71v2.19c0 .28.22.5.5.5h2.19c.26 0 .52-.1.71-.29l1.88-1.88c.19.19.44.29.71-.29h2.54c.18 0 .35.1.49.22l1.68 1.68c.13.13.22.3.22.49l.29 2.51c0 .26.1.52.29.71l1.88 1.88c.19.19.29.44.29.71v2.19c0 .28.22.5.5.5h2.19c.26 0 .52-.1.71-.29l1.88-1.88c.19.19.29-.44.29-.71l.29-2.54c.02-.18.1-.35.22-.49l1.68-1.68c.13-.13.22-.3.22-.49l-.29-2.51zm-7.44 1.71c-1.24 0-2.25-1.01-2.25-2.25S10.76 10.2 12 10.2s2.25 1.01 2.25 2.25-1.01 2.25-2.25 2.25z"></path></svg> Propensity Interpretation</h2>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">This interpretation views probability as a physical propensity, disposition, or tendency of a given type of physical situation or experimental setup to yield an outcome of a certain kind on a single trial.</p>
+<p class="explanation-text text-sm sm:text-base"><strong>What \(P(A) = x\) means:</strong> The specific experimental setup or system has an objective, inherent tendency of strength \(x\) to produce event A. This tendency exists even for a single, unrepeated trial.</p>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">For example, a slightly unbalanced die might have a physical propensity of \(P(\text{roll a 6}) = 0.2\) due to its uneven weight distribution. This propensity is considered a property of the die and the throwing mechanism, not just a long-run frequency or a belief.</p>
+<div class="strengths-weaknesses">
+<h4>Strengths:</h4>
+<ul>
+<li>Attempts to provide an objective basis for single-case probabilities.</li>
+<li>Connects probability to the physical characteristics of the system generating the outcomes.</li>
+<li>Appealing for situations where frequencies are hard to define (e.g., quantum mechanics, radioactive decay).</li>
+</ul>
+<h4 class="mt-3">Weaknesses:</h4>
+<ul>
+<li>The nature of "propensity" can be metaphysically obscure and difficult to define or measure independently of observed frequencies.</li>
+<li>It's not always clear how to assign propensity values without resorting to frequency data or symmetry arguments.</li>
+<li>Different versions of propensity theory exist, with ongoing debate about their coherence and utility.</li>
+</ul>
+</div>
+<p class="key-concept text-sm sm:text-base"><span><strong>Key Idea: Physical Tendency</strong><br>Probability is an objective feature of the world, residing in the experimental setup itself. It describes the disposition of a system to produce certain outcomes, even on a single trial. </span></p>
+</section>
+<section id="section6" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                    <path d="M16 9a4 4 0 11-8 0 4 4 0 018 0zm-2 0a2 2 0 10-4 0 2 2 0 004 0zm4 7.472V20H6v-3.528A6.986 6.986 0 0112 13a6.986 6.986 0 016 3.472zM12 15c-2.69 0-5.064 1.507-6.183 3.5H18.183C17.064 16.507 14.69 15 12 15z"></path>
+                </svg> Example: Candidate A Wins Election</h2>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">Let's consider the probability that "Candidate A will win the upcoming election against Candidate B." How do our interpretations handle this?</p>
+<div class="interpretation-analysis">
+<h5>Classical Definition:</h5>
+<p>This view struggles immediately. The outcomes (A wins, B wins, perhaps a tie if possible) are almost certainly not "equally likely." There's no inherent symmetry like in a fair die roll. Assigning \(P(\text{A wins}) = 0.5\) without further information would be a naive application of the principle of indifference and likely incorrect.</p>
+</div>
+<div class="interpretation-analysis mt-3">
+<h5>Frequency Interpretation:</h5>
+<p>This interpretation also faces significant challenges. An election is a unique, singular event in its specific context (candidates, current events, voter sentiment). We cannot re-run *this exact election* thousands of times to observe a long-run frequency. While we might look at past election results or poll data, these are analogies, not identical repetitions. Strictly applying this view might lead to thinking about hypothetical "multiple universes" where the election is run repeatedly, which is a conceptual stretch.</p>
+</div>
+<div class="interpretation-analysis mt-3">
+<h5>Subjective (Bayesian) Interpretation:</h5>
+<p>This is often considered the most natural fit for such scenarios. An individual (e.g., a political analyst, a voter, a betting agency) assigns a probability \(P(\text{A wins})\) based on their degree of belief. This belief is informed by various pieces of evidence: polls, economic data, historical trends, candidate performance, endorsements, news coverage, etc. Different people, even with access to the same public information, may assign different probabilities due to varying prior beliefs or ways of weighing evidence. The probability can be updated as new information (e.g., a new poll, a debate performance) becomes available using Bayes' Theorem.</p>
+</div>
+<div class="interpretation-analysis mt-3">
+<h5>Propensity Interpretation:</h5>
+<p>One could argue that the current socio-political system, with all its interacting factors, has an inherent "propensity" or tendency to lead to Candidate A winning. This propensity would be an objective feature of the "chance setup" (the election system and current conditions). However, defining what constitutes this chance setup and how to measure its propensity for a complex, multi-faceted event like an election is extremely difficult and abstract. It's hard to isolate the specific physical properties that would determine this single-case chance.</p>
+</div>
+<p class="explanation-text text-sm sm:text-base mt-4">This example highlights how different interpretations grapple with unique, complex real-world events where simple symmetries or repeatable experiments are absent.</p>
+<p class="key-concept text-sm sm:text-base"><span><strong>Key Challenge: Unique Events</strong><br>Assigning probabilities to singular, non-repeatable events like an election outcome forces us to confront the philosophical underpinnings of what probability means. The subjective interpretation often provides the most flexible framework, but it comes at the cost of inter-personal objectivity unless common priors and evidence models are agreed upon. </span></p>
+</section>
+<section id="section7" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"></path></svg> Why Interpretations Matter</h2>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">Understanding the different interpretations of probability is crucial for several reasons:</p>
+<ul class="list-disc list-inside text-sm sm:text-base text-slate-600 space-y-1 pl-2 mb-3">
+<li><strong>Context is Key:</strong> No single interpretation is universally accepted as "the" correct one, nor is any single interpretation suitable for every situation where probability is used. The most appropriate interpretation often depends on the context of the problem.</li>
+<li><strong>Critical Thinking:</strong> Being aware of multiple interpretations allows for a more critical evaluation of probabilistic claims. It helps to ask, "What does this probability statement actually mean in this context?"</li>
+<li><strong>Avoiding Misapplication:</strong> It helps to avoid misapplying probabilistic reasoning in situations where no clear or viable interpretation exists, or where the chosen interpretation is inappropriate.</li>
+<li><strong>Modeling and Inference:</strong> The choice of interpretation can influence how we model real-world problems and what kinds of inferences we can draw from probabilistic statements. For example, Bayesian methods (subjective interpretation) allow for incorporating prior knowledge, which frequentist methods typically do not.</li>
+<li><strong>Philosophical Foundations:</strong> The different interpretations touch upon deep philosophical questions about the nature of chance, randomness, knowledge, and reality.</li>
+</ul>
+<p class="explanation-text text-sm sm:text-base">A sophisticated understanding of probability involves not just mastering the mathematical rules, but also appreciating the conceptual landscape of its various interpretations and their implications.</p>
+<p class="key-concept text-sm sm:text-base"><span><strong>Key Takeaway: Nuance and Awareness</strong><br>The power of probability lies in its mathematical formalism, but its application to the real world is enriched and made more robust by understanding the different lenses through which these mathematical values can be interpreted. Always consider which interpretation is being implicitly or explicitly used when encountering probabilistic information. </span></p>
+</section>
+<footer class="text-center mt-12 md:mt-16 mb-8 text-slate-500 text-xs sm:text-sm">
+<p>Introduction to Statistical Methods in Political Science</p>
+</footer></div>
+<p><script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.content-section');
+            const toggleButtonsContainer = document.getElementById('toggleButtonsContainer');
+            // Updated buttonLabels for 7 sections
+            const buttonLabels = [ 
+                "Mathematical Core", "Classical View", "Frequency View", 
+                "Subjective View", "Propensity View", "Election Example", "Why It Matters"
+            ];
+
+            sections.forEach((section, index) => {
+                const sectionId = section.id;
+                const button = document.createElement('button');
+                button.classList.add(
+                    'toggle-button', 'py-2', 'px-3', 'sm:px-4', 'rounded-lg',
+                    'font-medium', 'sm:font-semibold', 'transition-colors', 'duration-150', 'ease-in-out',
+                    'text-xs', 'sm:text-sm', 'focus:outline-none', 'focus:ring-2', 'focus:ring-offset-2',
+                    'focus:ring-emerald-400', 'shadow-sm'
+                );
+                button.dataset.target = sectionId;
+                button.textContent = buttonLabels[index] || `Section ${index + 1}`;
+                button.addEventListener('click', () => showSection(sectionId));
+                toggleButtonsContainer.appendChild(button);
+            });
+
+            const allButtons = toggleButtonsContainer.querySelectorAll('.toggle-button');
+
+            function showSection(targetId) {
+                sections.forEach(section => {
+                    if (section.id === targetId) {
+                        section.classList.remove('hidden');
+                        section.classList.remove('is-visible'); 
+                        void section.offsetWidth; 
+                        section.classList.add('is-visible');
+                    } else {
+                        section.classList.add('hidden');
+                        section.classList.remove('is-visible');
+                    }
+                });
+
+                allButtons.forEach(button => {
+                    if (button.dataset.target === targetId) {
+                        button.classList.remove('bg-white', 'text-emerald-700', 'border', 'border-emerald-500', 'hover:bg-emerald-50');
+                        button.classList.add('bg-emerald-600', 'text-white', 'border', 'border-emerald-600');
+                        button.disabled = true;
+                    } else {
+                        button.classList.add('bg-white', 'text-emerald-700', 'border', 'border-emerald-500', 'hover:bg-emerald-50');
+                        button.classList.remove('bg-emerald-600', 'text-white', 'border-emerald-600');
+                        button.disabled = false;
+                    }
+                });
+                
+                if (typeof MathJax !== "undefined" && MathJax.typesetPromise) {
+                    // Ensure the target element exists before trying to typeset it
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        MathJax.typesetPromise([targetElement]).catch((err) => console.error('MathJax typesetting error:', err));
+                    }
+                }
+            }
+            
+            sections.forEach(section => {
+                section.classList.add('hidden');
+                section.classList.remove('is-visible');
+            });
+
+            if (sections.length > 0) {
+                if (typeof MathJax !== "undefined" && MathJax.startup && MathJax.startup.promise) {
+                     MathJax.startup.promise.then(() => {
+                        showSection(sections[0].id); 
+                     });
+                } else { 
+                    showSection(sections[0].id);
+                }
+            }
+        });
+    </script></p></body></html>

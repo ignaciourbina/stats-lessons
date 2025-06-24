@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Probability Function &amp; Classic Rules (Die Example)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+    <script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #F3F4F6; /* bg-gray-100 */
+            overflow-x: hidden;
+        }
+
+        .content-section {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .content-section.is-visible {
+            opacity: 0; /* Initial state for the animation */
+            animation: fadeInSlideUp 0.6s ease-out forwards;
+        }
+
+        .content-section:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.06);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background-image: linear-gradient(to right, #059669, #047857); /* Emerald gradient */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title svg {
+            margin-right: 0.5rem;
+            width: 1.75rem;
+            height: 1.75rem;
+            fill: #059669;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .section-title:hover svg {
+            transform: scale(1.1);
+        }
+
+        .explanation-text {
+            font-style: italic;
+            color: #4B5563;
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .key-concept {
+            font-weight: 600;
+            color: #065F46; /* Darker Emerald */
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background-color: #D1FAE5; /* Lighter Emerald */
+            border-left: 4px solid #059669;
+            border-radius: 0.5rem;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .key-concept svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: #059669;
+            margin-bottom: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .key-concept strong {
+            color: #047857;
+        }
+
+        .header-title {
+            background-image: linear-gradient(to right, #059669, #065F46);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Die face styles */
+        .die-face {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border: 2px solid #4B5563;
+            border-radius: 6px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            padding: 4px;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin: 0.25rem;
+        }
+        .die-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #1F2937;
+            border-radius: 50%;
+            align-self: center;
+            justify-self: center;
+        }
+        .face-1 .dot-1 { grid-column: 2; grid-row: 2; }
+        .face-2 .dot-1 { grid-column: 1; grid-row: 1; }
+        .face-2 .dot-2 { grid-column: 3; grid-row: 3; }
+        .face-3 .dot-1 { grid-column: 1; grid-row: 1; }
+        .face-3 .dot-2 { grid-column: 2; grid-row: 2; }
+        .face-3 .dot-3 { grid-column: 3; grid-row: 3; }
+        .face-4 .dot-1 { grid-column: 1; grid-row: 1; }
+        .face-4 .dot-2 { grid-column: 3; grid-row: 1; }
+        .face-4 .dot-3 { grid-column: 1; grid-row: 3; }
+        .face-4 .dot-4 { grid-column: 3; grid-row: 3; }
+        .face-5 .dot-1 { grid-column: 1; grid-row: 1; }
+        .face-5 .dot-2 { grid-column: 3; grid-row: 1; }
+        .face-5 .dot-3 { grid-column: 2; grid-row: 2; }
+        .face-5 .dot-4 { grid-column: 1; grid-row: 3; }
+        .face-5 .dot-5 { grid-column: 3; grid-row: 3; }
+        .face-6 .dot-1 { grid-column: 1; grid-row: 1; }
+        .face-6 .dot-2 { grid-column: 3; grid-row: 1; }
+        .face-6 .dot-3 { grid-column: 1; grid-row: 2; }
+        .face-6 .dot-4 { grid-column: 3; grid-row: 2; }
+        .face-6 .dot-5 { grid-column: 1; grid-row: 3; }
+        .face-6 .dot-6 { grid-column: 3; grid-row: 3; }
+
+        .die-face.highlighted {
+            border-color: #059669;
+            box-shadow: 0 0 8px #059669;
+        }
+        .die-face.crossed-out {
+            opacity: 0.5;
+            position: relative;
+        }
+        .die-face.crossed-out::after {
+            content: '✕';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #EF4444;
+            font-weight: bold;
+        }
+
+        .example-calculation {
+            margin-top: 0.5rem;
+            font-size: 0.875rem; /* text-sm */
+        }
+        .example-calculation strong { 
+            color: #1E3A8A; 
+        }
+
+        /* Venn Diagram Styles */
+        .venn-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem auto;
+            position: relative;
+            width: 180px;
+            height: 100px;
+        }
+        .venn-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 0.75rem;
+        }
+        .venn-circle-a {
+            background-color: rgba(59, 130, 246, 0.6);
+            left: 0;
+            z-index: 1;
+        }
+        .venn-circle-b {
+            background-color: rgba(239, 68, 68, 0.6);
+            right: 0;
+            z-index: 1;
+        }
+        .venn-overlap {
+            width: 50px;
+            height: 100px;
+            background-color: rgba(107, 33, 168, 0.6);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+         .venn-label {
+            position: absolute;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        .label-a { top: -15px; left: 20px; color: #3B82F6;}
+        .label-b { top: -15px; right: 20px; color: #EF4444;}
+        .label-overlap { bottom: -15px; left: 50%; transform: translateX(-50%); color: #6B21A8;}
+
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) { /* md breakpoint */
+            .content-section { margin-bottom: 2.5rem; padding: 2rem; }
+            .content-section:hover { transform: translateY(-8px); }
+            .section-title { font-size: 1.75rem; margin-bottom: 1.5rem; }
+            .section-title svg { margin-right: 0.75rem; width: 2rem; height: 2rem; }
+            .explanation-text { margin-bottom: 1rem; line-height: 1.7; }
+            .key-concept { margin-top: 1.5rem; padding: 1rem; border-left-width: 5px; line-height: 1.7; }
+            .die-face { width: 48px; height: 48px; border-radius: 0.5rem; padding: 0.375rem; }
+            .die-dot { width: 10px; height: 10px; }
+            .die-face.crossed-out::after { font-size: 1.875rem; }
+            .venn-diagram { width: 240px; height: 128px; }
+            .venn-circle { width: 128px; height: 128px; font-size: 0.875rem;}
+            .venn-overlap { height: 128px; font-size: 0.875rem;}
+            .venn-label { font-size: 0.875rem; }
+        }
+    </style>
+</head><body class="bg-gray-100 p-4 md:p-8"><div class="container mx-auto max-w-4xl"><header class="text-center mb-12 md:mb-16">
+<h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-800 header-title">Probability Function &amp; Classic Rules</h1>
+<p class="text-lg sm:text-xl text-slate-600 mt-2 md:mt-3">An Infographic Guide (Using a Die)</p>
+</header>
+<div id="toggleButtonsContainer" class="flex flex-wrap justify-center gap-2 mb-6 md:mb-8"></div>
+<section id="section1" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5C12.8284 2.5 13.5 3.17157 13.5 4V5.5H10.5V4C10.5 3.17157 11.1716 2.5 12 2.5ZM12 21.5C11.1716 21.5 10.5 20.8284 10.5 20V18.5H13.5V20C13.5 20.8284 12.8284 21.5 12 21.5ZM2.5 12C2.5 11.1716 3.17157 10.5 4 10.5H5.5V13.5H4C3.17157 13.5 2.5 12.8284 2.5 12ZM21.5 12C21.5 12.8284 20.8284 13.5 20 13.5H18.5V10.5H20C20.8284 10.5 21.5 11.1716 21.5 12ZM7.5 5.5H5.5V7.5H7.5V5.5ZM7.5 16.5H5.5V18.5H7.5V16.5ZM16.5 5.5H18.5V7.5H16.5V5.5ZM16.5 16.5H18.5V18.5H16.5V16.5ZM12 6.5C12.8284 6.5 13.5 7.17157 13.5 8V10.5H10.5V8C10.5 7.17157 11.1716 6.5 12 6.5ZM8 10.5H10.5V13.5H8V10.5ZM13.5 10.5H16V13.5H13.5V10.5ZM12 13.5C11.1716 13.5 10.5 14.1716 10.5 15V16.5H13.5V15C13.5 14.1716 12.8284 13.5 12 13.5Z"></path></svg> Meet the Die: Our Random Experiment</h2>
+<div class="flex flex-col md:flex-row items-center md:space-x-6">
+<div class="flex justify-center my-4 md:my-0">
+<div class="die-face face-3">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+</div>
+</div>
+<div class="w-full">
+<p class="explanation-text text-sm sm:text-base">Our journey into probability functions and rules will use a familiar friend: a standard, fair six-sided die.</p>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">When we roll this die, we are performing a <strong>random experiment</strong> – an action whose outcome is uncertain.</p>
+<p class="key-concept text-sm sm:text-base"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 2a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 10.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 3.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5.05 4.95a1 1 0 0 1 1.414-.001L7.9 6.364A1 1 0 1 1 6.485 7.78l-1.436-1.414a1 1 0 0 1 .001-1.414zM12.092 6.356a1 1 0 0 1 1.414 1.414l-1.436 1.436A1 1 0 0 1 10.657 7.79l1.435-1.435zM4.95 14.95a1 1 0 0 1 0-1.414l1.436-1.436a1 1 0 0 1 1.414 1.414L6.364 14.95a1 1 0 0 1-1.414 0zm10.092-.001a1 1 0 0 1-1.414 0l-1.436-1.435a1 1 0 1 1 1.414-1.414l1.436 1.436a1 1 0 0 1 0 1.414zM2 10a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1zm14 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"></path></svg> <span><strong>Key Concept: Sample Space (S)</strong><br>The set of all possible outcomes of an experiment. For a single die roll, the sample space is \(S = \{1, 2, 3, 4, 5, 6\}\). Each outcome is equally likely if the die is fair.</span></p>
+</div>
+</div>
+</section>
+<section id="section2" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 20h16V4H4v16zm2-2h12V6H6v12zM8 10h2v4H8v-4zm4 0h2v4h-2v-4zm4-2h2v6h-2V8z"></path></svg> The Probability Function (for a Fair Die)</h2>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">A <strong>probability function</strong> (or probability mass function, PMF, for discrete outcomes like our die) assigns a probability to each possible outcome of our random variable X (the number rolled).</p>
+<div class="text-center my-4">
+<div>$$P(X = x)$$</div>
+<p class="text-sm text-slate-600 mt-1">This reads: "The probability that the random variable X takes the value x."</p>
+</div>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">For a fair six-sided die:</p>
+<ul class="list-disc list-inside text-sm sm:text-base text-slate-600 space-y-1 pl-2">
+<li>\(P(X = 1) = \frac{1}{6}\)</li>
+<li>\(P(X = 2) = \frac{1}{6}\)</li>
+<li>\(P(X = 3) = \frac{1}{6}\)</li>
+<li>\(P(X = 4) = \frac{1}{6}\)</li>
+<li>\(P(X = 5) = \frac{1}{6}\)</li>
+<li>\(P(X = 6) = \frac{1}{6}\)</li>
+</ul>
+<div class="my-4 flex flex-wrap justify-center gap-2">
+<div class="die-face face-1">
+<div class="die-dot dot-1"></div>
+</div>
+<div class="die-face face-2">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+</div>
+<div class="die-face face-3">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+</div>
+<div class="die-face face-4">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+<div class="die-dot dot-4"></div>
+</div>
+<div class="die-face face-5">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+<div class="die-dot dot-4"></div>
+<div class="die-dot dot-5"></div>
+</div>
+<div class="die-face face-6">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+<div class="die-dot dot-4"></div>
+<div class="die-dot dot-5"></div>
+<div class="die-dot dot-6"></div>
+</div>
+</div>
+<p class="text-center text-sm text-slate-500">(Each face has a \(\frac{1}{6}\) chance)</p>
+<p class="key-concept text-sm sm:text-base"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 2a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 10.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 3.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5.05 4.95a1 1 0 0 1 1.414-.001L7.9 6.364A1 1 0 1 1 6.485 7.78l-1.436-1.414a1 1 0 0 1 .001-1.414zM12.092 6.356a1 1 0 0 1 1.414 1.414l-1.436 1.436A1 1 0 0 1 10.657 7.79l1.435-1.435zM4.95 14.95a1 1 0 0 1 0-1.414l1.436-1.436a1 1 0 0 1 1.414 1.414L6.364 14.95a1 1 0 0 1-1.414 0zm10.092-.001a1 1 0 0 1-1.414 0l-1.436-1.435a1 1 0 1 1 1.414-1.414l1.436 1.436a1 1 0 0 1 0 1.414zM2 10a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1zm14 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"></path></svg> <span><strong>Properties of a Probability Function:</strong><br>1. The probability of any outcome x must be non-negative: \(P(X = x) \ge 0\).<br>2. The sum of probabilities for all possible outcomes must equal 1: \(\sum P(X = x) = 1\). (For our die, \(6 \times \frac{1}{6} = 1\)).</span></p>
+</section>
+<section id="section3" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 2a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8z"></path></svg> Rule 1: The Complement Rule</h2>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">The complement of an event A (denoted A<sup>c</sup>) is the event that A does NOT occur. The Complement Rule states:</p>
+<div class="text-center my-3">
+<div>$$P(A^c) = 1 - P(A)$$</div>
+</div>
+<p class="explanation-text text-sm sm:text-base">"This means the probability of an event not happening is 1 minus the probability that it does happen."</p>
+<p class="text-slate-700 mb-2 text-sm sm:text-base"><strong>Example:</strong> What is the probability of NOT rolling a 6?</p>
+<p class="text-slate-600 text-sm sm:text-base">Let A be the event of rolling a 6. So, \(P(A) = P(X = 6) = \frac{1}{6}\).</p>
+<p class="text-slate-600 text-sm sm:text-base">The event A<sup>c</sup> is "not rolling a 6".</p>
+<p class="example-calculation">\(P(\text{not } 6) = 1 - P(6) = 1 - \frac{1}{6} = \frac{5}{6}\).</p>
+<div class="my-4 flex flex-wrap justify-center items-center gap-2">
+<div class="die-face face-1 highlighted">
+<div class="die-dot dot-1"></div>
+</div>
+<div class="die-face face-2 highlighted">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+</div>
+<div class="die-face face-3 highlighted">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+</div>
+<div class="die-face face-4 highlighted">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+<div class="die-dot dot-4"></div>
+</div>
+<div class="die-face face-5 highlighted">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+<div class="die-dot dot-4"></div>
+<div class="die-dot dot-5"></div>
+</div>
+<div class="die-face face-6 crossed-out">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+<div class="die-dot dot-4"></div>
+<div class="die-dot dot-5"></div>
+<div class="die-dot dot-6"></div>
+</div>
+</div>
+<p class="key-concept text-sm sm:text-base"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 2a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 10.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 3.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5.05 4.95a1 1 0 0 1 1.414-.001L7.9 6.364A1 1 0 1 1 6.485 7.78l-1.436-1.414a1 1 0 0 1 .001-1.414zM12.092 6.356a1 1 0 0 1 1.414 1.414l-1.436 1.436A1 1 0 0 1 10.657 7.79l1.435-1.435zM4.95 14.95a1 1 0 0 1 0-1.414l1.436-1.436a1 1 0 0 1 1.414 1.414L6.364 14.95a1 1 0 0 1-1.414 0zm10.092-.001a1 1 0 0 1-1.414 0l-1.436-1.435a1 1 0 1 1 1.414-1.414l1.436 1.436a1 1 0 0 1 0 1.414zM2 10a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1zm14 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"></path></svg> <span><strong>Key Concept: Complementary Events</strong><br>An event and its complement A<sup>c</sup> cover all possibilities in the sample space and are mutually exclusive (they cannot both happen).</span></p>
+</section>
+<section id="section4" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2h6z"></path></svg> Rule 2: Addition Rule (Mutually Exclusive Events)</h2>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">If two events A and B are <strong>mutually exclusive</strong> (meaning they cannot occur at the same time), the probability that either A OR B occurs is the sum of their individual probabilities:</p>
+<div class="text-center my-3">
+<div>$$P(A \cup B) = P(A) + P(B)$$</div>
+</div>
+<p class="explanation-text text-sm sm:text-base">"If two things can't happen together, the chance of one OR the other happening is just their chances added up."</p>
+<p class="text-slate-700 mb-2 text-sm sm:text-base"><strong>Example:</strong> What is the probability of rolling a 1 OR a 2?</p>
+<p class="text-slate-600 text-sm sm:text-base">Event A = rolling a 1, \(P(A) = \frac{1}{6}\). Event B = rolling a 2, \(P(B) = \frac{1}{6}\).</p>
+<p class="text-slate-600 text-sm sm:text-base">You cannot roll a 1 and a 2 at the same time, so they are mutually exclusive.</p>
+<p class="example-calculation">\(P(1 \text{ or } 2) = P(1) + P(2) = \frac{1}{6} + \frac{1}{6} = \frac{2}{6} = \frac{1}{3}\).</p>
+<div class="my-4 flex flex-wrap justify-center items-center gap-2">
+<div class="die-face face-1 highlighted">
+<div class="die-dot dot-1"></div>
+</div>
+<div class="die-face face-2 highlighted">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+</div>
+<div class="die-face face-3 opacity-50">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+</div>
+<div class="die-face face-4 opacity-50">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+<div class="die-dot dot-4"></div>
+</div>
+<div class="die-face face-5 opacity-50">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+<div class="die-dot dot-4"></div>
+<div class="die-dot dot-5"></div>
+</div>
+<div class="die-face face-6 opacity-50">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+<div class="die-dot dot-4"></div>
+<div class="die-dot dot-5"></div>
+<div class="die-dot dot-6"></div>
+</div>
+</div>
+<p class="key-concept text-sm sm:text-base"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 2a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 10.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 3.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5.05 4.95a1 1 0 0 1 1.414-.001L7.9 6.364A1 1 0 1 1 6.485 7.78l-1.436-1.414a1 1 0 0 1 .001-1.414zM12.092 6.356a1 1 0 0 1 1.414 1.414l-1.436 1.436A1 1 0 0 1 10.657 7.79l1.435-1.435zM4.95 14.95a1 1 0 0 1 0-1.414l1.436-1.436a1 1 0 0 1 1.414 1.414L6.364 14.95a1 1 0 0 1-1.414 0zm10.092-.001a1 1 0 0 1-1.414 0l-1.436-1.435a1 1 0 1 1 1.414-1.414l1.436 1.436a1 1 0 0 1 0 1.414zM2 10a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1zm14 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"></path></svg> <span><strong>Key Concept: Mutually Exclusive Events</strong><br>Two events are mutually exclusive if the occurrence of one event precludes the occurrence of the other. They have no outcomes in common. \(P(A \cap B) = 0\).</span></p>
+</section>
+<section id="section5" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg> Rule 3: General Addition Rule (Non-Mutually Exclusive)</h2>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">If two events A and B are NOT mutually exclusive (they CAN occur at the same time), the probability that A OR B occurs is:</p>
+<div class="text-center my-3">
+<div>$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$</div>
+</div>
+<p class="explanation-text text-sm sm:text-base">"We subtract \(P(A \cap B)\) because we've double-counted the outcomes where both A and B happen."</p>
+<p class="text-slate-700 mb-2 text-sm sm:text-base"><strong>Example:</strong> What is the probability of rolling an even number OR a number greater than 3?</p>
+<p class="text-slate-600 text-sm sm:text-base">Let \(A = \text{rolling an even number} = \{2, 4, 6\}\). So \(P(A) = \frac{3}{6}\).</p>
+<p class="text-slate-600 text-sm sm:text-base">Let \(B = \text{rolling a number } &gt; 3 = \{4, 5, 6\}\). So \(P(B) = \frac{3}{6}\).</p>
+<p class="text-slate-600 text-sm sm:text-base">Events A and B can happen together: \(\{4, 6\}\) are even AND &gt; 3. So, \(P(A \cap B) = \frac{2}{6}\).</p>
+<p class="example-calculation">\(P(\text{Even} \cup &gt;3) = P(A) + P(B) - P(A \cap B) = \frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}\).</p>
+<div class="text-center my-4">
+<p class="text-sm font-semibold text-slate-700 mb-1">Visualizing the Outcomes:</p>
+<p class="text-xs text-slate-500 mb-1">\(A\) = Even: { <span class="text-blue-600 font-bold">2</span>, <span class="text-purple-600 font-bold">4</span>, <span class="text-purple-600 font-bold">6</span> }</p>
+<p class="text-xs text-slate-500 mb-1">\(B\) = Greater than 3: { <span class="text-purple-600 font-bold">4</span>, <span class="text-red-600 font-bold">5</span>, <span class="text-purple-600 font-bold">6</span> }</p>
+<p class="text-xs text-slate-500 mb-2">\(A \cap B\) (Overlap): { <span class="text-purple-600 font-bold">4</span>, <span class="text-purple-600 font-bold">6</span> }</p>
+<div class="venn-diagram">
+<div class="venn-circle venn-circle-a flex items-center justify-start pl-4 md:pl-6">2</div>
+<div class="venn-circle venn-circle-b flex items-center justify-end pr-4 md:pr-6">5</div>
+<div class="venn-overlap flex flex-col items-center justify-center">
+<div>4</div>
+<div>6</div>
+</div>
+<div class="venn-label label-a">A: Even</div>
+<div class="venn-label label-b">B: &gt;3</div>
+</div>
+</div>
+<p class="key-concept text-sm sm:text-base"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 2a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 10.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 3.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5.05 4.95a1 1 0 0 1 1.414-.001L7.9 6.364A1 1 0 1 1 6.485 7.78l-1.436-1.414a1 1 0 0 1 .001-1.414zM12.092 6.356a1 1 0 0 1 1.414 1.414l-1.436 1.436A1 1 0 0 1 10.657 7.79l1.435-1.435zM4.95 14.95a1 1 0 0 1 0-1.414l1.436-1.436a1 1 0 0 1 1.414 1.414L6.364 14.95a1 1 0 0 1-1.414 0zm10.092-.001a1 1 0 0 1-1.414 0l-1.436-1.435a1 1 0 1 1 1.414-1.414l1.436 1.436a1 1 0 0 1 0 1.414zM2 10a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1zm14 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"></path></svg> <span><strong>Key Concept: Intersection of Events (\(A \cap B\))</strong><br>The outcomes that are common to both event A and event B. If events are not mutually exclusive, their intersection is not empty.</span></p>
+</section>
+<section id="section6" class="content-section">
+<h2 class="section-title text-xl sm:text-2xl md:text-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 6L6 18M6 6l12 12"></path></svg> Rule 4: Multiplication Rule (Independent Events)</h2>
+<p class="text-slate-700 mb-2 text-sm sm:text-base">If two events A and B are <strong>independent</strong> (the occurrence of one does not affect the probability of the other), the probability that BOTH A AND B occur is the product of their individual probabilities:</p>
+<div class="text-center my-3">
+<div>$$P(A \cap B) = P(A) \times P(B)$$</div>
+</div>
+<p class="explanation-text text-sm sm:text-base">"If two things are unrelated, the chance of both happening is found by multiplying their individual chances."</p>
+<p class="text-slate-700 mb-2 text-sm sm:text-base"><strong>Example:</strong> What is the probability of rolling a 6 on a first die roll AND rolling a 6 on a second die roll?</p>
+<p class="text-slate-600 text-sm sm:text-base">Let A = rolling a 6 on the first roll, \(P(A) = \frac{1}{6}\).</p>
+<p class="text-slate-600 text-sm sm:text-base">Let B = rolling a 6 on the second roll, \(P(B) = \frac{1}{6}\). These rolls are independent.</p>
+<p class="example-calculation">\(P(\text{first is } 6 \cap \text{ second is } 6) = P(A) \times P(B) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}\).</p>
+<div class="my-4 flex flex-wrap justify-center items-center gap-4">
+<div class="text-center">
+<div class="die-face face-6 highlighted">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+<div class="die-dot dot-4"></div>
+<div class="die-dot dot-5"></div>
+<div class="die-dot dot-6"></div>
+</div>
+<p class="text-xs text-slate-500 mt-1">Roll 1: \(P(6) = \frac{1}{6}\)</p>
+</div>
+<span class="text-2xl font-bold text-slate-600">\( \times \)</span>
+<div class="text-center">
+<div class="die-face face-6 highlighted">
+<div class="die-dot dot-1"></div>
+<div class="die-dot dot-2"></div>
+<div class="die-dot dot-3"></div>
+<div class="die-dot dot-4"></div>
+<div class="die-dot dot-5"></div>
+<div class="die-dot dot-6"></div>
+</div>
+<p class="text-xs text-slate-500 mt-1">Roll 2: \(P(6) = \frac{1}{6}\)</p>
+</div>
+</div>
+<p class="key-concept text-sm sm:text-base"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 2a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 10.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 3.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5.05 4.95a1 1 0 0 1 1.414-.001L7.9 6.364A1 1 0 1 1 6.485 7.78l-1.436-1.414a1 1 0 0 1 .001-1.414zM12.092 6.356a1 1 0 0 1 1.414 1.414l-1.436 1.436A1 1 0 0 1 10.657 7.79l1.435-1.435zM4.95 14.95a1 1 0 0 1 0-1.414l1.436-1.436a1 1 0 0 1 1.414 1.414L6.364 14.95a1 1 0 0 1-1.414 0zm10.092-.001a1 1 0 0 1-1.414 0l-1.436-1.435a1 1 0 1 1 1.414-1.414l1.436 1.436a1 1 0 0 1 0 1.414zM2 10a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1zm14 0a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"></path></svg> <span><strong>Key Concept: Independent Events</strong><br>Two events are independent if the outcome of one event does not influence the outcome of the other. Rolling a die multiple times typically involves independent events.</span></p>
+</section>
+<footer class="text-center mt-12 md:mt-16 mb-8 text-slate-500 text-xs sm:text-sm">
+<p>Introduction to Statistical Methods in Political Science.</p>
+</footer></div>
+<p><script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.content-section');
+            const toggleButtonsContainer = document.getElementById('toggleButtonsContainer');
+            const buttonLabels = [
+                "Intro", "Function", "Complement", "Add (ME)", "Add (General)", "Multiply"
+            ];
+
+            sections.forEach((section, index) => {
+                const sectionId = section.id;
+                const button = document.createElement('button');
+                button.classList.add(
+                    'toggle-button', 'py-2', 'px-3', 'sm:px-4', 'rounded-lg',
+                    'font-medium', 'sm:font-semibold', 'transition-colors', 'duration-150', 'ease-in-out',
+                    'text-xs', 'sm:text-sm', 'focus:outline-none', 'focus:ring-2', 'focus:ring-offset-2',
+                    'focus:ring-emerald-400', 'shadow-sm'
+                );
+                button.dataset.target = sectionId;
+                button.textContent = buttonLabels[index] || `Section ${index + 1}`;
+                button.addEventListener('click', () => showSection(sectionId));
+                toggleButtonsContainer.appendChild(button);
+            });
+
+            const allButtons = toggleButtonsContainer.querySelectorAll('.toggle-button');
+
+            function showSection(targetId) {
+                sections.forEach(section => {
+                    if (section.id === targetId) {
+                        section.classList.remove('hidden');
+                        section.classList.remove('is-visible');
+                        void section.offsetWidth; // Force reflow
+                        section.classList.add('is-visible');
+                    } else {
+                        section.classList.add('hidden');
+                        section.classList.remove('is-visible');
+                    }
+                });
+
+                allButtons.forEach(button => {
+                    if (button.dataset.target === targetId) {
+                        button.classList.remove('bg-white', 'text-emerald-700', 'border', 'border-emerald-500', 'hover:bg-emerald-50');
+                        button.classList.add('bg-emerald-600', 'text-white', 'border', 'border-emerald-600');
+                        button.disabled = true;
+                    } else {
+                        button.classList.add('bg-white', 'text-emerald-700', 'border', 'border-emerald-500', 'hover:bg-emerald-50');
+                        button.classList.remove('bg-emerald-600', 'text-white', 'border-emerald-600');
+                        button.disabled = false;
+                    }
+                });
+                 // Ensure MathJax re-typesets the newly visible section if needed
+                if (typeof MathJax !== "undefined" && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([document.getElementById(targetId)]).catch((err) => console.error('MathJax typesetting error:', err));
+                }
+            }
+
+            sections.forEach(section => {
+                section.classList.add('hidden');
+                section.classList.remove('is-visible');
+            });
+
+            if (sections.length > 0) {
+                // Wait for MathJax to be ready before initial typeset and show
+                if (typeof MathJax !== "undefined" && MathJax.startup && MathJax.startup.promise) {
+                     MathJax.startup.promise.then(() => {
+                        showSection(sections[0].id);
+                     });
+                } else { // Fallback if MathJax is already loaded or setup is different
+                    showSection(sections[0].id);
+                }
+            }
+        });
+    </script></p></body></html>
