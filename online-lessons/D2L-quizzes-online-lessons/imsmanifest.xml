@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest identifier="i126af83f-c61a-4309-8221-2804673a7b44" xmlns="http://www.imsglobal.org/xsd/imsccv1p3/imscp_v1p1" xmlns:lomr="http://ltsc.ieee.org/xsd/imsccv1p3/LOM/resource" xmlns:lomm="http://ltsc.ieee.org/xsd/imsccv1p3/LOM/manifest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/imsccv1p3/LOM/resource http://www.imsglobal.org/profile/cc/ccv1p3/LOM/ccv1p3_lomresource_v1p0.xsd http://www.imsglobal.org/xsd/imsccv1p3/imscp_v1p1 http://www.imsglobal.org/profile/cc/ccv1p3/ccv1p3_imscp_v1p2_v1p0.xsd http://ltsc.ieee.org/xsd/imsccv1p3/LOM/manifest http://www.imsglobal.org/profile/cc/ccv1p3/LOM/ccv1p3_lommanifest_v1p0.xsd">
+  <metadata>
+    <schema>IMS Common Cartridge</schema>
+    <schemaversion>1.3.0</schemaversion>
+    <lomm:lom>
+      <lomm:general>
+        <lomm:title>
+          <lomm:string language="en-US">-POL 201.30 / POL 501.30 Introduction to Statistical Methods in Political Science - Summer 2025</lomm:string>
+        </lomm:title>
+      </lomm:general>
+    </lomm:lom>
+  </metadata>
+  <organizations>
+    <organization identifier="i8e4734b7-b542-4ab6-968b-8b41a39fab3c" structure="rooted-hierarchy">
+      <item identifier="i3ac408d8-ef7a-4cc0-9d46-27ea67523497" />
+      <metadata>
+        <lomm:lom />
+      </metadata>
+    </organization>
+  </organizations>
+  <resources />
+</manifest>
