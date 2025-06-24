@@ -1,0 +1,4 @@
+function loadPage(page){fetch(page+'.html').then(r=>r.text()).then(h=>{document.getElementById('content').innerHTML=h;});}
+document.addEventListener('DOMContentLoaded',()=>loadPage('Page1'));
+const answers={'Q1': [], 'Q2': [], 'Q3': [], 'Q4': ['QUES_93957374_95233618_A335051852', 'QUES_93957374_95233618_A335051853'], 'Q5': [], 'Q6': [], 'Q7': [], 'Q8': [], 'Q9': [], 'Q10': [], 'Q11': [], 'Q12': ['QUES_93957432_95233708_A335052183', 'QUES_93957432_95233708_A335052184', 'QUES_93957432_95233708_A335052185', 'QUES_93957432_95233708_A335052186'], 'Q13': [], 'Q14': []}
+function sendSelectedResponse(qid,card){const form=document.getElementById('form'+qid);let selected=[];form.querySelectorAll('input[name=selectedAns]:checked').forEach(i=>selected.push(i.value));let corr=answers[qid];let ok=(card=='Multiple'?selected.sort().toString()==corr.sort().toString():selected[0]==corr[0]);document.getElementById('result'+qid).innerHTML=ok?'Correct!':'That is incorrect.';}
