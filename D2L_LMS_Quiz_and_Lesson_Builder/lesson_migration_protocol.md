@@ -19,19 +19,10 @@ This guide explains how to convert an interactive lesson stored in `spa_site/` i
    ```bash
    python3 export_to_d2l_csv.py spa_site/questions.json lesson_week5.csv --verbose
    ```
-   Example output:
-   ```
-   INFO: Wrote lesson_week5.csv
-   INFO: Processed 52 slides and 4 questions
-   ```
    The script now sanitises HTML by removing unsupported tags (e.g. `<meta>`, `<style>`, `<title>`, `<script>`, `<iframe>`), strips inline styles and event handlers, and logs warnings for missing fields. Use `--points` to set a non‑zero score per question if desired.
 3. Verify the output using the test helper:
    ```bash
    python3 scripts/test_lesson_csv.py spa_site/questions.json lesson_week5.csv
-   ```
-   Successful output prints:
-   ```
-   All tests passed
    ```
    This confirms the row count matches the lesson JSON.
 
