@@ -5,10 +5,7 @@ This guide explains how to convert an interactive lesson stored in `spa_site/` i
 ## 1. Prepare the Environment
 1. Ensure Python 3.8+ is available.
 2. Place `module_quiz_builder_to_csv.py` in `D2L_LMS_Quiz_and_Lesson_Builder/` (already in the repo).
-3. Install dependencies:
-   ```bash
-   pip install beautifulsoup4
-   ```
+3. The converter relies only on the standard library so no extra packages are required.
 
 ## 2. Generate the CSV
 1. Navigate to the lesson folder. Example for Week 5:
@@ -19,10 +16,19 @@ This guide explains how to convert an interactive lesson stored in `spa_site/` i
    ```bash
    python3 export_to_d2l_csv.py spa_site/questions.json lesson_week5.csv --verbose
    ```
-   The script now sanitises HTML by removing unsupported tags (e.g. `<meta>`, `<style>`, `<title>`, `<script>`, `<iframe>`), strips inline styles and event handlers, and logs warnings for missing fields. Use `--points` to set a non‑zero score per question if desired.
+   Example output:
+   ```
+   INFO: Wrote lesson_week5.csv
+   INFO: Processed 52 slides and 4 questions
+   ```
+   The script simply strips `<meta>`, `<style>` and `<title>` tags that Brightspace ignores, leaving other markup—including embedded videos—intact. Use `--points` to set a non‑zero score per question if desired.
 3. Verify the output using the test helper:
    ```bash
    python3 scripts/test_lesson_csv.py spa_site/questions.json lesson_week5.csv
+   ```
+   Successful output prints:
+   ```
+   All tests passed
    ```
    This confirms the row count matches the lesson JSON.
 
