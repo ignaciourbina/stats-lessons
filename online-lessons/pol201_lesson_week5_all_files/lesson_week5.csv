@@ -25,7 +25,7 @@ QuestionText,"<header>
         </ol>
     </div>
 </div>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 2,,,,
@@ -49,12 +49,12 @@ QuestionText,"<header>
             <p>Consider a health study comparing the effectiveness of two treatments across different patient groups or a market research survey analyzing customer satisfaction levels in different demographics. By comparing proportions, we can draw meaningful conclusions that help guide future actions and strategies.</p>
         </div>
 </div>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 3,,,,
 QuestionText,Please review the following slides. In this slides we derive the formulas for the mean and the variance of the sample difference of two proportions,HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 4,,,,
@@ -75,12 +75,12 @@ QuestionText,"<!DOCTYPE html>
 
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 5,,,,
 QuestionText,"<span style=""font-size:16px;"">You can download the slides here: <a href=""https://stonybrookuniversity.co1.qualtrics.com/CP/File.php?F=F_dpB4sUVqHU4Hbr8"" rel=""noopener"" target=""_blank"">Pol201 501 sampling distribution diff of proportions</a></span>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 6,,,,
@@ -99,7 +99,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 7,,,,
@@ -118,7 +118,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 8,,,,
@@ -137,7 +137,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 9,,,,
@@ -156,13 +156,13 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 10,,,,
 QuestionText,"<b>Test your knowledge! </b><br>
 <span style=""font-size:13px;"">Please consider the following question.</span>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,MC,,,,
 Title,Question 1,,,,
@@ -177,12 +177,12 @@ Option,0,"D) 𝑝 = 0.08, we don't reject the null hypothesis.",HTML,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 11,,,,
 QuestionText,"Yes, that is correct!",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 12,,,,
 QuestionText,"Ups, check again your steps!<br>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 13,,,,
@@ -235,7 +235,7 @@ QuestionText,"<body>
     
     <p>Based on the analysis, the p-value of 0.082 is greater than the typical alpha level of 0.05, suggesting no statistically significant difference between the effectiveness of Brand A and Brand B.</p>
 </body>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 14,,,,
@@ -270,7 +270,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 15,,,,
@@ -289,7 +289,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 16,,,,
@@ -308,7 +308,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 17,,,,
@@ -327,7 +327,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 18,,,,
@@ -346,7 +346,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 19,,,,
@@ -365,7 +365,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 20,,,,
@@ -384,13 +384,13 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 21,,,,
 QuestionText,"<span style=""font-size:19px;""><strong>Test your knowledge!</strong><br />
 Please consider the following question.</span>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 22,,,,
@@ -430,7 +430,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,MC,,,,
 Title,Question 2,,,,
@@ -444,12 +444,12 @@ Option,0,D) p = 0.72; there is no statistically significant evidence to suggest 
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 23,,,,
 QuestionText,"Yes, that is correct!",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 24,,,,
 QuestionText,"Ups, check again!",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 25,,,,
@@ -508,7 +508,7 @@ QuestionText,"<!DOCTYPE html>
     <p>where \( O_i \) is the observed frequency, and \( E_i \) is the expected frequency.</p>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 26,,,,
@@ -549,7 +549,7 @@ QuestionText,"<!DOCTYPE html>
 
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 27,,,,
@@ -568,7 +568,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 28,,,,
@@ -587,7 +587,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 29,,,,
@@ -606,7 +606,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 30,,,,
@@ -625,7 +625,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 31,,,,
@@ -689,7 +689,7 @@ QuestionText,"<!DOCTYPE html>
 
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 32,,,,
@@ -708,7 +708,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 33,,,,
@@ -727,12 +727,12 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 34,,,,
 QuestionText,"<b>Test your understanding!</b><br>Please consider the following question.<br><br>A recent edition of your town's newspaper, which serves a population of 10,000, featured an enthusiastic article from a veteran health expert, Professor Johnson. He ardently argues that the average amount of yearly exercise done by the town's adults is at most 50 hours (H0: μ ≤ 50 hours). Nevertheless, a rising star in wellness research, Dr. Stevens, opposes his theory. To dispute this, Dr. Stevens performed a study involving a random sample of 12 adults from your town. Her research revealed that the sample mean of yearly exercise was 62 hours, with a sample standard deviation of 5 hours.",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,MC,,,,
 Title,Question 3,,,,
@@ -751,7 +751,7 @@ QuestionText,"<b>Yes, that is correct!</b><br>Dr. Stevens should use the T-test 
 	<li>The sample size is small (n = 12), which increases the uncertainty in estimating the population parameters.</li>
 	<li>The T-distribution, with its heavier tails, is more appropriate for small sample sizes as it provides more conservative P-values, reducing the risk of Type I errors (rejecting the null hypothesis when it is actually true).</li>
 </ul>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 36,,,,
@@ -760,7 +760,7 @@ QuestionText,"<b>Ups, that is not correct...</b><br>Dr. Stevens should use the T
 	<li>The sample size is small (n = 12), which increases the uncertainty in estimating the population parameters.</li>
 	<li>The T-distribution, with its heavier tails, is more appropriate for small sample sizes as it provides more conservative P-values, reducing the risk of Type I errors (rejecting the null hypothesis when it is actually true).</li><li>Even if we don't know whether the underlying population is normal, it is more conservative to assume it is and use the T-distribution.</li>
 </ul>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 37,,,,
@@ -796,7 +796,7 @@ QuestionText,"<!DOCTYPE html>
 
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 38,,,,
@@ -815,7 +815,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 39,,,,
@@ -834,7 +834,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 40,,,,
@@ -894,7 +894,7 @@ QuestionText,"<!DOCTYPE html>
 
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 41,,,,
@@ -914,12 +914,12 @@ QuestionText,"<header>
     <h2>Practical Examples</h2>
     <p>Consider a business owner who wants to evaluate the average sales in two different stores, or a researcher who is comparing the average blood pressure levels in two groups following different diets. The conclusions drawn from comparing means can consequently assist in planning strategic actions and remedial measures if necessary.</p>
 </div>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 42,,,,
 QuestionText,"First, we will consider the sampling distribution of the difference of two sample means.<br>Please review the following slides. In this slides we derive the formulas for the mean and the variance of the sample difference of two means.<br>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 43,,,,
@@ -940,12 +940,12 @@ QuestionText,"<!DOCTYPE html>
 
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 44,,,,
 QuestionText,"<span style=""font-size:16px;"">You can download the slide here: <a href=""https://stonybrookuniversity.co1.qualtrics.com/CP/File.php?F=F_beX0QJIjILqPkPk"" rel=""noopener"" target=""_blank"">Pol201 501 sampling dist diff means</a> </span>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 45,,,,
@@ -964,7 +964,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 46,,,,
@@ -983,7 +983,7 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 47,,,,
@@ -1002,12 +1002,12 @@ QuestionText,"<!DOCTYPE html>
     </div>
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 48,,,,
 QuestionText,"<b>Test your knowledge!<br></b>Please consider the following question. <br><br>A company wants to test if a new training program increases the average productivity of its employees. They conduct a study with a sample of 100 employees who underwent the new training program and another sample of 120 employees who did not. The sample mean productivity score for the trained employees is 85 with a standard deviation of 10, while the sample mean for the untrained employees is 80 with a standard deviation of 12. Use a significance level of 0.05 to determine if the new training program significantly increases productivity.",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,MC,,,,
 Title,Question 4,,,,
@@ -1021,12 +1021,12 @@ Option,0,D) The new training program significantly decreases productivity.,HTML,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 49,,,,
 QuestionText,"Yes! That is correct.<br>Please review the answer to the question, included in the following PDF. <br>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 50,,,,
 QuestionText,"Ups, check the correct answer below!<br>Please review the answer to the question, included in the following PDF. <br>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 51,,,,
@@ -1047,10 +1047,10 @@ QuestionText,"<!DOCTYPE html>
 
 </body>
 </html>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
 NewQuestion,WR,,,,
 Title,Section ▸ Slide 52,,,,
 QuestionText,"<span style=""font-size:16px;"">You can download the PDF document here: <a href=""https://stonybrookuniversity.co1.qualtrics.com/CP/File.php?F=F_3BDbAWm1ljrPjj8"" rel=""noopener"" target=""_blank"">Pol201 501 example two means</a> </span>",HTML,,,
-Points,0,,,,
+Points,1e-13,,,,
 ,,,,,
