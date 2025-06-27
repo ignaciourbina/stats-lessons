@@ -154,7 +154,7 @@ class SectionHeader(WrittenResponse):
         super().__init__(
             title=f"Section ▸ {title}",
             question_text=body_html,
-            points=0,
+            points=0.00000000001, # D2L does not admit zero points items
             html_used=True,
         )
 
