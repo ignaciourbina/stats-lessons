@@ -12,5 +12,9 @@ To create a Brightspace quiz from this lesson, run:
 ```
 python3 export_to_d2l_csv.py spa_site/questions.json lesson_week5.csv
 ```
+After generating the CSV, verify it matches the lesson data:
+```
+python3 ../../scripts/test_lesson_csv.py spa_site/questions.json lesson_week5.csv --script export_to_d2l_csv.py
+```
 
 Then upload `lesson_week5.csv` using Brightspace's bulk question import.
