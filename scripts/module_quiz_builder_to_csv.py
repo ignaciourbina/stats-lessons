@@ -24,6 +24,14 @@ without manual tweaking.
 Usage example
 -------------
 >>> bank = QuestionBank()
+>>> bank.add(
+...     SectionHeader(
+...         "Intro Video",
+...         '<iframe src="https://www.youtube.com/embed/VIDEO_ID" '
+...         'width="560" height="315" frameborder="0" allowfullscreen></iframe>'
+...     )
+... )
+>>> bank.add( ... )  # real questions follow
 >>> q1 = WrittenResponse(
 ...     title="Short essay on oxidation",
 ...     question_text="Explain what happens during oxidation.",
