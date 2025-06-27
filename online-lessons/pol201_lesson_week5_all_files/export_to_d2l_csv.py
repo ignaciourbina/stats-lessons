@@ -2,6 +2,7 @@
 
 import json
 import logging
+import re
 from pathlib import Path
 import sys
 
@@ -18,44 +19,18 @@ from module_quiz_builder_to_csv import (
     SectionHeader,
 )
 
-from bs4 import BeautifulSoup
-
-ALLOWED_TAGS = {
-    "p",
-    "b",
-    "strong",
-    "em",
-    "i",
-    "ul",
-    "ol",
-    "li",
-    "br",
-    "span",
-    "h1",
-    "h2",
-    "h3",
-    "h4",
-    "h5",
-    "h6",
-    "img",
-    "div",
-}
 
 
 def clean_html(text: str) -> str:
-    """Sanitise lesson HTML removing unsupported tags and attributes."""
-    soup = BeautifulSoup(text, "html.parser")
-    for tag in soup.find_all(True):
-        if tag.name not in ALLOWED_TAGS:
-            tag.decompose()
-            continue
-        # Drop event handlers and inline styles
-        tag.attrs = {
-            k: v
-            for k, v in tag.attrs.items()
-            if not k.lower().startswith("on") and k.lower() not in {"style"}
-        }
-    return str(soup).strip()
+    """Remove tags Brightspace strips while keeping embedded content."""
+    text = re.sub(r"<meta[^>]*>", "", text, flags=re.IGNORECASE)
+    text = re.sub(
+        r"<title[^>]*>.*?</title>", "", text, flags=re.IGNORECASE | re.DOTALL
+    )
+    text = re.sub(
+        r"<style[^>]*>.*?</style>", "", text, flags=re.IGNORECASE | re.DOTALL
+    )
+    return text.strip()
 
 def convert(json_path: Path, csv_path: Path, *, points: int = 0) -> None:
     """Convert `json_path` into a Brightspace CSV saved to `csv_path`."""
