@@ -1,0 +1,1056 @@
+﻿NewQuestion,WR,,,,
+Title,Section ▸ Slide 1,,,,
+QuestionText,"<header>
+        <div class=""container"">
+            <div id=""branding"">
+                <h1>Lesson: Units 6.2, 6.3 and Unit 7</h1>
+            </div>
+        </div>
+</header>
+           
+
+<div class=""container"">
+    <div class=""content"">
+        <h3>Welcome to Week Five's Lesson!</h3>
+        <p>In this lesson, we will finish covering inference for categorical variables and we will cover inference for continuous variables, in which we focus primarily on the population mean. We will continue to construct confidence intervals and perform hypothesis tests.</p><br>
+        
+        <h3>Lesson Index</h3>
+        <ol>
+            <li>Inference for the Population Mean and Test Statistic</li>
+            <li>Inference for the Difference of Two Proportions</li>
+            <li>Inference for Discrete Categorical Variables</li>
+            <li>Inference for the Population Mean under Large and Small Sample</li>
+            <li>Inference for Matched Pairs</li>
+            <li>Inference for the Difference of Population Means</li>
+        </ol>
+    </div>
+</div>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 2,,,,
+QuestionText,"<header>
+        <div class=""container"">
+            <div id=""branding"">
+                <h1>Understanding the Difference of Two Proportions</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class=""container"">
+        <div class=""content"">
+            <h2>Introduction</h2>
+            <p>When we compare two groups to see if they differ in some specific characteristic, we often look at proportions. For instance, we might compare the percentage of voters in two regions who support a particular policy or the proportion of customers in different age groups who prefer a new product.</p>
+
+            <h2>Why Compare Proportions?</h2>
+            <p>Comparing proportions helps us understand if these differences are just due to random chance or if they reflect a real underlying trend. This is especially important in fields like medicine, marketing, and public policy, where making decisions based on these comparisons can have significant implications.</p>
+
+            <h2>Practical Examples</h2>
+            <p>Consider a health study comparing the effectiveness of two treatments across different patient groups or a market research survey analyzing customer satisfaction levels in different demographics. By comparing proportions, we can draw meaningful conclusions that help guide future actions and strategies.</p>
+        </div>
+</div>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 3,,,,
+QuestionText,Please review the following slides. In this slides we derive the formulas for the mean and the variance of the sample difference of two proportions,HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 4,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+    
+    
+</head>
+<body>
+    
+    <div class=""pdf-container"">
+        <iframe src=""https://stonybrookuniversity.co1.qualtrics.com/CP/File.php?F=F_dpB4sUVqHU4Hbr8"" frameborder=""0"" allowfullscreen allow=""web-share""></iframe>
+    </div>
+
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 5,,,,
+QuestionText,"<span style=""font-size:16px;"">You can download the slides here: <a href=""https://stonybrookuniversity.co1.qualtrics.com/CP/File.php?F=F_dpB4sUVqHU4Hbr8"" rel=""noopener"" target=""_blank"">Pol201 501 sampling distribution diff of proportions</a></span>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 6,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Introduction: Inference for Two Proportions </h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/g0at6LpYvHc?si=U1qofA7H5uA4dZSK"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 7,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Example: Inference for Two Proportions </h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/OIYkOiQX3fk?si=EL-uqpS0a5bTVYxX"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 8,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Solved Problems: Confidence Interval for the Difference of Two Proportions </h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/RlkXSYgxQl8?si=xE60vOCsBkUuN6s1"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 9,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Solved Problems: Hypothesis Tests for the Difference of Two Proportions </h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/QaEjRSVG02E?si=J4kyjRR-S0IQs5hi"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 10,,,,
+QuestionText,"<b>Test your knowledge! </b><br>
+<span style=""font-size:13px;"">Please consider the following question.</span>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Question 1,,,,
+QuestionText,"In a clinical trial evaluating the effectiveness of two brands of pain relief patches, 150 patients used Brand A and 75 reported significant pain relief, while another 150 patients used Brand B and 90 reported significant pain relief. Researchers used a 0.05 significance level to test for a difference in effectiveness between the two brands. What is the 
+𝑝-value for this test, and what can be inferred from it?",HTML,,,
+Points,0,,,,
+Option,0,"A) 𝑝 = 0.05, we don't reject the null hypothesis.",HTML,,
+Option,0,"B) 𝑝 = 0.025, we reject the null hypothesis.",HTML,,
+Option,0,"C) 𝑝 = 0.04, we reject the null hypothesis.",HTML,,
+Option,0,"D) 𝑝 = 0.08, we don't reject the null hypothesis.",HTML,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 11,,,,
+QuestionText,"Yes, that is correct!",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 12,,,,
+QuestionText,"Ups, check again your steps!<br>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 13,,,,
+QuestionText,"<body>
+    
+
+    
+
+    <p>To solve this question we need to follow these steps:</p>
+    <ol>
+        <li>Calculate the proportions of success for each group.</li>
+        <li>Compute the pooled proportion since we're testing for equality between two proportions. In other words, since the null assumes equality of proportions we can estimate the SE using the pooled proportion.</li>
+        <li>Using the pooled proportion, calculate the standard error of the difference in proportions.</li>
+        <li>Compute the test statistic using the standard error and the difference in observed proportions.</li>
+        <li>Find the 𝑝-value to determine the significance of our results. Recall, for a two-tailed Z-test, we find the p-value by computing: 2*(1 - Pr(Z ≤ |Z statistic|). Note that some references call the Z statistic calculated with the sample data the ""Z observed."" or ""Z obs.""</li>
+    </ol> 
+
+    <p><strong>Analysis of Clinical Trial Effectiveness</strong> The following results are based on a z-test conducted to compare the effectiveness of two brands of pain relief patches among two different groups of patients:</p>
+
+    <table>
+        <tr>
+            <th>Statistic</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Proportion of Success for Brand A</td>
+            <td>0.50</td>
+        </tr>
+        <tr>
+            <td>Proportion of Success for Brand B</td>
+            <td>0.60</td>
+        </tr>
+        <tr>
+            <td>Pooled Proportion</td>
+            <td>0.55</td>
+        </tr>
+        <tr>
+            <td>Standard Error of Difference</td>
+            <td>0.0574</td>
+        </tr>
+        <tr>
+            <td>Z-Statistic</td>
+            <td>-1.7408</td>
+        </tr>
+        <tr>
+            <td>P-Value</td>
+            <td>0.082</td>
+        </tr>
+    </table>
+    
+    <p>Based on the analysis, the p-value of 0.082 is greater than the typical alpha level of 0.05, suggesting no statistically significant difference between the effectiveness of Brand A and Brand B.</p>
+</body>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 14,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+
+</head>
+<body>
+    <header>
+        <div class=""container"">
+            <div id=""branding"">
+                <h1>Understanding Chi-Square Tests for Categorical Variables</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class=""container"">
+        <div class=""content"">
+            <h2>Introduction</h2>
+            <p>The Chi-Square Test is a statistical method used to determine if there is a significant association between two categorical variables in a sample, or to test the distribution of a single categorical variable. These variables can involve categories like gender, race, or other non-numerical classifications.</p>
+
+            <h2>Why Use Chi-Square Test?</h2>
+            <p>This test compares the observed frequencies of the categories of one variable (or the single variable itself for single variable analysis) for the different groups or categories of another variable, with what we would expect if there were no association between the variables or the single variable was distributed equally. Thus, it helps determine whether the differences between the observed and expected frequencies are statistically significant.</p>
+
+            <h2>Where Can We Apply Chi-Square Tests?</h2>
+            <p>Chi-Square tests can be applied in different fields for various purposes. For instance, in market research, it can be used to compare the preferences of different groups of consumers. It can also be used to check whether the distribution of political affiliations differs by age group. Notably, it's useful when testing a hypothesis about the distribution of a single categorical variable, like analyzing whether the number of people who prefer different types of social media are distributed equally across the options.</p>
+        </div>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 15,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Introduction: Chi-square Tests for One-way Tables (Categorical Data)</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/gkgyg-eR0TQ?si=iafMrXik1xkMGgs4"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 16,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> The Chi-Square Distribution - Deep Dive</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/80ffqpZdKiA?si=lPcQLAVnFfvNEij4"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 17,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> The Chi-Square Test - Goodness of Fit</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/O7wy6iBFdE8?si=KqUXJmUW93I55od1"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 18,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Example: The Chi-Square Test - Goodness of Fit</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/Uk36WGxujkc?si=WSH2g0jtxw4PkV_I"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 19,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> The Chi-Square Test - Independence Test for Two Categorical Variables</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/L1QPBGoDmT0?si=NCgmqtSp6mJ_jiNm"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 20,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Example: Independence Test for Two Categorical Variables Using the Chi-Sq. Test</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/yjrsfNdja0U?si=l0CqsHmpfCRzrxBk"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 21,,,,
+QuestionText,"<span style=""font-size:19px;""><strong>Test your knowledge!</strong><br />
+Please consider the following question.</span>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 22,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+    
+</head>
+<body>
+    <div class=""question"">
+        <p>You suspect that a six-sided dice might be biased and decide to test your theory by rolling it 120 times. 
+        The observed frequencies for the faces from 1 to 6 are 22, 18, 20, 15, 20, and 25, respectively. Assuming that in a fair face the probability of observing each face is 1/6, you perform a Chi-square test at the 0.05 significance level.</p>
+        <h3>Observed Frequencies of Dice Faces</h3>
+        <table id=""dice-table"">
+            <tr>
+                <th>Dice Face</th>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <th>Frequency</th>
+                <td>22</td>
+                <td>18</td>
+                <td>20</td>
+                <td>15</td>
+                <td>20</td>
+                <td>25</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Question 2,,,,
+QuestionText,"<span style=""font-size:19px;"">What is the p-value for this test, and what conclusion can you draw?</span>",HTML,,,
+Points,0,,,,
+Option,0,A) p = 0.05; there is sufficient evidence to suggest the dice is biased,HTML,,
+Option,0,B) p = 0.10; the results are inconclusive; further testing is recommended.,HTML,,
+Option,0,C) p = 0.50; the dice is definitely biased.,HTML,,
+Option,0,D) p = 0.72; there is no statistically significant evidence to suggest the dice is biased.,HTML,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 23,,,,
+QuestionText,"Yes, that is correct!",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 24,,,,
+QuestionText,"Ups, check again!",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 25,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+    
+    <script src=""https://polyfill.io/v3/polyfill.min.js?features=es6""></script>
+    
+    <script src=""https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js""></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    
+</head>
+<body>
+    <h3>Analysis of Dice Fairness</h3>
+    <p>The following results are based on a Chi-square test conducted to determine if a six-sided dice is fair based on 120 rolls.</p>
+    <h3>Steps to Solve the Question:</h3>
+    <ol>
+        <li>Calculate the expected frequencies assuming the dice is fair (each face should appear 20 times).</li>
+        <li>Use the observed frequencies of each face from the game.</li>
+        <li>Compute the Chi-square statistic to compare observed and expected frequencies. Note that we have 6 frequency cells, so we should use (6 - 1) = 5 degrees of freedom for the Chi-sq distribution.</li>
+        <li>Calculate the p-value to assess the significance of the results. In this case, p-value = Pr( X ≥ {Chi.sq Statistic} ).</li>
+    </ol>
+    <h3>Results:</h3>
+    <table>
+        <tr>
+            <th>Statistic</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Chi-square Statistic</td>
+            <td>2.9</td>
+        </tr>
+        <tr>
+            <td>P-Value</td>
+            <td>0.715</td>
+        </tr>
+    </table>
+    <p>Based on the analysis, the p-value of 0.715 is greater than the typical alpha level of 0.05, suggesting no statistically significant evidence to indicate the dice is biased.</p>
+    <p>The formula for the Chi-square statistic is:</p>
+    <p>\[
+		\chi^2 \text{ = } \sum \frac{ \text{($O_i$ - $E_i$)}^2}{E_i}
+    \]</p>
+    <p>where \( O_i \) is the observed frequency, and \( E_i \) is the expected frequency.</p>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 26,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+
+</head>
+<body>
+    <header>
+        <div class=""container"">
+            <div id=""branding"">
+                <h1>Inference for Population Means</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class=""container"">
+        <div class=""content"">
+            <h2>Introduction</h2>
+            <p>Understanding population means through samples is a cornerstone of statistical analysis. We often estimate these means to make decisions or predict future trends. This can involve a single group or comparing two distinct groups.</p>
+
+            <h2>Confidence Intervals and Hypothesis Testing</h2>
+            <p>Constructing confidence intervals and performing hypothesis tests are fundamental methods for making inferences about population means. These tools help us understand the range within which the true mean likely falls or whether observed differences in means are statistically significant.</p>
+
+            <h2>Why Use the t-Distribution?</h2>
+            <p>When dealing with small sample sizes from a population that is normally distributed, the t-distribution becomes crucial. Unlike the z-distribution, which is used for larger samples, the t-distribution accounts for the increased variability in estimates that arises from smaller samples.</p>
+
+            <h2>One Mean vs. Difference Between Two Means</h2>
+            <p>For a single mean, we estimate the mean of a population based on sample data. For two means, we compare them to ascertain differences. This can apply to any field, from measuring educational achievements across different schools to analyzing clinical outcomes between two treatment groups.</p>
+
+            <p>In all these cases, if the sample size is small and the population is assumed to be normal, the t-distribution provides a more appropriate model for the analysis, ensuring that our conclusions are more reliable.</p>
+        </div>
+    </div>
+
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 27,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Introduction: Inference for Population Means</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/JYP6gc--sGQ?si=D7PnMq9aUicmXux0"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 28,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Unknown Sigma and a Normal Population - the Student's T Distribution</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/bFefxSE5bmo?si=QGXVlcAdXI6Tz0wD"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 29,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> The Student's T Distribution: Deep Dive</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/UetYS3PaHIo?si=8nxvAz17D42mVcGm"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 30,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Example: Inference for the Population Mean Using the T Distribution</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/kQ4xcx6N0o4?si=PygU9sjx_hrg01do"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 31,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+	<script>
+	window.MathJax = {
+	  tex: {
+		inlineMath: [['\\(', '\\)']],  // Ensures inline math is processed
+		displayMath: [['\\[', '\\]']]  // Ensures display math is processed
+	  },
+	  startup: {
+		ready: () => {
+		  MathJax.startup.defaultReady();
+		  MathJax.startup.promise.then(() => {
+			console.log('MathJax initial typesetting complete');
+		  });
+		}
+	  }
+	};
+	</script>
+    <script id=""MathJax-script"" src=""https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"" defer></script>
+ 
+
+
+
+</head>
+<body>
+    <header>
+        <div class=""container"">
+            <div id=""branding"">
+                <h1>Inference with the Sample Mean</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class=""container"">
+        <div class=""content"">
+            <h2>Introduction</h2>
+            <p>When conducting statistical inference for the sample mean, we often face a choice between using the t-distribution and the z-distribution. This decision hinges on several key factors, which we will explore in this discussion.</p>
+            <h2>Discussion</h2>
+            <p><strong>Point 1:</strong> For doing inference for the sample mean, we almost never know the population standard deviation (\(\sigma\)).</p>
+            <p><strong>Point 2:</strong> The Central Limit Theorem (CLT) applies for a large sample size (N), regardless of: 
+                <ul>
+                    <li>The population distribution of the random variable</li>
+                    <li>Whether we know the variance of the population distribution</li>
+                </ul>
+            </p>
+            <p><strong>Point 3:</strong> As described in Professor Balka’s videos (JBStatistics), if our <em>sample is small and the underlying population follows a normal distribution</em>, then in the Z transformation we <strong>must</strong> replace \(\sigma\) with the sample variance (\(s\)), and we use the t-distribution, which depends on the degrees of freedom,  \( df \text{ = } N \text{ - } 1  \). Hence, in this situation, when doing inference of one population mean we use the T-statistic equal to  \( T \text{ = } \frac{\bar{X}\text{ - }\mu_0}{s\text{/}\sqrt{N}}   \). </p>
+            <p><strong>Point 4:</strong> But to use the t-distribution, the key assumption is that the underlying population is normal. In many cases, we won't be able to assume this is true.</p>
+            <p><strong>Main idea:</strong> This implies that in small samples (where the CLT does not apply), if we are sure the underlying population is not normal, then we lack a way to do inference using conventional tools generally taught at the introductory statistics level. However, most pollsters and political science researchers use relatively large samples. In practice, most researchers use samples of at least 400 cases, well above the \(n \text{ > } 30\) threshold. So, for political science research, we almost always can use the z-distribution by calling upon the CLT.</p>
+            <p><strong>Second takeaway:</strong> Professor Balka is correct that if the underlying population can surely be assumed to be normal (for example, we know that height and test scores are mostly normal), then the t-distribution will always be correct, as we don't need to rely on the CLT.</p>
+            <p><strong>Third takeaway:</strong> When is my sample size large? This is very subjective. For example, for proportions, the book says that the CLT applies when \(p \text{ $\cdot$ } n \text{ > } 10\) and  \(\text{(}1 \text{ - } p\text{)} \text{ $\cdot$ } n \text{ > } 10\) . Others suggest a threshold of 5 for both the positive and negative cases. In truth, unless there is a very rigorous study providing justification, a sample of 50 or 100 might not be large enough to use the CLT depending on the random process we are modeling. Yet, again, to use the t-distribution, we have to assume the underlying random variable, \(X\), follows a normal distribution. <strong> This is why, if the sample is small, when doing inference for the population mean, we always use the T distribution and the T statistic. </strong>  </p>
+		<p><strong>Conclusion:</strong> When we have a small sample size and want to minimize the chance of incorrectly rejecting the null hypothesis (H0) when it is actually true (a Type I error), it's more prudent to assume that the underlying population follows a normal distribution. This approach leads us to use the T-test for hypothesis testing in small samples.</p>
+        </div>
+    </div>
+
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 32,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Solved Problems: Inference for the Population Mean Using the T Distribution</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/fiMFqfatieE?si=qNq-X72SeXp9i7fW"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 33,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Solved Problems: Inference for the Population Mean Using the T Distribution</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/VPd8DOL13Iw?si=1kLFzkh5qSLSm0xC"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 34,,,,
+QuestionText,"<b>Test your understanding!</b><br>Please consider the following question.<br><br>A recent edition of your town's newspaper, which serves a population of 10,000, featured an enthusiastic article from a veteran health expert, Professor Johnson. He ardently argues that the average amount of yearly exercise done by the town's adults is at most 50 hours (H0: μ ≤ 50 hours). Nevertheless, a rising star in wellness research, Dr. Stevens, opposes his theory. To dispute this, Dr. Stevens performed a study involving a random sample of 12 adults from your town. Her research revealed that the sample mean of yearly exercise was 62 hours, with a sample standard deviation of 5 hours.",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Question 3,,,,
+QuestionText,"Which statistical test should Dr. Stevens use to test the hypothesis, and why?<br>",HTML,,,
+Points,0,,,,
+Option,0,"A) Z-test, because the sample mean is far above 30 hours",HTML,,
+Option,0,"B) Z-test, because the population size is large (10,000 people)",HTML,,
+Option,0,"C) T-test, because the sample size is small and the T-distribution accounts for more uncertainty",HTML,,
+Option,0,"D) T-test, because it is a one-sided hypothesis test",HTML,,
+Option,0,"E) Z-test, because the Central Limit Theorem always allows us to assume the test statistic follows a normal distribution.",HTML,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 35,,,,
+QuestionText,"<b>Yes, that is correct!</b><br>Dr. Stevens should use the T-test for the following reasons:
+<ul>
+	<li>The sample size is small (n = 12), which increases the uncertainty in estimating the population parameters.</li>
+	<li>The T-distribution, with its heavier tails, is more appropriate for small sample sizes as it provides more conservative P-values, reducing the risk of Type I errors (rejecting the null hypothesis when it is actually true).</li>
+</ul>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 36,,,,
+QuestionText,"<b>Ups, that is not correct...</b><br>Dr. Stevens should use the T-test for the following reasons:
+<ul>
+	<li>The sample size is small (n = 12), which increases the uncertainty in estimating the population parameters.</li>
+	<li>The T-distribution, with its heavier tails, is more appropriate for small sample sizes as it provides more conservative P-values, reducing the risk of Type I errors (rejecting the null hypothesis when it is actually true).</li><li>Even if we don't know whether the underlying population is normal, it is more conservative to assume it is and use the T-distribution.</li>
+</ul>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 37,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+    
+</head>
+<body>
+    <header>
+        <div class=""container"">
+            <div id=""branding"">
+                <h1>Inference for Matched Samples</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class=""container"">
+        <div class=""content"">
+            <h2>Introduction</h2>
+            <p>When performing statistical analysis, we often compare two groups to understand their differences. However, in some scenarios, these groups are not independent and contain matched pairs of observations. Such pairs may arise due to repeated measures on the same subject or matched subjects based on certain characteristics.</p>
+
+            <h2>Breaking the Independence Assumption</h2>
+            <p>A key assumption in many statistical tests is that of independence, i.e., the observation in one group does not influence the observation in the other. Matched samples violate this assumption because the same person or unit of observation is present in both groups. For example, in a medical trial studying the effects of a drug, each patient may be assessed before and after treatment. The before and after measurements are not independent since they relate to the same individual.</p>
+
+            <h2>Working with Matched Samples</h2>
+            <p>To address this issue, we perform a different type of analysis. Instead of comparing two sets of measurements directly, we compute the difference between each pair of matched observations. The resulting set of differences can then be analyzed using statistical inference methods. This approach re-establishes the independence between observations, enabling us to proceed with the common statistical tests.</p>
+        </div>
+    </div>
+
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 38,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Introduction: Inference for Matched Samples (Matched Pairs)</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/TMRBGFIj0RM?si=5BioqyFdYiMcu2Xl"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 39,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Solved Problems: Inference for Matched Samples (Matched Pairs)</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/JiQR0lHLe74?si=tKOcUNv8dQv1lgEb"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 40,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+    
+</head>
+<body>
+    <header>
+        <div class=""container"">
+            <div id=""branding"">
+                <h1>Carrying Out Matched Sample Inference</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class=""container"">
+        <div class=""content"">
+            <h2>Steps for Conducting Matched Sample Inference</h2>
+            <p>Conducting a matched sample inference involves many of the same steps as the traditional hypothesis test or confidence interval for independent samples. However, the calculations focus on the differences between pairs instead of raw data. Below is a step-by-step guide:</p>
+
+            <h3>Step 1: Define the Population of Differences</h3>
+            <ul>
+                <li>Use your pairs of observations to define the population of differences. This population consists of the difference between the pairs for all possible matched pairs in the whole population.</li>
+            </ul>
+
+            <h3>Step 2: State Hypotheses or Confidence Level</h3>
+            <ul>
+                <li>State the null and alternative hypotheses for hypothesis testing, or define the desired confidence level for a confidence interval. These statements concern the mean of the population of differences.</li>
+            </ul>
+
+            <h3>Step 3: Compute Sample Statistics</h3>
+            <ul>
+                <li>Compute the differences between the matched pairs. Use these differences to calculate the sample mean difference and sample standard deviation.</li>
+            </ul>
+
+            <h3>Step 4: Conduct the Analysis</h3>
+            <ul>
+                <li>Perform a hypothesis test using the sample statistics and the relevant t-distribution. Calculate the test statistic and p-value. Alternatively, form a confidence interval using the same sample statistics and t-distribution.</li>
+            </ul>
+
+            <h3>Step 5: Make the Statistical Decision</h3>
+            <ul>
+                <li>In a hypothesis test, reject the null hypothesis if the p-value is less than the chosen significance level. For a confidence interval, interpret the interval in the context of the problem. Note that if zero is not in the interval, this is equivalent to rejecting the null hypothesis of no difference in a two-tailed test at the corresponding significance level.</li>
+            </ul>
+
+            <h3>Step 6: Interpret the Result</h3>
+            <ul>
+                <li>Depending upon your statistical decision, provide a meaningful interpretation in the context of the problem. Discuss the implications of your findings.</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 41,,,,
+QuestionText,"<header>
+    <div class=""container"" id=""branding"">
+        <h1>Understanding the Difference of Two Means</h1>
+    </div>
+</header>
+
+<div class=""container main"">
+    <h2>Introduction</h2>
+    <p>In many practical scenarios, we are interested in comparing the average or mean values of a particular characteristic from two different groups or populations. This could be, for example, the average time spent on a website by visitors from two different countries, or the average yield of two different varieties of wheat.</p>
+
+    <h2>Why Compare Means?</h2>
+    <p>Comparing means enables us to identify significant differences between groups. Understanding these differences helps us make informed decisions and predict future trends. This can be particularly beneficial in fields like economics, medicine, agriculture, and social sciences, where understanding the mean differences can lead to more effective policies, enhanced product yields, and better health outcomes.</p>
+    
+    <h2>Practical Examples</h2>
+    <p>Consider a business owner who wants to evaluate the average sales in two different stores, or a researcher who is comparing the average blood pressure levels in two groups following different diets. The conclusions drawn from comparing means can consequently assist in planning strategic actions and remedial measures if necessary.</p>
+</div>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 42,,,,
+QuestionText,"First, we will consider the sampling distribution of the difference of two sample means.<br>Please review the following slides. In this slides we derive the formulas for the mean and the variance of the sample difference of two means.<br>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 43,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+		
+    
+    
+</head>
+<body>
+	
+    <div class=""pdf-container"">
+        <iframe src=""https://stonybrookuniversity.co1.qualtrics.com/CP/File.php?F=F_beX0QJIjILqPkPk"" frameborder=""0"" allowfullscreen></iframe>
+    </div>
+
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 44,,,,
+QuestionText,"<span style=""font-size:16px;"">You can download the slide here: <a href=""https://stonybrookuniversity.co1.qualtrics.com/CP/File.php?F=F_beX0QJIjILqPkPk"" rel=""noopener"" target=""_blank"">Pol201 501 sampling dist diff means</a> </span>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 45,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Introduction: Inference for the Difference of Two Population Means</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/zn5y64PwP78?si=JHrcvK1CYHxriCr-"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 46,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Solved Problems: Inference for the Difference of Two Population Means (Large Sample Case)</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/_aho-7cpJ-Q?si=sLlzNsFlVw4k4EVb"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 47,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+    
+</head>
+<body>
+	<h3> Solved Problems: Inference for the Difference of Two Population Means (Small and Large Sample Cases)</h3> <br>
+	
+    <div class=""video-container"">
+        <iframe src=""https://www.youtube.com/embed/UcZwyzwWU7o?si=k-hXF8tvtquN03Vp"" title=""YouTube video player"" frameborder=""0"" allow=""accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"" referrerpolicy=""strict-origin-when-cross-origin"" allowfullscreen></iframe>
+    </div>
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 48,,,,
+QuestionText,"<b>Test your knowledge!<br></b>Please consider the following question. <br><br>A company wants to test if a new training program increases the average productivity of its employees. They conduct a study with a sample of 100 employees who underwent the new training program and another sample of 120 employees who did not. The sample mean productivity score for the trained employees is 85 with a standard deviation of 10, while the sample mean for the untrained employees is 80 with a standard deviation of 12. Use a significance level of 0.05 to determine if the new training program significantly increases productivity.",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,MC,,,,
+Title,Question 4,,,,
+QuestionText,Which of the following is the correct conclusion based on the hypothesis test?,HTML,,,
+Points,0,,,,
+Option,0,A) The new training program does not significantly increase productivity.,HTML,,
+Option,0,B) The new training program significantly increases productivity.,HTML,,
+Option,0,C) There is not enough information to determine if the new training program increases productivity.,HTML,,
+Option,0,D) The new training program significantly decreases productivity.,HTML,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 49,,,,
+QuestionText,"Yes! That is correct.<br>Please review the answer to the question, included in the following PDF. <br>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 50,,,,
+QuestionText,"Ups, check the correct answer below!<br>Please review the answer to the question, included in the following PDF. <br>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 51,,,,
+QuestionText,"<!DOCTYPE html>
+<html lang=""en"">
+<head>
+    
+    
+	
+    
+    
+</head>
+<body>
+	
+    <div class=""pdf-container"">
+        <iframe src=""https://stonybrookuniversity.co1.qualtrics.com/CP/File.php?F=F_3BDbAWm1ljrPjj8"" frameborder=""0"" allowfullscreen></iframe>
+    </div>
+
+</body>
+</html>",HTML,,,
+Points,0,,,,
+,,,,,
+NewQuestion,WR,,,,
+Title,Section ▸ Slide 52,,,,
+QuestionText,"<span style=""font-size:16px;"">You can download the PDF document here: <a href=""https://stonybrookuniversity.co1.qualtrics.com/CP/File.php?F=F_3BDbAWm1ljrPjj8"" rel=""noopener"" target=""_blank"">Pol201 501 example two means</a> </span>",HTML,,,
+Points,0,,,,
+,,,,,
