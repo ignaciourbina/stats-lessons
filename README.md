@@ -10,7 +10,9 @@ This repository stores materials for the POL201 statistics course. The content i
 - **online-lessons/** – fully online lesson packages. This folder now holds the Week&nbsp;4 lessons in both Google Apps Script and HTML/JS forms.
 - **weekly-quizzes/** – LaTeX question sets, notes and logs used to generate Brightspace quiz CSVs.
 - **styles.css** – shared CSS used by some of the HTML lesson pages.
-- **scripts/** – Python utilities for quiz building and answer validation.
+- **scripts/** – Python utilities for quiz building and answer validation. The
+  quiz builder module includes a `SectionHeader` helper for adding dummy
+  section dividers in Brightspace CSV exports.
 - **instructions/** – assistant protocols referenced by the various `AGENTS.md` files.
 
 The `DESIGN_README.md` file outlines styling guidelines used when refreshing the lesson pages.

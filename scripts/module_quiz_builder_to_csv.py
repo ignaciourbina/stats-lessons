@@ -14,6 +14,9 @@ question types programmatically, add them to a bank, and then export the
 whole set to a **CSV UTF‑8** file that is ready to import with the “Bulk
 question upload” tool (Add/Edit Questions → Import → Upload a File).
 
+It also includes a ``SectionHeader`` helper for inserting unscored dummy
+items that act as visible headers between groups of questions.
+
 It follows the exact column order/structure used in D2L’s sample
 `Sample_Question_Import_UTF8.csv` so the resulting file is accepted
 without manual tweaking.
@@ -134,6 +137,18 @@ class WrittenResponse(Question):
         if self.answer_key is not None:
             rows.append(["AnswerKey", self.answer_key, *BLANK4])
         return rows
+
+
+class SectionHeader(WrittenResponse):
+    """Unscored dummy item that works as a visible section header."""
+
+    def __init__(self, title: str, body_html: str):
+        super().__init__(
+            title=f"Section ▸ {title}",
+            question_text=body_html,
+            points=0,
+            html_used=True,
+        )
 
 @dataclass
 class ShortAnswer(Question):

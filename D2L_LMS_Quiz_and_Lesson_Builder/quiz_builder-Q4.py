@@ -11,12 +11,20 @@ from module_quiz_builder_to_csv import (
     QuestionBank,
     MultipleChoice,
     MCOption,
+    SectionHeader,
 )
 
 # ---------------------------------------------------------------------
 # Build the question bank
 # ---------------------------------------------------------------------
 bank = QuestionBank()
+
+bank.add(
+    SectionHeader(
+        "Lesson Outline",
+        "<h2>Lesson Outline</h2><p>This quiz covers sampling distributions and hypothesis testing.</p>",
+    )
+)
 
 # 1. Central Limit Theorem
 bank.add(
